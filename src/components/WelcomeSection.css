@@ -1,0 +1,133 @@
+.welcome-section {
+    padding: 40px 0 100px;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.welcome-container {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+}
+
+.welcome-content {
+    flex: 1;
+}
+
+.welcome-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #1a1b4b;
+    margin-bottom: 20px;
+}
+
+.title-underline {
+    width: 60px;
+    height: 4px;
+    background-color: #fca311;
+    margin-bottom: 40px;
+}
+
+.welcome-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #64748b;
+    margin-bottom: 25px;
+}
+
+.welcome-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.welcome-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.feature-icon-box {
+    width: 60px;
+    height: 60px;
+    background-color: #fca311;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.welcome-feature-item:hover .feature-icon-box {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.feature-info h4 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a1b4b;
+    margin-bottom: 5px;
+}
+
+.feature-info p {
+    font-size: 0.95rem;
+    color: #64748b;
+}
+
+.welcome-image {
+    flex: 1.2;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.welcome-image img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 30px;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 1024px) {
+    .welcome-container {
+        flex-direction: column;
+        gap: 60px;
+        text-align: center;
+    }
+
+    .welcome-content {
+        order: 2;
+    }
+
+    .welcome-image {
+        order: 1;
+        justify-content: center;
+    }
+
+    .title-underline {
+        margin: 0 auto 40px;
+    }
+
+    .welcome-features {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 640px) {
+    .welcome-features {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome-feature-item {
+        flex-direction: column;
+        text-align: center;
+    }
+}

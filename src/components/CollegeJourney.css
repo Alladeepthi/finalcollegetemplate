@@ -1,0 +1,243 @@
+/* ... previous styles ... */
+
+.journey-section {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.journey-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.journey-header h2 {
+    font-size: 2.2rem;
+    color: #1a1b4b;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.journey-header p {
+    font-size: 1.1rem;
+    color: #64748b;
+}
+
+/* Steps Flow */
+.journey-steps-wrapper {
+    margin-bottom: 60px;
+    padding: 20px 0;
+    overflow-x: auto;
+}
+
+.journey-steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 800px;
+}
+
+.journey-step-item {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.step-badge {
+    background-color: #f1f5f9;
+    /* Default gray */
+    color: #94a3b8;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+/* Active State for Step */
+.step-badge.active-pulse {
+    background-color: #d1fae5;
+    color: #059669;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.check-icon {
+    background-color: #cbd5e1;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: 900;
+    transition: background 0.3s;
+}
+
+.active-pulse .check-icon {
+    background-color: #10b981;
+}
+
+.step-connector {
+    flex: 1;
+    height: 2px;
+    background-color: #e2e8f0;
+    margin: 0 10px;
+    position: relative;
+}
+
+.step-connector::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    background-color: #10b981;
+    transition: width 0.5s ease;
+}
+
+.step-connector.filled::after {
+    width: 100%;
+}
+
+/* Features Grid */
+.journey-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.journey-card {
+    background-color: #3b5bdb;
+    border-radius: 12px;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    gap: 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(59, 91, 219, 0.1);
+    border: 1px solid transparent;
+}
+
+.journey-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(59, 91, 219, 0.4), 0 10px 10px -5px rgba(59, 91, 219, 0.2);
+    background-color: #4c6ef5;
+    /* Slightly lighter blue on hover */
+    border-color: #748ffc;
+}
+
+.journey-card-content {
+    flex: 1;
+}
+
+.journey-card-content h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.journey-card-content p {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+.journey-icon-box {
+    background-color: white;
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #1a1b4b;
+    flex-shrink: 0;
+    transition: transform 0.4s ease;
+}
+
+.journey-card:hover .journey-icon-box {
+    transform: rotate(10deg) scale(1.1);
+}
+
+.journey-icon-box svg {
+    stroke-width: 1.5;
+}
+
+/* Bottom Actions */
+.journey-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn-start-app {
+    background-color: #f59e0b;
+    color: #1a1b4b;
+    font-weight: 700;
+    padding: 16px 32px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(245, 158, 11, 0.2);
+    transition: transform 0.2s, background 0.2s;
+}
+
+.btn-start-app:hover {
+    background-color: #d97706;
+    transform: translateY(-2px);
+}
+
+.btn-talk-expert {
+    background-color: white;
+    color: #1a1b4b;
+    font-weight: 700;
+    padding: 16px 32px;
+    border-radius: 8px;
+    border: 2px solid #e2e8f0;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-talk-expert:hover {
+    border-color: #1a1b4b;
+    background-color: #f8fafc;
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .journey-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .journey-card {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .journey-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn-start-app,
+    .btn-talk-expert {
+        width: 100%;
+    }
+}

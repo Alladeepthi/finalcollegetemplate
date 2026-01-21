@@ -1,0 +1,294 @@
+.college-details-page {
+    background-color: #f8fafc;
+    min-height: 100vh;
+    padding-bottom: 4rem;
+}
+
+/* HERO */
+.cd-hero {
+    height: 350px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 2rem;
+}
+
+.cd-hero-content {
+    display: flex;
+    align-items: flex-end;
+    gap: 2rem;
+    color: white;
+    width: 100%;
+}
+
+.cd-logo-box {
+    width: 120px;
+    height: 120px;
+    background: white;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cd-logo-box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.cd-info-box {
+    flex: 1;
+}
+
+.cd-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin: 0 0 0.5rem 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.cd-meta {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 1rem;
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+}
+
+.cd-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-cd-primary {
+    background: #ea580c;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-cd-primary:hover {
+    background: #c2410c;
+}
+
+.btn-cd-secondary {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-cd-secondary:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* NAVIGATION */
+.cd-nav-wrapper {
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 70px;
+    /* Below header */
+    z-index: 100;
+}
+
+.cd-nav {
+    display: flex;
+    gap: 2rem;
+}
+
+.cd-nav button {
+    background: none;
+    border: none;
+    padding: 1rem 0;
+    color: #64748b;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    position: relative;
+}
+
+.cd-nav button.active {
+    color: #2563EB;
+}
+
+.cd-nav button.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #2563EB;
+    border-radius: 3px 3px 0 0;
+}
+
+/* LAYOUT */
+.cd-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.cd-main {
+    background: transparent;
+}
+
+.cd-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    margin-bottom: 2rem;
+}
+
+.cd-section h2 {
+    margin-top: 0;
+    color: #1e293b;
+}
+
+.cd-section p {
+    color: #475569;
+    line-height: 1.6;
+}
+
+/* HIGHLIGHTS */
+.highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.highlight-card {
+    background: #f1f5f9;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.hl-value {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #2563EB;
+    margin-bottom: 5px;
+}
+
+.hl-label {
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+/* TABLE */
+.courses-table {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 1.5rem;
+}
+
+.c-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    padding: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    align-items: center;
+}
+
+.c-head {
+    background: #f8fafc;
+    font-weight: 700;
+    color: #475569;
+    font-size: 0.9rem;
+}
+
+.c-row:last-child {
+    border-bottom: none;
+}
+
+.c-name {
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.c-fee {
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.btn-sm-apply {
+    background: #2563EB;
+    color: white;
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+/* SIDEBAR */
+.cd-sidebar {
+    position: sticky;
+    top: 150px;
+    height: fit-content;
+}
+
+.sidebar-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1.5rem;
+}
+
+.form-card input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.btn-submit-lead {
+    width: 100%;
+    background: #ea580c;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.animate-fade {
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

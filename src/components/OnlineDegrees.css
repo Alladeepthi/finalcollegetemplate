@@ -1,0 +1,188 @@
+.online-degrees-section {
+    padding: 0;
+    margin: 40px 0;
+    background-color: var(--color-white);
+    overflow: hidden;
+}
+
+.degree-banner {
+    background-color: #FBBF24;
+    /* Vibrant Orange */
+    position: relative;
+    padding: 3rem 0;
+    color: #1e293b;
+    overflow: hidden;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+}
+
+/* Creating the curve effect using a pseudo-element */
+.degree-banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 35%;
+    /* Adjust based on where you want the curve to start */
+    height: 100%;
+    background-color: #FFedd5;
+    /* Light Beige/Peach */
+    z-index: 1;
+}
+
+/* The curved part */
+.degree-banner::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 35%;
+    /* Starts right after the block */
+    width: 150px;
+    /* Width of the curve */
+    height: 100%;
+    background-color: #FFedd5;
+    border-radius: 0 100% 100% 0 / 0 50% 50% 0;
+    /* Creates an outward curve */
+    z-index: 1;
+    transform: scaleX(1.5);
+    /* Stretch it a bit */
+    transform-origin: left;
+}
+
+
+.degree-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+    /* Above the background decorations */
+    width: 100%;
+    gap: 2rem;
+}
+
+@media (max-width: 992px) {
+    .degree-container {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    /* On mobile, maybe stacking colors is better or just simple gradient */
+    .degree-banner {
+        background: linear-gradient(to bottom, #FFedd5 40%, #FBBF24 40%);
+    }
+
+    .degree-banner::before,
+    .degree-banner::after {
+        display: none;
+    }
+}
+
+/* Text Content */
+.degree-text {
+    flex: 1.5;
+}
+
+.degree-subtitle {
+    font-size: 1.1rem;
+    color: #475569;
+    margin-bottom: 0px;
+    font-weight: 500;
+}
+
+.degree-title {
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: #0F172A;
+    line-height: 1.1;
+    margin-bottom: 5px;
+}
+
+.degree-subtext {
+    font-size: 1.1rem;
+    color: #334155;
+    margin-bottom: 0;
+}
+
+/* Features */
+.degree-features {
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-left: 4rem;
+    /* Push right to be on the orange part */
+    justify-content: center;
+}
+
+.feature-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    /* Optional: background for icon */
+}
+
+.feature-row p {
+    font-size: 0.95rem;
+    color: #334155;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Action Button */
+.degree-action {
+    flex-shrink: 0;
+}
+
+.btn-counselling {
+    background-color: #ffffff;
+    color: #0F172A;
+    font-weight: 800;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    border: none;
+    font-size: 1.05rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-counselling:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    background-color: #f8fafc;
+}
+
+/* Remove old circle decorations */
+.circle-decoration,
+.circle-decoration-2 {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .degree-features {
+        margin-left: 0;
+        align-items: flex-start;
+        /* Center text but verify */
+    }
+
+    .feature-row {
+        text-align: left;
+    }
+
+    .degree-title {
+        font-size: 2.5rem;
+    }
+}

@@ -1,0 +1,57 @@
+.stats-container {
+    background: var(--color-white);
+    border-radius: 50px;
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+    transform: translateY(50%);
+    /* Start pushed down, parent will handle placement */
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.stat-icon {
+    font-size: 2rem;
+}
+
+.stat-icon.yellow {
+    color: #FFC107;
+}
+
+.stat-icon.pink {
+    color: #FF4081;
+}
+
+.stat-icon.blue {
+    color: #00BCD4;
+}
+
+.stat-text h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-dark);
+    line-height: 1;
+}
+
+.stat-text p {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+.stat-separator {
+    width: 1px;
+    height: 40px;
+    background-color: #e2e8f0;
+}

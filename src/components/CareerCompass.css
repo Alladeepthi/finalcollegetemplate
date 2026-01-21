@@ -1,0 +1,62 @@
+.career-compass-section {
+    background: linear-gradient(90deg, #fff3e0 0%, #e2f2f7 100%);
+    /* Peach to Light Blue gradient approximation */
+    padding: 3rem 0;
+    margin: 2rem 0;
+}
+
+.compass-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .compass-container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+.compass-content {
+    flex: 1;
+    max-width: 700px;
+}
+
+.compass-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1a237e;
+    /* Dark Blue title */
+    margin-bottom: 1rem;
+}
+
+.compass-text {
+    font-size: 1rem;
+    color: #546e7a;
+    line-height: 1.6;
+}
+
+.compass-action {
+    flex-shrink: 0;
+}
+
+.btn-career {
+    background-color: #f39c12;
+    /* Orange/Yellow tone */
+    color: #000;
+    font-weight: 700;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-career:hover {
+    background-color: #e67e22;
+    transform: translateY(-2px);
+}
