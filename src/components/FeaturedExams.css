@@ -147,6 +147,7 @@
 
 .card-title {
     font-size: 1.6rem;
+    /* Keeps slightly distinct for card */
     font-weight: 800;
     margin-bottom: 0.5rem;
     color: var(--color-dark);

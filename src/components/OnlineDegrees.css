@@ -86,7 +86,8 @@
 }
 
 .degree-subtitle {
-    font-size: 1.1rem;
+    font-size: var(--p-lg-size);
+    /* Standardized */
     color: #475569;
     margin-bottom: 0px;
     font-weight: 500;
@@ -94,6 +95,7 @@
 
 .degree-title {
     font-size: 3.2rem;
+    /* Keep as is for banner impact, close to h1 */
     font-weight: 800;
     color: #0F172A;
     line-height: 1.1;
@@ -101,7 +103,8 @@
 }
 
 .degree-subtext {
-    font-size: 1.1rem;
+    font-size: var(--p-lg-size);
+    /* Standardized */
     color: #334155;
     margin-bottom: 0;
 }
@@ -134,7 +137,8 @@
 }
 
 .feature-row p {
-    font-size: 0.95rem;
+    font-size: var(--p-md-size);
+    /* Standardized */
     color: #334155;
     margin: 0;
     line-height: 1.4;

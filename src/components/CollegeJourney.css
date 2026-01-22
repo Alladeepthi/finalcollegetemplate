@@ -11,14 +11,16 @@
 }
 
 .journey-header h2 {
-    font-size: 2.2rem;
+    font-size: var(--h2-size);
+    /* Standardized */
     color: #1a1b4b;
     font-weight: 800;
     margin-bottom: 12px;
 }
 
 .journey-header p {
-    font-size: 1.1rem;
+    font-size: var(--p-lg-size);
+    /* Standardized */
     color: #64748b;
 }
 
@@ -48,7 +50,8 @@
     color: #94a3b8;
     padding: 8px 16px;
     border-radius: 6px;
-    font-size: 0.9rem;
+    font-size: var(--p-sm-size);
+    /* Standardized */
     font-weight: 700;
     display: flex;
     align-items: center;
@@ -144,13 +147,15 @@
 }
 
 .journey-card-content h3 {
-    font-size: 1.3rem;
+    font-size: var(--h3-size);
+    /* Standardized */
     font-weight: 700;
     margin-bottom: 10px;
 }
 
 .journey-card-content p {
-    font-size: 0.95rem;
+    font-size: var(--p-md-size);
+    /* Standardized */
     opacity: 0.9;
     line-height: 1.5;
 }

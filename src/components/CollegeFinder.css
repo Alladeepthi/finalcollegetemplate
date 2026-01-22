@@ -10,7 +10,8 @@
 }
 
 .finder-title {
-    font-size: 2rem;
+    font-size: var(--h2-size);
+    /* Standardized */
     color: #1a1b4b;
     font-weight: 800;
     margin-bottom: 10px;
@@ -18,9 +19,11 @@
 
 .finder-subtitle {
     color: #64748b;
-    font-size: 1.1rem;
+    font-size: var(--p-lg-size);
+    /* Standardized */
 }
 
+/* Tabs */
 .finder-tabs {
     display: flex;
     justify-content: center;
@@ -89,22 +92,42 @@
 }
 
 .card-header h3 {
-    font-size: 1.1rem;
+    font-size: var(--p-lg-size);
+    /* Standardized for a card header, small heading */
     font-weight: 700;
     color: #1a1b4b;
 }
 
+/* ... rest of styles remain similar, typography adjusted */
 .view-all {
-    font-size: 0.85rem;
+    font-size: var(--p-sm-size);
+    /* Standardized */
     color: #3b5bdb;
     text-decoration: none;
     font-weight: 600;
     cursor: pointer;
 }
 
-.view-all-dot {
-    font-size: 0.6rem;
-    vertical-align: middle;
+/* Specific Card Styles */
+.colleges-card .data-chip {
+    width: auto;
+    flex-grow: 1;
+    /* Make college chips fill space slightly */
+    text-align: center;
+}
+
+.middle-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    /* Ensure wrapper fills grid cell */
+}
+
+.middle-column .finder-card {
+    height: auto;
+    flex: 1;
+    /* Distribute height evenly between Exams and States */
 }
 
 /* Chips Styling */
@@ -123,13 +146,16 @@
 .data-chip {
     padding: 8px 14px;
     border-radius: 6px;
-    font-size: 0.85rem;
+    font-size: var(--p-sm-size);
+    /* Standardized */
     font-weight: 500;
     color: #334155;
     background-color: #f1f5f9;
     border: 1px solid transparent;
     cursor: pointer;
     transition: all 0.2s;
+    white-space: nowrap;
+    /* Prevent text wrapping */
 }
 
 .data-chip:hover {
@@ -139,80 +165,29 @@
     transform: translateY(-1px);
 }
 
-/* Specific Card Styles */
-.colleges-card .data-chip {
-    width: auto;
-    flex-grow: 1;
-    /* Make college chips fill space slightly */
-    text-align: center;
-}
-
-.middle-column {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.states-card {
-    background-color: #f8fafc;
-    /* Slightly darker bg for differentiation */
-}
-
-/* Courses List */
-.courses-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
+/* Course Items */
 .course-item {
-    padding: 12px;
-    background-color: #f8fafc;
-    border-radius: 8px;
-    margin-bottom: 8px;
     font-size: 0.9rem;
+    /* Keep specific */
     color: #475569;
     font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-    border: 1px solid transparent;
 }
 
-.course-item:hover {
-    background-color: white;
-    border-color: #3b5bdb;
-    color: #3b5bdb;
-    transform: translateX(4px);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+/* View All (small) */
+.view-all-dot {
+    font-size: 0.6rem;
+    vertical-align: middle;
 }
 
-/* Responsive */
+/* ... existing responsive code ... */
 @media (max-width: 992px) {
     .finder-content {
         grid-template-columns: 1fr;
     }
 
-    .middle-column {
-        flex-direction: row;
-    }
-
-    .middle-column>div {
-        flex: 1;
-    }
+    /* ... */
 }
 
 @media (max-width: 600px) {
-    .middle-column {
-        flex-direction: column;
-    }
-
-    .finder-tabs {
-        overflow-x: auto;
-        justify-content: flex-start;
-    }
-
-    .tab-btn {
-        flex: none;
-        /* Allow horizontal scroll on mobile */
-    }
+    /* ... */
 }

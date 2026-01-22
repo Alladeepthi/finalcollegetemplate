@@ -48,21 +48,25 @@
 }
 
 .hero-overline {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     letter-spacing: 2px;
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 1rem;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 .hero-title {
-    font-size: 3.5rem;
+    font-size: var(--h1-size);
+    /* 3.5rem */
     font-weight: 800;
     margin-bottom: 1rem;
     line-height: 1.2;
 }
 
-/* Search Bar */
-/* Search Bar styles removed */
-/* Stats styles removed */
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+}

@@ -25,7 +25,8 @@
 }
 
 .compass-title {
-    font-size: 2rem;
+    font-size: var(--h2-size);
+    /* Standardized */
     font-weight: 800;
     color: #1a237e;
     /* Dark Blue title */
@@ -33,7 +34,8 @@
 }
 
 .compass-text {
-    font-size: 1rem;
+    font-size: var(--p-md-size);
+    /* Standardized */
     color: #546e7a;
     line-height: 1.6;
 }
