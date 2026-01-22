@@ -155,9 +155,9 @@
 
 .journey-card-content p {
     font-size: var(--p-md-size);
-    /* Standardized */
-    opacity: 0.9;
-    line-height: 1.5;
+    color: #e0e7ff;
+    /* soft readable light blue */
+    line-height: 1.6;
 }
 
 .journey-icon-box {
