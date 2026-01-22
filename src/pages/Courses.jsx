@@ -1,99 +1,85 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+﻿import React, { useState, useEffect } from 'react';
+import { useLocation, Link } from 'react-router-dom';
+import coursesData from '../data/coursesData';
 import './Courses.css';
+
+const COURSES_DATA = coursesData;
 
 const Courses = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const location = useLocation();
 
+    // Filters State
+    const [selectedLevels, setSelectedLevels] = useState([]);
+    const [selectedStreams, setSelectedStreams] = useState([]);
+    const [selectedMode, setSelectedMode] = useState('');
+    const [sortBy, setSortBy] = useState('Popularity');
+
     // Initialize search term from URL query parameter
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         const category = params.get('category');
-        if (category) {
-            setSearchTerm(category);
+        const level = params.get('level');
+        const search = params.get('search');
+
+        if (category) setSearchTerm(category);
+        if (search) setSearchTerm(search);
+        if (level) {
+            // Map URL level param to actual level text if needed, simplifies for now
+            if (level === 'ug') setSelectedLevels((prev) => [...prev, 'Undergraduate']);
+            if (level === 'pg') setSelectedLevels((prev) => [...prev, 'Postgraduate']);
+            if (level === 'diploma') setSelectedLevels((prev) => [...prev, 'Diploma/Certification']);
         }
+
     }, [location]);
 
-    const courses = [
-        {
-            id: 1,
-            title: "B.Tech (Bachelor of Technology)",
-            level: "Undergraduate",
-            stream: "Engineering",
-            duration: "4 Years",
-            eligibility: "10+2 with PCM (50% aggregate)",
-            avgSalary: "₹4L - ₹10L PA",
-            careers: ["Software Engineer", "Data Scientist", "Civil Engineer"],
-            mode: "Full Time",
-            icon: "💻"
-        },
-        {
-            id: 2,
-            title: "MBA (Master of Business Administration)",
-            level: "Postgraduate",
-            stream: "Management",
-            duration: "2 Years",
-            eligibility: "Graduation (50%) + CAT/MAT",
-            avgSalary: "₹6L - ₹15L PA",
-            careers: ["HR Manager", "Marketing Head", "Finance Analyst"],
-            mode: "Full Time",
-            icon: "📊"
-        },
-        {
-            id: 3,
-            title: "MBBS (Bachelor of Medicine)",
-            level: "Undergraduate",
-            stream: "Medical",
-            duration: "5.5 Years",
-            eligibility: "10+2 with PCB + NEET",
-            avgSalary: "₹8L - ₹12L PA",
-            careers: ["Doctor", "Surgeon", "Medical Researcher"],
-            mode: "Full Time",
-            icon: "🩺"
-        },
-        {
-            id: 4,
-            title: "BCA (Bachelor of Computer Applications)",
-            level: "Undergraduate",
-            stream: "Computer Applications",
-            duration: "3 Years",
-            eligibility: "10+2 with Math/Computer",
-            avgSalary: "₹3L - ₹6L PA",
-            careers: ["Web Developer", "System Analyst", "Technical Support"],
-            mode: "Full Time",
-            icon: "🖥️"
-        },
-        {
-            id: 5,
-            title: "B.Com (Bachelor of Commerce)",
-            level: "Undergraduate",
-            stream: "Commerce",
-            duration: "3 Years",
-            eligibility: "10+2 in Commerce stream",
-            avgSalary: "₹3L - ₹5L PA",
-            careers: ["Accountant", "Banker", "Tax Consultant"],
-            mode: "Full Time/Distance",
-            icon: "💰"
-        },
-        {
-            id: 6,
-            title: "Data Science Certification",
-            level: "Diploma/Certification",
-            stream: "IT & Software",
-            duration: "6 - 12 Months",
-            eligibility: "Any Graduate",
-            avgSalary: "₹6L - ₹14L PA",
-            careers: ["Data Analyst", "ML Engineer"],
-            mode: "Online",
-            icon: "📈"
-        }
-    ];
+    // Handle Filter Changes
+    const handleLevelChange = (level) => {
+        setSelectedLevels(prev =>
+            prev.includes(level) ? prev.filter(l => l !== level) : [...prev, level]
+        );
+    };
 
-    const filteredCourses = courses.filter(course =>
-        course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        course.stream.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const handleStreamChange = (stream) => {
+        setSelectedStreams(prev =>
+            prev.includes(stream) ? prev.filter(s => s !== stream) : [...prev, stream]
+        );
+    };
+
+    const handleModeChange = (mode) => {
+        setSelectedMode(prev => prev === mode ? '' : mode);
+    };
+
+    const handleClearFilters = () => {
+        setSelectedLevels([]);
+        setSelectedStreams([]);
+        setSelectedMode('');
+        setSearchTerm('');
+        setSortBy('Popularity');
+    };
+
+    // Filter Logic
+    const filteredCourses = COURSES_DATA.filter(course => {
+        const matchesSearch = (course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            course.stream.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            course.careers.some(c => c.toLowerCase().includes(searchTerm.toLowerCase())));
+
+        const matchesLevel = selectedLevels.length === 0 || selectedLevels.includes(course.level);
+        const matchesStream = selectedStreams.length === 0 || selectedStreams.includes(course.stream);
+        const matchesMode = !selectedMode || course.mode.includes(selectedMode);
+
+        return matchesSearch && matchesLevel && matchesStream && matchesMode;
+    });
+
+    // Sort Logic
+    const sortedCourses = [...filteredCourses].sort((a, b) => {
+        if (sortBy === 'Salary: High to Low') {
+            return b.avgSalaryValue - a.avgSalaryValue;
+        } else if (sortBy === 'Duration: Low to High') {
+            return a.durationValue - b.durationValue;
+        }
+        return 0; // Default (Popularity/ID)
+    });
 
     return (
         <div className="courses-page">
@@ -108,32 +94,40 @@ const Courses = () => {
                 {/* Filters Sidebar */}
                 <aside className="filters-sidebar">
                     <div className="filter-group">
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <h3>Filters</h3>
+                            <button onClick={handleClearFilters} style={{ background: 'none', border: 'none', color: '#2563eb', cursor: 'pointer', fontSize: '0.85rem' }}>Clear All</button>
+                        </div>
+                    </div>
+
+                    <div className="filter-group">
                         <h3>Course Level</h3>
                         <div className="filter-options">
-                            <label><input type="checkbox" /> Undergraduate</label>
-                            <label><input type="checkbox" /> Postgraduate</label>
-                            <label><input type="checkbox" /> Diploma</label>
-                            <label><input type="checkbox" /> Ph.D</label>
+                            <label><input type="checkbox" checked={selectedLevels.includes('Undergraduate')} onChange={() => handleLevelChange('Undergraduate')} /> Undergraduate</label>
+                            <label><input type="checkbox" checked={selectedLevels.includes('Postgraduate')} onChange={() => handleLevelChange('Postgraduate')} /> Postgraduate</label>
+                            <label><input type="checkbox" checked={selectedLevels.includes('Diploma/Certification')} onChange={() => handleLevelChange('Diploma/Certification')} /> Diploma</label>
+                            <label><input type="checkbox" checked={selectedLevels.includes('Ph.D')} onChange={() => handleLevelChange('Ph.D')} /> Ph.D</label>
                         </div>
                     </div>
 
                     <div className="filter-group">
                         <h3>Stream</h3>
                         <div className="filter-options">
-                            <label><input type="checkbox" /> Engineering</label>
-                            <label><input type="checkbox" /> Management</label>
-                            <label><input type="checkbox" /> Medical</label>
-                            <label><input type="checkbox" /> Arts & Humanities</label>
-                            <label><input type="checkbox" /> Commerce</label>
+                            <label><input type="checkbox" checked={selectedStreams.includes('Engineering')} onChange={() => handleStreamChange('Engineering')} /> Engineering</label>
+                            <label><input type="checkbox" checked={selectedStreams.includes('Management')} onChange={() => handleStreamChange('Management')} /> Management</label>
+                            <label><input type="checkbox" checked={selectedStreams.includes('Medical')} onChange={() => handleStreamChange('Medical')} /> Medical</label>
+                            <label><input type="checkbox" checked={selectedStreams.includes('Arts & Humanities')} onChange={() => handleStreamChange('Arts & Humanities')} /> Arts & Humanities</label>
+                            <label><input type="checkbox" checked={selectedStreams.includes('Commerce')} onChange={() => handleStreamChange('Commerce')} /> Commerce</label>
+                            <label><input type="checkbox" checked={selectedStreams.includes('Computer Applications')} onChange={() => handleStreamChange('Computer Applications')} /> Computer Applications</label>
                         </div>
                     </div>
 
                     <div className="filter-group">
                         <h3>Study Mode</h3>
                         <div className="filter-options">
-                            <label><input type="radio" name="mode" /> Full Time</label>
-                            <label><input type="radio" name="mode" /> Part Time</label>
-                            <label><input type="radio" name="mode" /> Online / Distance</label>
+                            <label><input type="radio" name="mode" checked={selectedMode === 'Full Time'} onChange={() => handleModeChange('Full Time')} /> Full Time</label>
+                            <label><input type="radio" name="mode" checked={selectedMode === 'Part Time'} onChange={() => handleModeChange('Part Time')} /> Part Time</label>
+                            <label><input type="radio" name="mode" checked={selectedMode === 'Online'} onChange={() => handleModeChange('Online')} /> Online / Distance</label>
                         </div>
                     </div>
                 </aside>
@@ -152,7 +146,7 @@ const Courses = () => {
                         </div>
                         <div className="sort-box">
                             <label>Sort By:</label>
-                            <select>
+                            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
                                 <option>Popularity</option>
                                 <option>Salary: High to Low</option>
                                 <option>Duration: Low to High</option>
@@ -161,12 +155,12 @@ const Courses = () => {
                     </div>
 
                     <div className="results-count">
-                        Showing {filteredCourses.length} Courses
+                        Showing {sortedCourses.length} Courses
                     </div>
 
                     <div className="courses-grid-list">
-                        {filteredCourses.length > 0 ? (
-                            filteredCourses.map(course => (
+                        {sortedCourses.length > 0 ? (
+                            sortedCourses.map(course => (
                                 <div className="course-card" key={course.id}>
                                     <div className="course-card-top">
                                         <div className="course-icon-wrapper">
@@ -209,14 +203,16 @@ const Courses = () => {
                                     </div>
 
                                     <div className="course-actions">
-                                        <button className="btn-secondary">View Syllabus</button>
-                                        <button className="btn-primary">Find Colleges</button>
+                                        <Link to={`/courses/${course.id}`} className="btn-secondary" style={{ textAlign: 'center', textDecoration: 'none' }}>View Syllabus</Link>
+                                        <Link to={`/colleges?stream=${course.stream}`} className="btn-primary" style={{ textAlign: 'center', textDecoration: 'none' }}>Find Colleges</Link>
                                     </div>
                                 </div>
                             ))
                         ) : (
-                            <div style={{ padding: '20px', textAlign: 'center', color: '#64748b' }}>
-                                No courses found matching "{searchTerm}"
+                            <div style={{ padding: '40px', textAlign: 'center', color: '#64748b', gridColumn: '1/-1' }}>
+                                <h3>No courses found matching your criteria.</h3>
+                                <p>Try clearing filters or using different keywords.</p>
+                                <button onClick={handleClearFilters} style={{ marginTop: '15px', padding: '8px 16px', background: '#2563eb', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Clear All Filters</button>
                             </div>
                         )}
                     </div>

@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './OnlineDegrees.css';
+import ContactModal from './ContactModal';
 
 const OnlineDegrees = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     return (
         <section className="online-degrees-section">
             <div className="degree-banner">
@@ -39,7 +42,7 @@ const OnlineDegrees = () => {
                     </div>
 
                     <div className="degree-action">
-                        <button className="btn-counselling">Get Career Recommendations</button>
+                        <button className="btn-counselling" onClick={() => setIsModalOpen(true)}>Get Career Recommendations</button>
                     </div>
 
                 </div>
@@ -49,7 +52,12 @@ const OnlineDegrees = () => {
                 <div className="circle-decoration-2"></div>
             </div>
 
-
+            <ContactModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                title="Career Recommendation"
+                subtitle="Let us help you find the best online degree for your career."
+            />
         </section>
     );
 };

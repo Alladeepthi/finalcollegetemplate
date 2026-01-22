@@ -7,8 +7,11 @@ import Utilities from './pages/Utilities';
 import Colleges from './pages/Colleges';
 import CollegeDetails from './pages/CollegeDetails';
 import Courses from './pages/Courses';
+import CourseDetails from './pages/CourseDetails';
 import Careers from './pages/Careers';
+import CareerDetails from './pages/CareerDetails';
 import Exams from './pages/Exams';
+import ExamDetails from './pages/ExamDetails';
 
 function App() {
   return (
@@ -22,8 +25,11 @@ function App() {
           <Route path="/colleges" element={<Colleges />} />
           <Route path="/colleges/:id" element={<CollegeDetails />} />
           <Route path="/courses" element={<Courses />} />
+          <Route path="/courses/:id" element={<CourseDetails />} />
           <Route path="/careers" element={<Careers />} />
+          <Route path="/careers/:id" element={<CareerDetails />} />
           <Route path="/exams" element={<Exams />} />
+          <Route path="/exams/:id" element={<ExamDetails />} />
         </Routes>
 
         <Footer />

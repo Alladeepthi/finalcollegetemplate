@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ContactModal.css';
 
-const ContactModal = ({ isOpen, onClose }) => {
+const ContactModal = ({ isOpen, onClose, title = "Reach Us", subtitle = "Tell us how we can help you grow." }) => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -64,8 +64,8 @@ const ContactModal = ({ isOpen, onClose }) => {
                     {/* Right Form Panel */}
                     <div className="contact-form-panel">
                         <div className="form-header">
-                            <h3>Reach Us</h3>
-                            <p>Tell us how we can help you grow.</p>
+                            <h3>{title}</h3>
+                            <p>{subtitle}</p>
                         </div>
 
                         <form onSubmit={handleSubmit} className="contact-form">

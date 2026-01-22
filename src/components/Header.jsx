@@ -59,59 +59,56 @@ const Header = () => {
               onMouseEnter={() => handleMouseEnter('colleges')}
               onMouseLeave={handleMouseLeave}
             >
-              <Link to="/colleges" className={`has-dropdown ${activeDropdown === 'colleges' ? 'open' : ''}`}>Colleges <span className="arrow-down-icon">▼</span></Link>
-              {activeDropdown === 'colleges' && (
-                <div className="mega-menu colleges-mega">
-                  <div className="mega-sidebar mega-menu-sidebar">
-                    <Link to="/colleges?stream=Engineering" className="active">Engineering <span className="sidebar-arrow">▶</span></Link>
-                    <Link to="/colleges?stream=Management">Management <span className="sidebar-arrow">▶</span></Link>
-                    <Link to="/colleges?stream=Commerce">Commerce & Banking <span className="sidebar-arrow">▶</span></Link>
-                    <Link to="/colleges?stream=Medical">Medical <span className="sidebar-arrow">▶</span></Link>
-                    <Link to="/colleges?stream=Science">Sciences <span className="sidebar-arrow">▶</span></Link>
-                    <Link to="/colleges?stream=Hotel Management">Hotel Management <span className="sidebar-arrow">▶</span></Link>
-                    <Link to="/colleges?stream=Information Tech">Information Tech <span className="sidebar-arrow">▶</span></Link>
-                    <Link to="/colleges?stream=Arts">Arts & Humanities <span className="sidebar-arrow">▶</span></Link>
+              <Link to="/colleges" className={`has-dropdown ${activeDropdown === 'colleges' ? 'open' : ''}`} onClick={() => setActiveDropdown(null)}>Colleges <span className="arrow-down-icon">▼</span></Link>
+              <div className={`mega-menu colleges-mega ${activeDropdown === 'colleges' ? 'visible' : ''}`}>
+                <div className="mega-content-wrapper">
+                  <div className="mega-menu-sidebar">
+                    <Link to="/colleges?stream=Engineering" onClick={() => setActiveDropdown(null)} className="active">Engineering</Link>
+                    <Link to="/colleges?stream=Management" onClick={() => setActiveDropdown(null)}>Management</Link>
+                    <Link to="/colleges?stream=Commerce" onClick={() => setActiveDropdown(null)}>Commerce & Banking</Link>
+                    <Link to="/colleges?stream=Medical" onClick={() => setActiveDropdown(null)}>Medical</Link>
+                    <Link to="/colleges?stream=Science" onClick={() => setActiveDropdown(null)}>Sciences</Link>
+                    <Link to="/colleges?stream=Hotel Management" onClick={() => setActiveDropdown(null)}>Hotel Management</Link>
+                    <Link to="/colleges?stream=Information Tech" onClick={() => setActiveDropdown(null)}>Information Tech</Link>
+                    <Link to="/colleges?stream=Arts" onClick={() => setActiveDropdown(null)}>Arts & Humanities</Link>
                   </div>
-                  <div className="mega-content-grid mega-menu-content">
-                    <button className="menu-close" onClick={() => setActiveDropdown(null)}>✕</button>
+                  <div className="mega-menu-content">
                     <div className="mega-column menu-column">
                       <h4>COLLEGES BY DEGREES</h4>
-                      <Link to="/colleges?degree=B.Tech">B.Tech Colleges</Link>
-                      <Link to="/colleges?degree=M.Tech">M.Tech Colleges</Link>
-                      <Link to="/colleges?degree=BCA">BCA Colleges</Link>
-                      <Link to="/colleges?degree=MCA">MCA Colleges</Link>
-                      <Link to="/colleges?degree=BE">BE Colleges</Link>
-                      <Link to="/colleges" className="btn-view-all">VIEW ALL ↗</Link>
-
+                      <Link to="/colleges?degree=B.Tech" onClick={() => setActiveDropdown(null)}>B.Tech Colleges</Link>
+                      <Link to="/colleges?degree=M.Tech" onClick={() => setActiveDropdown(null)}>M.Tech Colleges</Link>
+                      <Link to="/colleges?degree=BCA" onClick={() => setActiveDropdown(null)}>BCA Colleges</Link>
+                      <Link to="/colleges?degree=MCA" onClick={() => setActiveDropdown(null)}>MCA Colleges</Link>
+                      <Link to="/colleges?degree=BE" onClick={() => setActiveDropdown(null)}>BE Colleges</Link>
+                      <Link to="/colleges" className="btn-view-all" onClick={() => setActiveDropdown(null)}>VIEW ALL ↗</Link>
+                    </div>
+                    <div className="mega-column menu-column">
+                      <h4>POPULAR COLLEGES</h4>
+                      <Link to="/colleges?search=Sanskriti University" onClick={() => setActiveDropdown(null)}>Sanskriti University</Link>
+                      <Link to="/colleges?search=GNIOT Group" onClick={() => setActiveDropdown(null)}>GNIOT Group</Link>
+                      <Link to="/colleges?search=Parul University" onClick={() => setActiveDropdown(null)}>Parul University</Link>
+                      <Link to="/colleges?search=Sanjay Ghodawat" onClick={() => setActiveDropdown(null)}>Sanjay Ghodawat</Link>
+                      <Link to="/colleges?search=Amity Punjab" onClick={() => setActiveDropdown(null)}>Amity Punjab</Link>
+                      <Link to="/colleges?search=SRM University" onClick={() => setActiveDropdown(null)}>SRM University</Link>
+                    </div>
+                    <div className="mega-column menu-column">
+                      <h4>TOP COLLEGES</h4>
+                      <Link to="/colleges?search=IIT Kharagpur" onClick={() => setActiveDropdown(null)}>IIT Kharagpur</Link>
+                      <Link to="/colleges?search=IIT Delhi" onClick={() => setActiveDropdown(null)}>IIT Delhi</Link>
+                      <Link to="/colleges?search=IIT Madras" onClick={() => setActiveDropdown(null)}>IIT Madras</Link>
+                      <Link to="/colleges?search=IIT Kanpur" onClick={() => setActiveDropdown(null)}>IIT Kanpur</Link>
+                      <Link to="/colleges?search=IIT Roorkee" onClick={() => setActiveDropdown(null)}>IIT Roorkee</Link>
+                    </div>
+                    <div className="mega-column menu-column">
                       <div className="admission-banner">
                         <h3>Admission 2026</h3>
                         <p>Apply to India's top ranking universities today.</p>
                         <button className="btn-apply-now">Apply Now</button>
                       </div>
                     </div>
-                    <div className="mega-column menu-column">
-                      <h4>POPULAR COLLEGES</h4>
-                      <Link to="/colleges?search=Sanskriti University">Sanskriti University</Link>
-                      <Link to="/colleges?search=GNIOT Group">GNIOT Group</Link>
-                      <Link to="/colleges?search=Parul University">Parul University</Link>
-                      <Link to="/colleges?search=Sanjay Ghodawat">Sanjay Ghodawat</Link>
-                      <Link to="/colleges?search=Amity Punjab">Amity Punjab</Link>
-                      <Link to="/colleges?search=SRM University">SRM University</Link>
-                    </div>
-                    <div className="mega-column menu-column">
-                      <h4>TOP COLLEGES</h4>
-                      <Link to="/colleges?search=IIT Kharagpur">IIT Kharagpur</Link>
-                      <Link to="/colleges?search=IIT Delhi">IIT Delhi</Link>
-                      <Link to="/colleges?search=IIT Madras">IIT Madras</Link>
-                      <Link to="/colleges?search=IIT Kanpur">IIT Kanpur</Link>
-                      <Link to="/colleges?search=IIT Roorkee">IIT Roorkee</Link>
-                      <Link to="/colleges?search=BITS Pilani">BITS Pilani</Link>
-                      <Link to="/colleges?search=NIT Trichy">NIT Trichy</Link>
-                      <Link to="/colleges" className="btn-view-all">VIEW ALL ↗</Link>
-                    </div>
                   </div>
                 </div>
-              )}
+              </div>
             </li>
 
             <li
@@ -119,56 +116,50 @@ const Header = () => {
               onMouseEnter={() => handleMouseEnter('exams')}
               onMouseLeave={handleMouseLeave}
             >
-              <Link to="/exams" className={`has-dropdown ${activeDropdown === 'exams' ? 'open' : ''}`}>Exams <span className="arrow-down-icon">▼</span></Link>
-              {activeDropdown === 'exams' && (
-                <div className="mega-menu exams-mega">
-                  <div className="mega-row">
-                    <div className="mega-column">
-                      <h4>JEE Mains</h4>
-                      <Link to="/exams?search=JEE Main">Eligibility</Link>
-                      <Link to="/exams?search=JEE Main">Syllabus</Link>
-                      <Link to="/exams?search=JEE Main">Exam Pattern</Link>
-                      <Link to="/exams?search=JEE Main">How to Prepare</Link>
-                      <Link to="/exams?search=JEE Main">Prev. Year Papers</Link>
-                    </div>
-                    <div className="mega-column">
-                      <h4>JEE Advanced</h4>
-                      <Link to="/exams?search=JEE Advanced">Eligibility</Link>
-                      <Link to="/exams?search=JEE Advanced">Syllabus</Link>
-                      <Link to="/exams?search=JEE Advanced">Exam Pattern</Link>
-                      <Link to="/exams?search=JEE Advanced">How to Prepare</Link>
-                      <Link to="/exams?search=JEE Advanced">Prev. Year Papers</Link>
-                    </div>
-                    <div className="mega-column">
-                      <h4>NEET UG</h4>
-                      <Link to="/exams?search=NEET">Eligibility</Link>
-                      <Link to="/exams?search=NEET">Syllabus</Link>
-                      <Link to="/exams?search=NEET">Exam Pattern</Link>
-                      <Link to="/exams?search=NEET">How to Prepare</Link>
-                      <Link to="/exams?search=NEET">Prev. Year Papers</Link>
-                    </div>
-                    <div className="mega-column">
-                      <h4>GATE</h4>
-                      <Link to="/exams?search=GATE">Eligibility</Link>
-                      <Link to="/exams?search=GATE">Syllabus</Link>
-                      <Link to="/exams?search=GATE">Exam Pattern</Link>
-                      <Link to="/exams?search=GATE">How to Prepare</Link>
-                      <Link to="/exams?search=GATE">Prev. Year Papers</Link>
-                    </div>
-                    <div className="mega-column">
-                      <h4>CAT</h4>
-                      <Link to="/exams?search=CAT">Eligibility</Link>
-                      <Link to="/exams?search=CAT">Syllabus</Link>
-                      <Link to="/exams?search=CAT">Exam Pattern</Link>
-                      <Link to="/exams?search=CAT">How to Prepare</Link>
-                      <Link to="/exams?search=CAT">Prev. Year Papers</Link>
-                    </div>
+              <Link to="/exams" className={`has-dropdown ${activeDropdown === 'exams' ? 'open' : ''}`} onClick={() => setActiveDropdown(null)}>Exams <span className="arrow-down-icon">▼</span></Link>
+              <div className={`mega-menu exams-mega ${activeDropdown === 'exams' ? 'visible' : ''}`}>
+                <div className="mega-content-wrapper">
+                  <div className="mega-menu-sidebar">
+                    <Link to="/exams?cat=Engineering" onClick={() => setActiveDropdown(null)} className="active">Engineering Entrance</Link>
+                    <Link to="/exams?cat=Medical" onClick={() => setActiveDropdown(null)}>Medical Entrance</Link>
+                    <Link to="/exams?cat=Management" onClick={() => setActiveDropdown(null)}>Management Entrance</Link>
+                    <Link to="/exams?cat=Law" onClick={() => setActiveDropdown(null)}>Law Entrance</Link>
+                    <Link to="/exams?cat=Government" onClick={() => setActiveDropdown(null)}>Govt. Exams</Link>
+                    <Link to="/exams?cat=International" onClick={() => setActiveDropdown(null)}>International</Link>
                   </div>
-                  <div className="mega-footer">
-                    <Link to="/exams" className="view-all-link">View All Exams →</Link>
+                  <div className="mega-menu-content">
+                    <div className="mega-column menu-column">
+                      <h4>ENGINEERING</h4>
+                      <Link to="/exams/jee-main" onClick={() => setActiveDropdown(null)}>JEE Main</Link>
+                      <Link to="/exams/jee-advanced" onClick={() => setActiveDropdown(null)}>JEE Advanced</Link>
+                      <Link to="/exams/gate" onClick={() => setActiveDropdown(null)}>GATE</Link>
+                      <Link to="/exams/bitsat" onClick={() => setActiveDropdown(null)}>BITSAT</Link>
+                      <Link to="/exams/viteee" onClick={() => setActiveDropdown(null)}>VITEEE</Link>
+                    </div>
+                    <div className="mega-column menu-column">
+                      <h4>MEDICAL</h4>
+                      <Link to="/exams/neet" onClick={() => setActiveDropdown(null)}>NEET UG</Link>
+                      <Link to="/exams/neet-pg" onClick={() => setActiveDropdown(null)}>NEET PG</Link>
+                      <Link to="/exams/aiims" onClick={() => setActiveDropdown(null)}>AIIMS Nursing</Link>
+                    </div>
+                    <div className="mega-column menu-column">
+                      <h4>MANAGEMENT</h4>
+                      <Link to="/exams/cat" onClick={() => setActiveDropdown(null)}>CAT</Link>
+                      <Link to="/exams/mat" onClick={() => setActiveDropdown(null)}>MAT</Link>
+                      <Link to="/exams/xat" onClick={() => setActiveDropdown(null)}>XAT</Link>
+                      <Link to="/exams/cmat" onClick={() => setActiveDropdown(null)}>CMAT</Link>
+                      <Link to="/exams/snap" onClick={() => setActiveDropdown(null)}>SNAP</Link>
+                    </div>
+                    <div className="mega-column menu-column">
+                      <div className="admission-banner">
+                        <h3>Exam Calendar</h3>
+                        <p>Check important dates for 2026 exams.</p>
+                        <button className="btn-apply-now">View Dates</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              )}
+              </div>
             </li>
 
             <li
@@ -176,98 +167,97 @@ const Header = () => {
               onMouseEnter={() => handleMouseEnter('courses')}
               onMouseLeave={handleMouseLeave}
             >
-              <Link to="/courses" className={`has-dropdown ${activeDropdown === 'courses' ? 'open' : ''}`}>Courses <span className="arrow-down-icon">▼</span></Link>
-              {activeDropdown === 'courses' && (
-                <div className="mega-menu courses-mega">
-                  <div className="mega-menu-header">
-                    <h3>Popular Courses</h3>
+              <Link to="/courses" className={`has-dropdown ${activeDropdown === 'courses' ? 'open' : ''}`} onClick={() => setActiveDropdown(null)}>Courses <span className="arrow-down-icon">▼</span></Link>
+              <div className={`mega-menu courses-mega ${activeDropdown === 'courses' ? 'visible' : ''}`}>
+                <div className="mega-content-wrapper">
+                  <div className="mega-menu-sidebar">
+                    <Link to="/courses?level=ug" onClick={() => setActiveDropdown(null)} className="active">Undergraduate (UG)</Link>
+                    <Link to="/courses?level=pg" onClick={() => setActiveDropdown(null)}>Postgraduate (PG)</Link>
+                    <Link to="/courses?level=diploma" onClick={() => setActiveDropdown(null)}>Diploma</Link>
+                    <Link to="/courses?level=phd" onClick={() => setActiveDropdown(null)}>Doctorate (PhD)</Link>
+                    <Link to="/courses?level=cert" onClick={() => setActiveDropdown(null)}>Certificates</Link>
                   </div>
-                  <div className="mega-row">
-                    <div className="mega-column">
-                      <Link to="/courses?search=B.Tech">B.Tech</Link>
-                      <Link to="/courses?search=B.Arch">B.Arch</Link>
-                      <Link to="/courses?search=Mechanical">B.Tech in Mech</Link>
-                      <Link to="/courses?search=Nursing">B.Sc Nursing</Link>
-                      <Link to="/courses?search=Pharma">B.Pharma</Link>
+                  <div className="mega-menu-content">
+                    <div className="mega-column menu-column">
+                      <h4>ENGINEERING & TECH</h4>
+                      <Link to="/courses/btech" onClick={() => setActiveDropdown(null)}>B.Tech</Link>
+                      <Link to="/courses/mtech" onClick={() => setActiveDropdown(null)}>M.Tech</Link>
+                      <Link to="/courses/bca" onClick={() => setActiveDropdown(null)}>BCA</Link>
+                      <Link to="/courses/mca" onClick={() => setActiveDropdown(null)}>MCA</Link>
                     </div>
-                    <div className="mega-column">
-                      <Link to="/courses?search=MBA">MBA</Link>
-                      <Link to="/courses?search=BBA">BBA</Link>
-                      <Link to="/courses?search=B.Com">B.Com</Link>
-                      <Link to="/courses?search=Design">B.Des</Link>
-                      <Link to="/courses?search=B.Ed">B.Ed</Link>
+                    <div className="mega-column menu-column">
+                      <h4>MANAGEMENT & COMMERCE</h4>
+                      <Link to="/courses/mba" onClick={() => setActiveDropdown(null)}>MBA</Link>
+                      <Link to="/courses/bba" onClick={() => setActiveDropdown(null)}>BBA</Link>
+                      <Link to="/courses/bcom" onClick={() => setActiveDropdown(null)}>B.Com</Link>
+                      <Link to="/courses/mcom" onClick={() => setActiveDropdown(null)}>M.Com</Link>
                     </div>
-                    <div className="mega-column">
-                      <Link to="/courses?search=MBBS">MBBS</Link>
-                      <Link to="/courses?search=BAMS">BAMS</Link>
-                      <Link to="/courses?search=BDS">BDS</Link>
-                      <Link to="/courses?search=M.Tech">M.Tech</Link>
-                      <Link to="/courses?search=MCA">MCA</Link>
+                    <div className="mega-column menu-column">
+                      <h4>MEDICAL & SCIENCE</h4>
+                      <Link to="/courses/mbbs" onClick={() => setActiveDropdown(null)}>MBBS</Link>
+                      <Link to="/courses/bds" onClick={() => setActiveDropdown(null)}>BDS</Link>
+                      <Link to="/courses/bsc" onClick={() => setActiveDropdown(null)}>B.Sc</Link>
+                      <Link to="/courses/msc" onClick={() => setActiveDropdown(null)}>M.Sc</Link>
+                      <Link to="/courses/pharmacy" onClick={() => setActiveDropdown(null)}>B.Pharm</Link>
                     </div>
-                    <div className="mega-column">
-                      <Link to="/courses?search=Law">LL.B</Link>
-                      <Link to="/courses?search=Law">BA LL.B</Link>
-                      <Link to="/courses?search=Hotel">BHM</Link>
-                      <Link to="/courses?search=BCA">BCA</Link>
-                      <Link to="/courses?search=PhD">PhD</Link>
+                    <div className="mega-column menu-column">
+                      <h4>ARTS & LAW</h4>
+                      <Link to="/courses/ba" onClick={() => setActiveDropdown(null)}>B.A</Link>
+                      <Link to="/courses/m-a" onClick={() => setActiveDropdown(null)}>M.A</Link>
+                      <Link to="/courses/llb" onClick={() => setActiveDropdown(null)}>LL.B</Link>
+                      <Link to="/courses/ballb" onClick={() => setActiveDropdown(null)}>BA LL.B</Link>
                     </div>
-                  </div>
-                  <div className="mega-footer">
-                    <Link to="/courses" className="view-all-link">View All Courses →</Link>
                   </div>
                 </div>
-              )}
+              </div>
             </li>
             <li
               className="nav-item-has-mega"
               onMouseEnter={() => handleMouseEnter('careers')}
               onMouseLeave={handleMouseLeave}
             >
-              <Link to="/careers" className={`has-dropdown ${activeDropdown === 'careers' ? 'open' : ''}`}>Careers <span className="arrow-down-icon">▼</span></Link>
-
-              {/* CAREERS MEGA MENU */}
-              {activeDropdown === 'careers' && (
-                <div className="mega-menu careers-mega">
-                  <div className="careers-menu-header">
-                    <h3>Popular Careers</h3>
+              <Link to="/careers" className={`has-dropdown ${activeDropdown === 'careers' ? 'open' : ''}`} onClick={() => setActiveDropdown(null)}>Careers <span className="arrow-down-icon">▼</span></Link>
+              <div className={`mega-menu careers-mega ${activeDropdown === 'careers' ? 'visible' : ''}`}>
+                <div className="mega-content-wrapper">
+                  <div className="mega-menu-sidebar">
+                    <Link to="/careers?field=medical" onClick={() => setActiveDropdown(null)} className="active">Medical Careers</Link>
+                    <Link to="/careers?field=engineering" onClick={() => setActiveDropdown(null)}>Engineering Careers</Link>
+                    <Link to="/careers?field=business" onClick={() => setActiveDropdown(null)}>Business & Finance</Link>
+                    <Link to="/careers?field=design" onClick={() => setActiveDropdown(null)}>Design & Arts</Link>
+                    <Link to="/careers?field=civil" onClick={() => setActiveDropdown(null)}>Civil Services</Link>
                   </div>
-
-                  <div className="careers-grid">
-                    <div className="careers-column">
-                      <a href="#">IAS Officer</a>
-                      <a href="#">Police Officer</a>
-                      <a href="#">Doctor</a>
-                      <a href="#">CID Officer</a>
-                      <a href="#">IFS Officer</a>
+                  <div className="mega-menu-content">
+                    <div className="mega-column menu-column">
+                      <h4>HIGH DEMAND</h4>
+                      <Link to="/careers/software-engineer" onClick={() => setActiveDropdown(null)}>Software Engineer</Link>
+                      <Link to="/careers/doctor" onClick={() => setActiveDropdown(null)}>Doctor</Link>
+                      <Link to="/careers/data-scientist" onClick={() => setActiveDropdown(null)}>Data Scientist</Link>
+                      <Link to="/careers/mba" onClick={() => setActiveDropdown(null)}>Investment Banker</Link>
                     </div>
-                    <div className="careers-column">
-                      <a href="#">Pilot</a>
-                      <a href="#">Veterinarian</a>
-                      <a href="#">Army Officer</a>
-                      <a href="#">Fashion Designer</a>
-                      <a href="#">Air Force Officer</a>
+                    <div className="mega-column menu-column">
+                      <h4>CREATIVE</h4>
+                      <Link to="/careers/fashion-design" onClick={() => setActiveDropdown(null)}>Fashion Designer</Link>
+                      <Link to="/careers/graphic-design" onClick={() => setActiveDropdown(null)}>Graphic Designer</Link>
+                      <Link to="/careers/architect" onClick={() => setActiveDropdown(null)}>Architect</Link>
+                      <Link to="/careers/ux-ui" onClick={() => setActiveDropdown(null)}>UX/UI Designer</Link>
                     </div>
-                    <div className="careers-column">
-                      <a href="#">Company Secretary CS</a>
-                      <a href="#">Loco Pilot</a>
-                      <a href="#">Just Chartered Accountant</a>
-                      <a href="#">CRPF Officer</a>
-                      <a href="#">Merchant Navy</a>
+                    <div className="mega-column menu-column">
+                      <h4>GOVERNMENT</h4>
+                      <Link to="/careers/ias" onClick={() => setActiveDropdown(null)}>IAS Officer</Link>
+                      <Link to="/careers/ips" onClick={() => setActiveDropdown(null)}>IPS Officer</Link>
+                      <Link to="/careers/ifs" onClick={() => setActiveDropdown(null)}>IFS Officer</Link>
+                      <Link to="/careers/ssc" onClick={() => setActiveDropdown(null)}>Bank PO</Link>
                     </div>
-                    <div className="careers-column">
-                      <a href="#">Drug Inspector</a>
-                      <a href="#">Investment Banker</a>
-                      <a href="#">Probationary Officer</a>
-                      <a href="#">Air Traffic Controller</a>
-                      <a href="#">Bank PO</a>
+                    <div className="mega-column menu-column">
+                      <div className="admission-banner">
+                        <h3>Career Guide</h3>
+                        <p>Not sure what to choose?</p>
+                        <button className="btn-apply-now">Take Quiz</button>
+                      </div>
                     </div>
-                  </div>
-
-                  <div className="careers-footer">
-                    <Link to="/careers" className="view-all-careers">View All Careers →</Link>
                   </div>
                 </div>
-              )}
+              </div>
             </li>
           </ul>
         </nav>

@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CareerCompass.css';
+import ContactModal from './ContactModal';
 
 const CareerCompass = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     return (
         <section className="career-compass-section">
             <div className="container compass-container">
@@ -12,9 +15,16 @@ const CareerCompass = () => {
                     </p>
                 </div>
                 <div className="compass-action">
-                    <button className="btn-career">Get Free Counselling</button>
+                    <button className="btn-career" onClick={() => setIsModalOpen(true)}>Get Free Counselling</button>
                 </div>
             </div>
+
+            <ContactModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                title="Get Free Counselling"
+                subtitle="Speak to our experts to find the right path for you."
+            />
         </section>
     );
 };

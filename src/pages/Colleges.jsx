@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import ComparisonModal from '../components/ComparisonModal';
 import './Colleges.css';
 
 const Colleges = () => {
@@ -118,6 +119,10 @@ const Colleges = () => {
     const [selectedType, setSelectedType] = useState('');
     const [sortOption, setSortOption] = useState('Popularity');
 
+    // Comparison State
+    const [comparisonList, setComparisonList] = useState([]);
+    const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
+
     // Sync URL params to local state on mount/update
     useEffect(() => {
         if (stateParam) setSelectedStates([stateParam]);
@@ -134,6 +139,21 @@ const Colleges = () => {
         setSelectedDegrees(prev =>
             prev.includes(degree) ? prev.filter(d => d !== degree) : [...prev, degree]
         );
+    };
+
+    const handleCompareToggle = (college) => {
+        setComparisonList(prev => {
+            const exists = prev.find(c => c.id === college.id);
+            if (exists) {
+                return prev.filter(c => c.id !== college.id);
+            } else {
+                if (prev.length >= 3) {
+                    alert("You can compare up to 3 colleges at a time.");
+                    return prev;
+                }
+                return [...prev, college];
+            }
+        });
     };
 
     useEffect(() => {
@@ -297,7 +317,12 @@ const Colleges = () => {
                                 <div className="college-card-img">
                                     <img src={college.image} alt={college.name} />
                                     <div className="compare-toggle">
-                                        <input type="checkbox" id={`compare-${college.id}`} />
+                                        <input
+                                            type="checkbox"
+                                            id={`compare-${college.id}`}
+                                            checked={comparisonList.some(c => c.id === college.id)}
+                                            onChange={() => handleCompareToggle(college)}
+                                        />
                                         <label htmlFor={`compare-${college.id}`}>Add to Compare</label>
                                     </div>
                                 </div>
@@ -345,6 +370,29 @@ const Colleges = () => {
                     </div>
                 </main>
             </div>
+
+            {/* Sticky Compare Bar */}
+            {comparisonList.length > 0 && (
+                <div className="compare-sticky-bar">
+                    <span>Selected for comparison <span className="compare-count">{comparisonList.length}/3</span></span>
+
+                    <button className="btn-compare-now" onClick={() => setIsCompareModalOpen(true)}>
+                        Compare Now
+                    </button>
+
+                    <button className="btn-clear-compare" onClick={() => setComparisonList([])}>
+                        Clear
+                    </button>
+                </div>
+            )}
+
+            {/* Comparison Modal */}
+            {isCompareModalOpen && (
+                <ComparisonModal
+                    colleges={comparisonList}
+                    onClose={() => setIsCompareModalOpen(false)}
+                />
+            )}
         </div>
     );
 };
