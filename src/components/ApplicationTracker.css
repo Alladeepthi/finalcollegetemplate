@@ -1,0 +1,109 @@
+/* Application Tracker Styles */
+.tracker-container {
+    width: 100%;
+    overflow-x: auto;
+    padding: 20px 0;
+    white-space: nowrap;
+    /* Custom Scrollbar for sleek look */
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+}
+
+.tracker-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.tracker-container::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+.tracker-container::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 4px;
+}
+
+.tracker-steps {
+    display: inline-flex;
+    gap: 1.5rem;
+    padding: 0 5px;
+    /* Prevent shadow cutout */
+}
+
+/* Step Badge */
+.step-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background-color: #ecfdf5;
+    /* Light mint/emerald background */
+    color: #047857;
+    /* Dark emerald text */
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    user-select: none;
+    border: 1px solid transparent;
+}
+
+/* Completed Step */
+.step-badge.completed {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+/* Current Step */
+.step-badge.current {
+    background-color: #10b981;
+    /* Solid green for active? Or maybe outlined? Image shows solid mint badges generally. Let's make current distinct. */
+    background-color: #dcfce7;
+    border: 1px solid #10b981;
+    box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.1);
+}
+
+/* Future Step (Inactive) */
+.step-badge.pending {
+    background-color: #f1f5f9;
+    /* Grayish */
+    color: #94a3b8;
+    opacity: 0.8;
+}
+
+/* Icon Circle */
+.step-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+}
+
+/* Completed Icon */
+.step-badge.completed .step-icon {
+    background-color: #059669;
+    /* Darker green circle */
+    color: white;
+}
+
+/* Current Icon */
+.step-badge.current .step-icon {
+    background-color: #059669;
+    color: white;
+}
+
+/* Pending Icon */
+.step-badge.pending .step-icon {
+    background-color: #cbd5e1;
+    color: white;
+    font-weight: 600;
+}
+
+/* Text alignment helpers */
+.step-label {
+    white-space: nowrap;
+}

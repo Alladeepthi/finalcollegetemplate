@@ -89,7 +89,7 @@ const CareerDetails = () => {
                         <div style={{ background: '#fff', padding: '1.5rem', borderRadius: '12px', border: '1px solid #e2e8f0', position: 'sticky', top: '100px' }}>
                             <h4 style={{ marginBottom: '1rem' }}>Ready to start?</h4>
                             <p style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '1.5rem' }}>Find the best colleges to kickstart your career in {career.title}.</p>
-                            <button className="btn-find-colleges" style={{ width: '100%', marginBottom: '1rem' }}>Find Colleges</button>
+                            <Link to="/colleges" className="btn-find-colleges" style={{ width: '100%', marginBottom: '1rem', display: 'block', textAlign: 'center', textDecoration: 'none' }}>Find Colleges</Link>
                             <button className="btn-outline" style={{ width: '100%', padding: '0.8rem', border: '1px solid #cbd5e1', borderRadius: '6px', background: 'transparent' }}>Take Career Quiz</button>
                         </div>
                     </div>

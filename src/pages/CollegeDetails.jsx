@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useUser } from '../context/UserContext';
 import './CollegeDetails.css';
 
 const CollegeDetails = () => {
     const { id } = useParams();
     const [activeTab, setActiveTab] = useState('overview');
+    const { addToShortlist } = useUser();
 
     // Mock Data - In real app, fetch by id
     const collegeData = {
@@ -22,6 +24,7 @@ const CollegeDetails = () => {
             { label: "Total Fees", value: "₹2.25 Lakhs" },
             { label: "Institute Type", value: "Government" },
         ],
+        nirf: "#3 NIRF Rank",
         about: "IIT Bombay is recognized worldwide as a leader in the field of engineering education and research. Established in 1958, the second of its kind, IIT Bombay was the first to be set up with foreign assistance.",
         courses: [
             { name: "B.Tech Computer Science", duration: "4 Years", fee: "₹2.25 L" },
@@ -35,19 +38,22 @@ const CollegeDetails = () => {
             {/* HER HERO SECTION */}
             <div className="cd-hero" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url(${collegeData.cover})` }}>
                 <div className="container cd-hero-content">
-                    <div className="cd-logo-box">
-                        <img src={collegeData.logo} alt="Logo" />
-                    </div>
                     <div className="cd-info-box">
-                        <h1 className="cd-title">{collegeData.name}</h1>
+                        <h1 className="cd-title">
+                            <span className="cd-title-logo">
+                                <img src={collegeData.logo} alt="Logo" />
+                            </span>
+                            {collegeData.name}
+                        </h1>
                         <p className="cd-meta">
+                            <span>🏆 {collegeData.nirf}</span>
+                            <span>⭐ {collegeData.rating}/5 ({collegeData.reviews} Reviews)</span>
                             <span>📍 {collegeData.location}</span>
                             <span>🏛️ Estd. {collegeData.est}</span>
-                            <span>⭐ {collegeData.rating}/5 ({collegeData.reviews} Reviews)</span>
                         </p>
                         <div className="cd-actions">
                             <button className="btn-cd-primary">Download Brochure</button>
-                            <button className="btn-cd-secondary">Shortlist</button>
+                            <button className="btn-cd-secondary" onClick={() => addToShortlist(collegeData)}>Shortlist</button>
                         </div>
                     </div>
                 </div>

@@ -12,29 +12,34 @@ import Careers from './pages/Careers';
 import CareerDetails from './pages/CareerDetails';
 import Exams from './pages/Exams';
 import ExamDetails from './pages/ExamDetails';
+import Dashboard from './pages/Dashboard';
+import { UserProvider } from './context/UserContext';
 
 function App() {
   return (
-    <Router>
-      <div className="app">
-        <Header />
+    <UserProvider>
+      <Router>
+        <div className="app">
+          <Header />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/utilities" element={<Utilities />} />
-          <Route path="/colleges" element={<Colleges />} />
-          <Route path="/colleges/:id" element={<CollegeDetails />} />
-          <Route path="/courses" element={<Courses />} />
-          <Route path="/courses/:id" element={<CourseDetails />} />
-          <Route path="/careers" element={<Careers />} />
-          <Route path="/careers/:id" element={<CareerDetails />} />
-          <Route path="/exams" element={<Exams />} />
-          <Route path="/exams/:id" element={<ExamDetails />} />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/utilities" element={<Utilities />} />
+            <Route path="/colleges" element={<Colleges />} />
+            <Route path="/colleges/:id" element={<CollegeDetails />} />
+            <Route path="/courses" element={<Courses />} />
+            <Route path="/courses/:id" element={<CourseDetails />} />
+            <Route path="/careers" element={<Careers />} />
+            <Route path="/careers/:id" element={<CareerDetails />} />
+            <Route path="/exams" element={<Exams />} />
+            <Route path="/exams/:id" element={<ExamDetails />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Routes>
 
-        <Footer />
-      </div>
-    </Router>
+          <Footer />
+        </div>
+      </Router>
+    </UserProvider>
   );
 }
 
