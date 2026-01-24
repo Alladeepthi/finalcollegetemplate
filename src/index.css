@@ -165,3 +165,29 @@ select,
 button {
   font-family: var(--font-main);
 }
+
+/* Header Decoration Utility */
+.header-decoration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.header-decoration .line {
+  height: 3px;
+  background-color: var(--color-primary);
+  width: 50px;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+.header-decoration .section-title {
+  margin: 0;
+  font-size: var(--h2-size);
+}
+
+.section-title .highlight {
+  color: var(--color-primary);
+}

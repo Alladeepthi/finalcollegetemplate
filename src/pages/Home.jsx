@@ -16,21 +16,28 @@ const Home = () => {
     return (
         <>
             <Hero />
-            <div className="home-layout">
-                <main className="home-content">
-                    <Features />
-                    <WelcomeSection />
-                    <CollegeJourney />
-                    <FeaturedExams />
-                    <CareerCompass />
-                    <CourseCategories />
-                    <CollegeFinder />
-                    <OnlineDegrees />
-                </main>
+            <div style={{ position: 'relative' }}>
+                <Features />
+                <WelcomeSection />
+                <CollegeFinder />
+                <CollegeJourney />
+                <FeaturedExams />
+                <CareerCompass />
+                <CourseCategories />
+                <OnlineDegrees />
 
+                {/* Fixed Right-Side Ad Container */}
                 {showAd && (
-                    <aside className="home-ad-sidebar">
-                        <div className="ad-card">
+                    <aside className="home-ad-sidebar" style={{
+                        position: 'fixed',
+                        right: '20px',
+                        top: '100px',
+                        height: 'auto',
+                        zIndex: 100,
+                        width: '280px',
+                        display: 'block'
+                    }}>
+                        <div className="ad-card" style={{ boxShadow: '0 10px 40px rgba(0,0,0,0.1)' }}>
                             <button className="ad-close-btn" onClick={() => setShowAd(false)} aria-label="Close Ad">
                                 &times;
                             </button>
@@ -40,20 +47,8 @@ const Home = () => {
                                 className="ad-image"
                             />
                             <h4 className="ad-title">Admissions Open 2026</h4>
-                            <p className="ad-desc">Join the top-ranked universities. Scholarships available for early applicants.</p>
+                            <p className="ad-desc">Join the top-ranked universities.</p>
                             <a href="/colleges" className="ad-cta">Apply Now</a>
-                        </div>
-
-                        <div className="ad-card">
-                            <button className="ad-close-btn" onClick={() => setShowAd(false)} aria-label="Close Ad">
-                                &times;
-                            </button>
-                            <div style={{ background: '#f8fafc', padding: '1rem', borderRadius: '8px', marginBottom: '1rem' }}>
-                                <span style={{ fontSize: '2rem' }}>🎓</span>
-                            </div>
-                            <h4 className="ad-title">Free Career Counselling</h4>
-                            <p className="ad-desc">Confused about your career path? Talk to our experts today.</p>
-                            <a href="/careers" className="ad-cta" style={{ background: '#10b981' }}>Book Session</a>
                         </div>
                     </aside>
                 )}

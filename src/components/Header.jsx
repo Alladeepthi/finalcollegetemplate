@@ -45,10 +45,7 @@ const Header = () => {
               <h1>EduMon</h1>
             </div>
           </Link>
-          <div className="search-bar">
-            <span className="search-icon">🔍</span>
-            <input type="text" placeholder="Search colleges, exams..." />
-          </div>
+
         </div>
 
         {/* Main Nav */}
