@@ -10,8 +10,8 @@
   --color-dark: #1e293b;
   --color-light: #f8fafc;
   --color-white: #ffffff;
-  --gradient-main: linear-gradient(135deg, #FFEB3B 0%, #00E5FF 100%);
-  /* Vibrant yellow to cyan */
+  --gradient-main: linear-gradient(135deg, #FFC107 0%, #FFB300 100%);
+  /* Amber gradient */
 
   /* Typography System */
   --h1-size: 3.5rem;

@@ -102,7 +102,46 @@ const Exams = () => {
                                     <span className="deadline-exam">BITSAT App</span>
                                     <span className="deadline-date">Apr 10, 2026</span>
                                 </li>
+                                <li>
+                                    <span className="deadline-exam">NEET UG</span>
+                                    <span className="deadline-date">May 05, 2026</span>
+                                </li>
                             </ul>
+                        </div>
+
+                        {/* New Widget: Recommended Colleges */}
+                        <div className="widget-box featured-sidebar-widget">
+                            <h3>🏆 Top Engineering Colleges</h3>
+                            <div className="sidebar-college-list">
+                                <div style={{ display: 'flex', gap: '10px', marginBottom: '15px', alignItems: 'center' }}>
+                                    <div style={{ width: '40px', height: '40px', background: '#f1f5f9', borderRadius: '8px' }}></div>
+                                    <div>
+                                        <div style={{ fontWeight: '700', fontSize: '0.9rem', color: '#1e293b' }}>IIT Bombay</div>
+                                        <div style={{ fontSize: '0.8rem', color: '#64748b' }}>Mumbai, MH</div>
+                                    </div>
+                                </div>
+                                <div style={{ display: 'flex', gap: '10px', marginBottom: '15px', alignItems: 'center' }}>
+                                    <div style={{ width: '40px', height: '40px', background: '#f1f5f9', borderRadius: '8px' }}></div>
+                                    <div>
+                                        <div style={{ fontWeight: '700', fontSize: '0.9rem', color: '#1e293b' }}>BITS Pilani</div>
+                                        <div style={{ fontSize: '0.8rem', color: '#64748b' }}>Pilani, RJ</div>
+                                    </div>
+                                </div>
+                                <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                                    <div style={{ width: '40px', height: '40px', background: '#f1f5f9', borderRadius: '8px' }}></div>
+                                    <div>
+                                        <div style={{ fontWeight: '700', fontSize: '0.9rem', color: '#1e293b' }}>VIT Vellore</div>
+                                        <div style={{ fontSize: '0.8rem', color: '#64748b' }}>Vellore, TN</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* New Widget: Ad / Promo */}
+                        <div className="widget-box promo-sidebar" style={{ background: 'linear-gradient(135deg, #2563EB 0%, #1d4ed8 100%)', color: 'white', textAlign: 'center' }}>
+                            <h3 style={{ color: 'white' }}>Free Mock Tests</h3>
+                            <p style={{ color: '#bfdbfe', fontSize: '0.9rem', marginBottom: '15px' }}>Boost your preparation with our AI-driven mock tests.</p>
+                            <button style={{ background: 'white', color: '#2563EB', border: 'none', padding: '8px 15px', borderRadius: '6px', fontWeight: '700', width: '100%', cursor: 'pointer' }}>Start Practicing</button>
                         </div>
                     </aside>
 

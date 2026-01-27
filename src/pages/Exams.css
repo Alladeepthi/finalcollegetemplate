@@ -98,10 +98,16 @@
 }
 
 /* Sidebar Widgets */
-.exam-sidebar {
+/* Sidebar Widgets - Update for Sticky Behavior */
+.exam-sidebar,
+.career-sidebar {
     display: flex;
     flex-direction: column;
     gap: 25px;
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+    align-self: start;
 }
 
 .widget-box {
@@ -504,7 +510,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(4px);
     animation: fadeIn 0.2s ease;
 }
 

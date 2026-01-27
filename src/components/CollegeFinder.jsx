@@ -14,37 +14,50 @@ const CollegeFinder = () => {
             colleges: ["IIT Bombay", "BITS Pilani", "VIT Vellore", "SRM University", "Manipal Institute", "Chandigarh University", "LPU"],
             exams: ["JEE Main", "JEE Advanced", "BITSAT", "VITEEE", "SRMJEEE"],
             states: ["Maharashtra", "Tamil Nadu", "Karnataka", "Delhi", "Telangana"],
-            courses: ["Computer Science", "Mechanical Engg", "Electronics", "Civil Engg", "Aerospace"]
+            courses: ["Computer Science", "Mechanical Engg", "Electronics", "Civil Engg", "Aerospace"],
+            comparisons: [
+                { id1: 1, name1: "IIT Madras", img1: "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=100&auto=format&fit=crop", id2: 2, name2: "IIT Delhi", img2: "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?q=80&w=100&auto=format&fit=crop", course: "BE/B.Tech" },
+                { id1: 3, name1: "IIT Bombay", img1: "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?q=80&w=100&auto=format&fit=crop", id2: 4, name2: "BITS Pilani", img2: "https://images.unsplash.com/photo-1555597673-b21d5c935865?q=80&w=1000&auto=format&fit=crop", course: "BE/B.Tech" }
+            ]
         },
         'Management': {
-            colleges: ["IIM Ahmedabad", "XLRI Jamshedpur", "SP Jain", "FMS Delhi", "NMIMS Mumbai", "Symbiosis Pune"],
+            colleges: ["IIM Ahmedabad", "IIM Bangalore", "XLRI Jamshedpur", "FMS Delhi", "NMIMS Mumbai"],
             exams: ["CAT", "XAT", "MAT", "CMAT", "NMAT", "SNAP"],
             states: ["Maharashtra", "Delhi", "Karnataka", "Gujarat", "West Bengal"],
-            courses: ["MBA Finance", "MBA Marketing", "BBA", "Executive MBA", "Human Resources"]
+            courses: ["MBA Finance", "MBA Marketing", "BBA", "Executive MBA", "Human Resources"],
+            comparisons: [
+                { id1: 7, name1: "IIM Ahmedabad", img1: "https://images.unsplash.com/photo-1526948128573-703ea1c19b9d?q=80&w=1000&auto=format&fit=crop", id2: 8, name2: "IIM Bangalore", img2: "https://images.unsplash.com/photo-1590012314607-6da99984e38e?q=80&w=1000&auto=format&fit=crop", course: "MBA/PGDM" }
+            ]
         },
         'Medical': {
-            colleges: ["AIIMS Delhi", "CMC Vellore", "KMC Manipal", "JIPMER", "AFMC Pune", "Maulana Azad"],
+            colleges: ["AIIMS Delhi", "CMC Vellore", "KMC Manipal", "JIPMER", "AFMC Pune"],
             exams: ["NEET UG", "NEET PG", "AIIMS Nursing", "JIPMER"],
             states: ["Delhi", "Tamil Nadu", "Maharashtra", "Karnataka", "Uttar Pradesh"],
-            courses: ["MBBS", "BDS", "B.Pharma", "Nursing", "Physiotherapy"]
+            courses: ["MBBS", "BDS", "B.Pharma", "Nursing", "Physiotherapy"],
+            comparisons: [
+                { id1: 6, name1: "AIIMS Delhi", img1: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1000&auto=format&fit=crop", id2: 5, name2: "CMC Vellore", img2: "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?q=80&w=1000&auto=format&fit=crop", course: "MBBS" }
+            ]
         },
         'Science': {
             colleges: ["IISc Bangalore", "IISER Pune", "St. Stephens", "Hindu College", "Miranda House", "Loyola College"],
             exams: ["CUET", "NEST", "IAT", "JAM"],
             states: ["Delhi", "Karnataka", "Maharashtra", "Tamil Nadu", "West Bengal"],
-            courses: ["B.Sc Physics", "B.Sc Chemistry", "M.Sc Data Science", "Biotechnology", "Forensic Science"]
+            courses: ["B.Sc Physics", "B.Sc Chemistry", "M.Sc Data Science", "Biotechnology", "Forensic Science"],
+            comparisons: []
         },
         'Commerce': {
             colleges: ["SRCC Delhi", "LSR College", "St. Xaviers Mumbai", "Christ University", "Narsee Monjee"],
             exams: ["CUET", "CA Foundation", "CS Executive", "CMA"],
             states: ["Delhi", "Maharashtra", "Karnataka", "Tamil Nadu", "West Bengal"],
-            courses: ["B.Com Hons", "Economics Hons", "CA", "CS", "CFA"]
+            courses: ["B.Com Hons", "Economics Hons", "CA", "CS", "CFA"],
+            comparisons: []
         },
         'Arts': {
             colleges: ["JNU Delhi", "TISS Mumbai", "Ashoka University", "Lady Shri Ram", "St. Stephens"],
             exams: ["CUET", "TISSNET", "PUBDET"],
             states: ["Delhi", "Maharashtra", "West Bengal", "Karnataka"],
-            courses: ["BA Psychology", "BA English", "Journalism", "Political Science", "Sociology"]
+            courses: ["BA Psychology", "BA English", "Journalism", "Political Science", "Sociology"],
+            comparisons: []
         }
     };
 
@@ -55,6 +68,10 @@ const CollegeFinder = () => {
         if (type === 'college') navigate(`/colleges?search=${value}`);
         if (type === 'exam') navigate(`/exams?search=${value}`);
         if (type === 'course') navigate(`/courses?search=${value}`);
+    };
+
+    const handleCompareClick = (id1, id2) => {
+        navigate(`/colleges?compare=${id1},${id2}`);
     };
 
     return (
@@ -99,7 +116,7 @@ const CollegeFinder = () => {
                         </div>
                     </div>
 
-                    {/* Middle Column - Exams and States */}
+                    {/* Middle Column - Exams and Comparison */}
                     <div className="middle-column">
                         <div className="finder-card exams-card">
                             <div className="card-header">
@@ -119,16 +136,46 @@ const CollegeFinder = () => {
                             </div>
                         </div>
 
-                        <div className="finder-card states-card">
-                            <div className="card-header">
-                                <h3>Top States</h3>
-                                <span className="view-all">View all</span>
+                        {/* Compare Colleges Card - Dynamic */}
+                        <div className="finder-card compare-card">
+                            <div className="compare-header-block">
+                                <div>
+                                    <h3>Compare Colleges</h3>
+                                    <p className="compare-sub">Compare on the basis of rank, fees, etc.</p>
+                                </div>
+                                <img src="https://cdn-icons-png.flaticon.com/512/3401/3401569.png" alt="Study" className="compare-illustration" />
                             </div>
-                            <div className="chips-flex">
-                                {currentData.states.map((state, idx) => (
-                                    <span key={idx} className="data-chip state-chip">{state}</span>
-                                ))}
+
+                            <div className="compare-list">
+                                {currentData.comparisons && currentData.comparisons.length > 0 ? (
+                                    currentData.comparisons.map((comp, idx) => (
+                                        <div className="compare-item" key={idx} onClick={() => handleCompareClick(comp.id1, comp.id2)} style={{ cursor: 'pointer' }}>
+                                            <div className="comp-col">
+                                                <img src={comp.img1} alt={comp.name1} className="comp-logo" />
+                                                <div className="comp-info">
+                                                    <span>{comp.name1}</span>
+                                                    <small>{comp.course}</small>
+                                                </div>
+                                            </div>
+                                            <div className="comp-vs">VS</div>
+                                            <div className="comp-col">
+                                                <img src={comp.img2} alt={comp.name2} className="comp-logo" />
+                                                <div className="comp-info">
+                                                    <span>{comp.name2}</span>
+                                                    <small>{comp.course}</small>
+                                                </div>
+                                            </div>
+                                            <div className="comp-arrow">→</div>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <div style={{ textAlign: 'center', color: '#94a3b8', fontSize: '0.9rem', padding: '20px' }}>
+                                        No comparisons available for this stream.
+                                    </div>
+                                )}
                             </div>
+
+                            <Link to="/colleges" className="compare-link-bottom">Compare Colleges &gt;</Link>
                         </div>
                     </div>
 

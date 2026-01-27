@@ -8,47 +8,38 @@ const Careers = () => {
     const navigate = useNavigate();
 
     const [searchTerm, setSearchTerm] = useState('');
-    // Initial industry from URL or Default 'All'
-    // Note: URL might use lowercase 'medical' but data uses 'Medical'. We should normalize.
     const urlField = searchParams.get('field');
     const [selectedIndustry, setSelectedIndustry] = useState('All');
 
+    // Industries Data
+    const industries = [
+        { name: "Engineering", icon: "⚙️" },
+        { name: "Medical", icon: "🩺" },
+        { name: "Business", icon: "💼" },
+        { name: "Design", icon: "🎨" },
+        { name: "Aviation", icon: "✈️" },
+        { name: "Legal", icon: "⚖️" },
+        { name: "Civil Services", icon: "🏛️" },
+        { name: "Science", icon: "🔬" }
+    ];
+
     useEffect(() => {
         if (urlField) {
-            // Capitalize first letter to match data convention if needed, strictly speaking we should make comparison case-insensitive
-            // But for UI state, let's try to match one of the known industries
             const matchedStats = industries.find(ind => ind.name.toLowerCase() === urlField.toLowerCase());
             if (matchedStats) {
                 setSelectedIndustry(matchedStats.name);
             } else if (urlField.toLowerCase() === 'civil') {
                 setSelectedIndustry('Civil Services');
-            } else if (urlField.toLowerCase() === 'business') {
-                setSelectedIndustry('Business');
             } else {
-                // If direct match isn't found, just set it directly to show "Results for 'foo'"
-                // Or map common aliases
-                if (urlField.toLowerCase() === 'engineering') setSelectedIndustry('Engineering');
-                else if (urlField.toLowerCase() === 'medical') setSelectedIndustry('Medical');
-                else if (urlField.toLowerCase() === 'design') setSelectedIndustry('Design');
+                // Fallback or exact match check
+                const exact = industries.find(ind => ind.name === urlField);
+                if (exact) setSelectedIndustry(exact.name);
             }
         }
     }, [urlField]);
 
-    // 5. Trending Careers Data
     const trendingCareers = [
         "AI Ethicist", "Drone Pilot", "Green Energy Engineer", "Data Scientist", "Cybersecurity Analyst", "UX Designer"
-    ];
-
-    // 1. Industries Data
-    const industries = [
-        { name: "Engineering", icon: "⚙️" },
-        { name: "Medical", icon: "🩺" },
-        { name: "Business", icon: "💼" }, // Changed from Management to Business to match data
-        { name: "Design", icon: "🎨" },
-        { name: "Aviation", icon: "✈️" },
-        { name: "Legal", icon: "⚖️" },
-        { name: "Civil Services", icon: "🏛️" }, // Added
-        { name: "Science", icon: "🔬" }
     ];
 
     const filteredCareers = careersData.filter(career => {
@@ -62,14 +53,14 @@ const Careers = () => {
         if (indName === 'All') {
             setSearchParams({});
         } else {
-            setSearchParams({ field: indName.toLowerCase() });
+            setSearchParams({ field: indName });
         }
     };
 
     return (
         <div className="careers-page">
 
-            {/* Hero Section with Search */}
+            {/* Hero Section */}
             <header className="careers-hero">
                 <div className="container">
                     <h1>Find Your Dream Career</h1>
@@ -85,7 +76,6 @@ const Careers = () => {
                         <button className="btn-search">Search</button>
                     </div>
 
-                    {/* 5. Trending Ticker */}
                     <div className="trending-ticker">
                         <span className="ticker-label">🔥 Trending Now: </span>
                         <div className="ticker-items">
@@ -98,31 +88,65 @@ const Careers = () => {
             </header>
 
             <div className="container careers-layout">
-                {/* 1. Industry Grid (Sidebar/Top) */}
-                <div className="industry-filter-section">
-                    <h3>Explore by Industry</h3>
-                    <div className="industry-grid">
-                        <div
-                            className={`industry-card ${selectedIndustry === 'All' ? 'active' : ''}`}
-                            onClick={() => handleIndustryClick('All')}
-                        >
-                            <span className="ind-icon">🌍</span>
-                            <span>All</span>
-                        </div>
-                        {industries.map((ind, i) => (
-                            <div
-                                key={i}
-                                className={`industry-card ${selectedIndustry === ind.name ? 'active' : ''}`}
-                                onClick={() => handleIndustryClick(ind.name)}
-                            >
-                                <span className="ind-icon">{ind.icon}</span>
-                                <span>{ind.name}</span>
-                            </div>
-                        ))}
-                    </div>
-                </div>
 
-                {/* 2. Career Library Grid */}
+                {/* 1. SIDEBAR GRID */}
+                <aside className="career-sidebar">
+
+                    {/* Industry Filter Widget */}
+                    <div className="sidebar-widget">
+                        <div className="widget-title">Industries</div>
+                        <div className="industry-list">
+                            <div
+                                className={`ind-item ${selectedIndustry === 'All' ? 'active' : ''}`}
+                                onClick={() => handleIndustryClick('All')}
+                            >
+                                <span className="ind-icon">🌍</span>
+                                <span>All Fields</span>
+                            </div>
+                            {industries.map((ind, i) => (
+                                <div
+                                    key={i}
+                                    className={`ind-item ${selectedIndustry === ind.name ? 'active' : ''}`}
+                                    onClick={() => handleIndustryClick(ind.name)}
+                                >
+                                    <span className="ind-icon">{ind.icon}</span>
+                                    <span>{ind.name}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Counselor Widget */}
+                    <div className="sidebar-widget promo-widget">
+                        <div className="promo-title">Need Guidance?</div>
+                        <p className="promo-desc">
+                            Talk to our certified career counselors and get a personalized roadmap.
+                        </p>
+                        <button className="btn-promo">Book Free Session</button>
+                    </div>
+
+                    {/* Quick Stats Widget */}
+                    <div className="sidebar-widget">
+                        <div className="widget-title">Market Insights</div>
+                        <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.9rem', color: '#64748b', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                            <li style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <span>Top Growth:</span>
+                                <span style={{ fontWeight: '700', color: '#16a34a' }}>AI & ML</span>
+                            </li>
+                            <li style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <span>Highest Pay:</span>
+                                <span style={{ fontWeight: '700', color: '#1e293b' }}>Surgeons</span>
+                            </li>
+                            <li style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <span>New Jobs:</span>
+                                <span style={{ fontWeight: '700', color: '#2563EB' }}>2.5M+</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </aside>
+
+                {/* 2. MAIN CONTENT */}
                 <div className="career-library">
                     <div className="library-header">
                         <h2>{selectedIndustry} Careers</h2>
@@ -152,13 +176,19 @@ const Careers = () => {
                                         className="btn-view-roadmap"
                                         onClick={() => navigate(`/careers/${career.slug}`)}
                                     >
-                                        View Roadmap & Details
+                                        View Roadmap
                                     </button>
                                 </div>
                             ))
                         ) : (
-                            <div className="no-results" style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '2rem' }}>
-                                <p>No careers found for {selectedIndustry}. Try searching or selecting another industry.</p>
+                            <div className="no-results" style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '4rem', background: 'white', borderRadius: '16px' }}>
+                                <p style={{ fontSize: '1.2rem', color: '#64748b' }}>No careers found matching your criteria.</p>
+                                <button
+                                    style={{ marginTop: '1rem', padding: '10px 20px', background: '#2563EB', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer' }}
+                                    onClick={() => { setSearchTerm(''); setSelectedIndustry('All'); }}
+                                >
+                                    Clear Filters
+                                </button>
                             </div>
                         )}
                     </div>

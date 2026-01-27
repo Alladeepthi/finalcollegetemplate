@@ -23,8 +23,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 35%;
-    /* Adjust based on where you want the curve to start */
+    width: 43%;
+    /* Increased curve start point */
     height: 100%;
     background-color: #FFedd5;
     /* Light Beige/Peach */
@@ -36,17 +36,16 @@
     content: "";
     position: absolute;
     top: 0;
-    left: 35%;
-    /* Starts right after the block */
-    width: 150px;
-    /* Width of the curve */
+    left: 43%;
+    /* Match width */
+    width: 140px;
+    /* Increased curve size */
     height: 100%;
     background-color: #FFedd5;
     border-radius: 0 100% 100% 0 / 0 50% 50% 0;
-    /* Creates an outward curve */
+    /* Smooth arc */
     z-index: 1;
-    transform: scaleX(1.5);
-    /* Stretch it a bit */
+    transform: none;
     transform-origin: left;
 }
 
@@ -59,7 +58,8 @@
     z-index: 10;
     /* Above the background decorations */
     width: 100%;
-    gap: 2rem;
+    gap: 1rem;
+    /* Reduced gap to bring items closer if needed, or keep layout balanced */
 }
 
 @media (max-width: 992px) {

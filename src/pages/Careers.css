@@ -1,54 +1,59 @@
 .careers-page {
     background-color: #f8fafc;
     min-height: 100vh;
+    font-family: 'Outfit', sans-serif;
 }
 
 /* Hero Section */
 .careers-hero {
     background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
     color: white;
-    padding: 60px 0 40px;
+    padding: 4rem 0 6rem;
     text-align: center;
+    position: relative;
 }
 
 .careers-hero h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 800;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
 }
 
 .careers-hero p {
-    font-size: 1.1rem;
-    color: #94a3b8;
-    margin-bottom: 30px;
+    font-size: 1.2rem;
+    color: #cbd5e1;
+    margin-bottom: 2.5rem;
 }
 
 .career-search-bar {
     max-width: 600px;
-    margin: 0 auto 30px;
+    margin: 0 auto 3rem;
     display: flex;
-    background: white;
-    padding: 5px;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px;
     border-radius: 50px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .career-search-bar input {
     flex: 1;
+    padding: 12px 20px;
+    border-radius: 40px;
     border: none;
-    padding: 15px 25px;
-    border-radius: 50px;
     font-size: 1rem;
+    background: white;
+    color: #1e293b;
     outline: none;
 }
 
 .btn-search {
-    background: #2563eb;
+    padding: 12px 30px;
+    border-radius: 40px;
+    background: #2563EB;
     color: white;
-    border: none;
-    padding: 0 30px;
-    border-radius: 50px;
     font-weight: 700;
+    border: none;
     cursor: pointer;
     transition: background 0.2s;
 }
@@ -62,156 +67,237 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
+    flex-wrap: wrap;
     font-size: 0.9rem;
-    color: #cbd5e1;
 }
 
 .ticker-label {
+    color: #f59e0b;
     font-weight: 700;
-    color: #fbbf24;
 }
 
 .ticker-items {
     display: flex;
     gap: 15px;
+    flex-wrap: wrap;
 }
 
 .ticker-item {
     background: rgba(255, 255, 255, 0.1);
     padding: 4px 12px;
     border-radius: 20px;
-    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.ticker-item:hover {
+    background: rgba(255, 255, 255, 0.2);
 }
 
 /* Layout */
 .careers-layout {
     display: grid;
-    grid-template-columns: 250px 1fr;
+    grid-template-columns: 280px 1fr;
     gap: 40px;
-    padding: 40px 15px;
+    max-width: 1200px;
+    margin: -50px auto 0;
+    padding: 0 20px 60px;
+    position: relative;
+    z-index: 10;
 }
 
-@media (max-width: 900px) {
-    .careers-layout {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Industry Filter Sidebar */
-.industry-filter-section h3 {
-    margin-bottom: 20px;
-    color: #334155;
-}
-
-.industry-grid {
+/* Sidebar Styling */
+.career-sidebar,
+.exam-sidebar {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 25px;
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+    align-self: start;
 }
 
-.industry-card {
+.sidebar-widget {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+}
+
+.widget-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* Industry Filter (Now in Sidebar) */
+.industry-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ind-item {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 12px 15px;
-    background: white;
-    border-radius: 10px;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s;
-    border: 1px solid #e2e8f0;
     color: #475569;
     font-weight: 500;
 }
 
-.industry-card:hover,
-.industry-card.active {
+.ind-item:hover,
+.ind-item.active {
     background: #eff6ff;
-    border-color: #2563eb;
-    color: #2563eb;
-    transform: translateX(5px);
+    color: #2563EB;
 }
 
-.industry-card .ind-icon {
+.ind-icon {
     font-size: 1.2rem;
 }
 
-/* Career Library */
+/* Ad / Promo Widget */
+.promo-widget {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    color: white;
+    text-align: center;
+    padding: 2rem 1.5rem;
+}
+
+.promo-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.promo-desc {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
+}
+
+.btn-promo {
+    background: #f59e0b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    width: 100%;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-promo:hover {
+    background: #d97706;
+}
+
+/* Main Content */
+.career-library {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .library-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
 }
 
 .library-header h2 {
+    font-size: 1.5rem;
     color: #1e293b;
-    font-size: 1.8rem;
+    margin: 0;
 }
 
-.library-header .count {
-    color: #64748b;
+.count {
+    background: #f1f5f9;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
     font-weight: 600;
+    color: #64748b;
 }
 
+/* Grid for Cards */
 .careers-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 25px;
 }
 
 .career-card {
     background: white;
     border-radius: 16px;
-    padding: 25px;
     border: 1px solid #e2e8f0;
-    transition: all 0.3s;
+    padding: 25px;
+    transition: transform 0.2s, box-shadow 0.2s;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .career-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    border-color: #93c5fd;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border-color: #bfdbfe;
 }
 
 .card-top {
-    margin-bottom: 20px;
     flex: 1;
 }
 
 .industry-badge {
-    background: #f1f5f9;
-    color: #64748b;
-    padding: 4px 10px;
-    border-radius: 4px;
+    background: #f0f9ff;
+    color: #0284c7;
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
     display: inline-block;
     margin-bottom: 10px;
 }
 
-.card-top h3 {
+.career-card h3 {
     font-size: 1.3rem;
-    color: #1a1b4b;
-    margin-bottom: 8px;
+    margin: 0 0 10px;
+    color: #1e293b;
 }
 
 .short-desc {
+    font-size: 0.95rem;
     color: #64748b;
-    font-size: 0.9rem;
-    line-height: 1.5;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .card-stats {
     display: flex;
     justify-content: space-between;
+    padding-top: 20px;
+    border-top: 1px solid #f1f5f9;
     margin-bottom: 20px;
-    background: #f8fafc;
-    padding: 10px;
-    border-radius: 8px;
 }
 
 .stat {
@@ -219,156 +305,111 @@
     flex-direction: column;
 }
 
-.stat .label {
+.label {
     font-size: 0.75rem;
     color: #94a3b8;
+    margin-bottom: 2px;
 }
 
-.stat .value {
-    font-size: 0.9rem;
+.value {
     font-weight: 700;
     color: #334155;
+    font-size: 0.95rem;
 }
 
 .text-green {
-    color: #16a34a !important;
+    color: #16a34a;
 }
 
 .btn-view-roadmap {
     width: 100%;
-    background: white;
-    border: 2px solid #2563eb;
-    color: #2563eb;
-    padding: 10px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 12px;
     border-radius: 8px;
-    font-weight: 700;
+    color: #2563EB;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
 }
 
 .btn-view-roadmap:hover {
-    background: #eff6ff;
+    background: #2563EB;
+    color: white;
+    border-color: #2563EB;
 }
 
-/* Modal Styles */
-.career-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(5px);
-    animation: fadeIn 0.2s ease;
+/* Responsive */
+@media (max-width: 900px) {
+    .careers-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .career-sidebar {
+        order: -1;
+    }
+
+    .careers-hero {
+        padding: 3rem 0;
+    }
 }
 
-.career-modal {
-    background: white;
-    width: 90%;
-    max-width: 800px;
-    max-height: 90vh;
-    border-radius: 20px;
-    overflow-y: auto;
-    position: relative;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    animation: slideUp 0.3s ease;
-}
+/* =========================================
+   Career Details Page Specific Styles 
+   ========================================= */
 
-.modal-close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: #f1f5f9;
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #64748b;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    padding: 40px;
-}
-
-.modal-header {
-    margin-bottom: 30px;
-    border-bottom: 1px solid #e2e8f0;
-    padding-bottom: 20px;
-}
-
-.modal-industry {
-    color: #2563eb;
-    font-weight: 700;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-}
-
-.modal-header h2 {
-    font-size: 2rem;
-    color: #1a1b4b;
-    margin: 5px 0 15px;
-}
-
-.modal-stats-row {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    font-weight: 600;
-    color: #475569;
+.career-details-page {
+    background-color: #f8fafc;
+    min-height: 100vh;
 }
 
 .modal-section {
-    margin-bottom: 40px;
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
 }
 
-.modal-section h3 {
-    margin-bottom: 20px;
-    color: #1e293b;
-    font-size: 1.2rem;
-}
-
-/* Roadmap Visualization */
+/* Roadmap Styles */
 .roadmap-container {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
     position: relative;
     padding-left: 20px;
+    margin-top: 1rem;
 }
 
 .roadmap-step {
-    display: flex;
-    gap: 20px;
     position: relative;
-    padding-bottom: 30px;
+    padding-left: 40px;
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
 }
 
 .roadmap-step:last-child {
     padding-bottom: 0;
 }
 
+.roadmap-step:last-child .step-line {
+    display: none;
+}
+
 .step-circle {
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 32px;
     height: 32px;
-    background: #2563eb;
+    background: #2563EB;
     color: white;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: 700;
-    flex-shrink: 0;
     z-index: 2;
-    box-shadow: 0 0 0 4px #eff6ff;
+    border: 3px solid #dbeafe;
+    box-shadow: 0 2px 5px rgba(37, 99, 235, 0.2);
 }
 
 .step-line {
@@ -382,67 +423,38 @@
 }
 
 .step-content h4 {
-    margin: 0 0 4px;
-    color: #1a1b4b;
+    margin: 0 0 5px;
     font-size: 1.1rem;
+    color: #1e293b;
+    font-weight: 700;
 }
 
 .step-content p {
     margin: 0;
     color: #64748b;
     font-size: 0.95rem;
+    line-height: 1.5;
 }
 
-/* Day in Life */
-.day-in-life {
-    background: #f8fafc;
-    padding: 25px;
-    border-radius: 12px;
-    border-left: 4px solid #f59e0b;
-}
-
-.life-quote {
-    font-style: italic;
-    color: #334155;
-    font-size: 1.1rem;
-    line-height: 1.6;
-}
-
+/* CTA Buttons */
 .btn-find-colleges {
-    width: 100%;
-    background: #2563eb;
+    background: #2563EB;
     color: white;
-    padding: 16px;
-    border-radius: 10px;
-    border: none;
+    padding: 12px;
+    border-radius: 6px;
     font-weight: 700;
-    font-size: 1.1rem;
-    cursor: pointer;
     transition: background 0.2s;
+    border: none;
+    cursor: pointer;
 }
 
 .btn-find-colleges:hover {
     background: #1d4ed8;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes slideUp {
-    from {
-        transform: translateY(50px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+/* Day in Life Quote */
+.life-quote {
+    line-height: 1.6;
+    font-style: italic;
+    color: #475569;
 }

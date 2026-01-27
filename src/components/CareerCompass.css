@@ -1,64 +1,138 @@
+/* Career Compass (Counselling) Section */
 .career-compass-section {
-    background: linear-gradient(90deg, #fff3e0 0%, #e2f2f7 100%);
-    /* Peach to Light Blue gradient approximation */
-    padding: 3rem 0;
-    margin: 2rem 0;
+    padding: 0;
+    margin: 40px 0;
+    background-color: transparent;
+    overflow: hidden;
+}
+
+.compass-banner {
+    background-color: #BFDBFE;
+    /* Light Blue Base */
+    position: relative;
+    padding: 3.5rem 0;
+    color: #1e293b;
+    overflow: hidden;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+}
+
+/* Creating the curve effect - matching OnlineDegrees but mirrored/different color */
+.compass-banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 43%;
+    /* Increased to match OnlineDegrees */
+    height: 100%;
+    background-color: #3b82f6;
+    /* Darker Blue Area */
+    z-index: 1;
+}
+
+/* The curved part */
+.compass-banner::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 43%;
+    /* Match width */
+    width: 140px;
+    /* Increased curve size */
+    height: 100%;
+    background-color: #3b82f6;
+    border-radius: 0 100% 100% 0 / 0 50% 50% 0;
+    z-index: 1;
+    transform: none;
+    transform-origin: left;
 }
 
 .compass-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    z-index: 10;
+    width: 100%;
     gap: 2rem;
 }
 
-@media (max-width: 768px) {
-    .compass-container {
-        flex-direction: column;
-        text-align: center;
-    }
-}
-
+/* Content */
 .compass-content {
-    flex: 1;
-    max-width: 700px;
+    flex: 1.5;
+    color: white;
+    /* Text on blue part is white */
 }
 
 .compass-title {
-    font-size: var(--h2-size);
-    /* Standardized */
+    font-size: 2.5rem;
     font-weight: 800;
-    color: #1a237e;
-    /* Dark Blue title */
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    color: white;
 }
 
 .compass-text {
-    font-size: var(--p-md-size);
-    /* Standardized */
-    color: #546e7a;
-    line-height: 1.6;
+    font-size: 1.1rem;
+    opacity: 0.9;
+    max-width: 90%;
+    line-height: 1.5;
+    color: white;
 }
 
 .compass-action {
-    flex-shrink: 0;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    /* Push button to right context in light area */
+    align-items: center;
+    padding-right: 4rem;
 }
 
 .btn-career {
-    background-color: #f39c12;
-    /* Orange/Yellow tone */
-    color: #000;
+    background-color: #1e3a8a;
+    /* Deep Blue Button */
+    color: white;
     font-weight: 700;
-    padding: 1rem 2rem;
-    border-radius: 8px;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
     border: none;
-    font-size: 1rem;
+    font-size: 1.1rem;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, background-color 0.2s;
+    box-shadow: 0 10px 25px rgba(30, 58, 138, 0.2);
+    transition: all 0.2s;
 }
 
 .btn-career:hover {
-    background-color: #e67e22;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(30, 58, 138, 0.3);
+    background-color: #172554;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .compass-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .compass-content {
+        padding: 0 20px;
+    }
+
+    .compass-banner {
+        background: linear-gradient(to bottom, #3b82f6 50%, #BFDBFE 50%);
+    }
+
+    .compass-banner::before,
+    .compass-banner::after {
+        display: none;
+    }
+
+    .compass-action {
+        justify-content: center;
+        padding-right: 0;
+    }
 }

@@ -1,0 +1,132 @@
+/* Compare Widget Styles */
+.compare-section {
+    padding: 60px 0;
+    background: white;
+}
+
+.compare-card {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 20px;
+    padding: 40px;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+}
+
+.compare-header h2 {
+    font-size: 2rem;
+    color: #1e293b;
+    margin-bottom: 10px;
+}
+
+.compare-header p {
+    color: #64748b;
+    margin-bottom: 30px;
+}
+
+.compare-inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.cmp-input-group {
+    flex: 1;
+    min-width: 250px;
+    position: relative;
+}
+
+.cmp-input {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 50px;
+    border: 1px solid #cbd5e1;
+    font-size: 1rem;
+    background: white;
+    outline: none;
+    transition: all 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+
+.cmp-input:focus {
+    border-color: #2563EB;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.vs-badge {
+    background: #0F172A;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 800;
+    font-style: italic;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    flex-shrink: 0;
+}
+
+.btn-compare {
+    background: #2563EB;
+    color: white;
+    padding: 12px 40px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+}
+
+.btn-compare:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(37, 99, 235, 0.3);
+}
+
+/* Sample vs Text */
+.popular-comparisons {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+.pop-cmp-link {
+    color: #2563EB;
+    font-weight: 600;
+    margin: 0 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.pop-cmp-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .compare-inputs {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .vs-badge {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+        margin: -10px 0;
+        /* Negate gap slightly */
+    }
+}

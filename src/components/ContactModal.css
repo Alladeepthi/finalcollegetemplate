@@ -5,7 +5,6 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -91,7 +90,7 @@
 .info-icon {
     width: 44px;
     height: 44px;
-    background: rgba(255, 255, 255, 0.15);
+    background: #1e40af;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -114,14 +113,7 @@
 }
 
 .shape-decoration {
-    position: absolute;
-    bottom: -50px;
-    right: -50px;
-    width: 250px;
-    height: 250px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 50%;
-    z-index: 1;
+    display: none;
 }
 
 /* Right Panel */

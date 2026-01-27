@@ -1,0 +1,175 @@
+/* Placement Highlights Section */
+.placement-highlights-section {
+    padding: 3rem 0;
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    overflow: hidden;
+}
+
+.placement-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.placement-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.8rem;
+    color: #0f172a;
+    letter-spacing: -0.5px;
+}
+
+.placement-title span {
+    color: #16a34a;
+    display: inline-block;
+}
+
+.placement-subtitle {
+    color: #64748b;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Ticker Container */
+.ticker-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 10px 0;
+}
+
+/* Gradient Fade Effects on Sides */
+.ticker-wrapper::before,
+.ticker-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.ticker-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, white, transparent);
+}
+
+.ticker-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, white, transparent);
+}
+
+.ticker-container {
+    display: flex;
+    gap: 30px;
+    width: max-content;
+    animation: scrollUpdates 35s linear infinite;
+    padding: 10px 0;
+    /* Add padding to prevent shadow clipping */
+}
+
+.ticker-container:hover {
+    animation-play-state: paused;
+}
+
+/* Card Design */
+.placement-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    min-width: 260px;
+    max-width: 260px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    /* Very subtle static shadow */
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+/* Slight lift on hover, but no glass effect */
+.placement-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+    /* crisp shadow */
+    border-color: #cbd5e1;
+}
+
+/* Content Within Card */
+.company-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.company-name {
+    font-weight: 700;
+    color: #1e293b;
+    font-size: 1.15rem;
+}
+
+.package-badge {
+    background: #ecfdf5;
+    /* Very light green */
+    color: #059669;
+    /* Strong green text */
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.role-text {
+    font-size: 0.9rem;
+    color: #475569;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.college-name-sm {
+    font-size: 0.85rem;
+    color: #64748b;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 12px;
+    margin-top: auto;
+    /* Pushes to bottom */
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.college-name-sm span {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* Animation */
+@keyframes scrollUpdates {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc(-50% - 15px));
+        /* half width + half gap */
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .placement-card {
+        min-width: 240px;
+        max-width: 240px;
+    }
+
+    .ticker-wrapper::before,
+    .ticker-wrapper::after {
+        width: 40px;
+        /* Smaller fade on mobile */
+    }
+}

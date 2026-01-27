@@ -15,12 +15,19 @@ import ExamDetails from './pages/ExamDetails';
 import Dashboard from './pages/Dashboard';
 import { UserProvider } from './context/UserContext';
 
+import GlobalAdPopup from './components/GlobalAdPopup';
+import GlobalSideAd from './components/GlobalSideAd';
+
 function App() {
   return (
     <UserProvider>
       <Router>
         <div className="app">
           <Header />
+
+          {/* Global Ads */}
+          <GlobalAdPopup />
+          <GlobalSideAd />
 
           <Routes>
             <Route path="/" element={<Home />} />

@@ -2,265 +2,256 @@ import React, { useState } from 'react';
 import './Utilities.css';
 
 const Utilities = () => {
-    const [activeTab, setActiveTab] = useState('scholarships');
-
-    const scholarships = [
-        {
-            id: 1,
-            name: "National Merit Scholarship",
-            badge: "MERIT BASED",
-            amount: "₹50,000",
-            period: "/ Year",
-            desc: "Awarded to top 1% of students in Class 12th board exams. Applicable for all undergraduate courses.",
-            type: "merit"
-        },
-        {
-            id: 2,
-            name: "Vidyalakshmi Education Loan",
-            badge: "MEANS BASED",
-            amount: "Low Interest",
-            period: "Loans",
-            desc: "Government initiative to provide easy education loans to students with poor economic background.",
-            type: "means" // Using this to style the amount text differently if needed
-        },
-        {
-            id: 3,
-            name: "Pragati Scholarship",
-            badge: "GIRLS SPECIFIC",
-            amount: "₹50,000",
-            period: "/ Year",
-            desc: "AICTE scheme for girl students pursuing technical education. Up to 2 girls per family eligible.",
-            type: "girls"
-        }
-    ];
-
+    // --- STATE MANAGEMENT ---
     const [activeExam, setActiveExam] = useState('JEE Main');
     const [rank, setRank] = useState('');
-    const [results, setResults] = useState(null);
-    const [isCalculating, setIsCalculating] = useState(false);
+    const [isPredicting, setIsPredicting] = useState(false);
+    const [predictionResults, setPredictionResults] = useState(null);
+    const [scholarshipFilter, setScholarshipFilter] = useState('All');
 
-    const examData = {
-        'JEE Main': {
-            title: "JEE Rank Predictor",
-            desc: "Enter your expected CRL rank to see your most likely college options based on last year's cutoffs.",
-            placeholder: "Enter CRL Rank (e.g. 15000)",
-            colleges: [
-                { name: "NIT Trichy", branch: "Computer Science", minRank: 0, maxRank: 5000 },
-                { name: "NIT Surathkal", branch: "IT", minRank: 5001, maxRank: 10000 },
-                { name: "IIIT Hyderabad", branch: "Electronics", minRank: 0, maxRank: 15000 },
-                { name: "NIT Warangal", branch: "Mechanical", minRank: 10001, maxRank: 20000 },
-                { name: "DTU Delhi", branch: "Civil", minRank: 20001, maxRank: 50000 }
-            ]
-        },
-        'NEET': {
-            title: "NEET College Predictor",
-            desc: "Predict your MBBS/BDS college options based on your NEET All India Rank.",
-            placeholder: "Enter NEET AIR (e.g. 5000)",
-            colleges: [
-                { name: "AIIMS Delhi", branch: "MBBS", minRank: 0, maxRank: 50 },
-                { name: "MAMC Delhi", branch: "MBBS", minRank: 51, maxRank: 500 },
-                { name: "KGMU Lucknow", branch: "MBBS", minRank: 501, maxRank: 2000 },
-                { name: "GMC Mumbai", branch: "MBBS", minRank: 2001, maxRank: 10000 },
-                { name: "Government Dental College", branch: "BDS", minRank: 10001, maxRank: 50000 }
-            ]
-        },
-        'TS EAMCET': {
-            title: "EAMCET Predictor",
-            desc: "Find the best regional engineering colleges based on your state rank.",
-            placeholder: "Enter EAMCET Rank (e.g. 10000)",
-            colleges: [
-                { name: "JNTU Hyderabad", branch: "CSE", minRank: 0, maxRank: 1000 },
-                { name: "OU College of Eng", branch: "ECE", minRank: 1001, maxRank: 2500 },
-                { name: "CBIT Hyderabad", branch: "IT", minRank: 2501, maxRank: 5000 },
-                { name: "VNR VJIET", branch: "CSM", minRank: 5001, maxRank: 8000 },
-                { name: "Vasavi College", branch: "Civil", minRank: 8001, maxRank: 15000 }
-            ]
+    // --- MOCK DATA ---
+    const scholarshipsData = [
+        { id: 1, name: "National Merit Scholarship", amount: "₹50,000/Yr", type: "Merit", deadline: "Exp: 30 days", link: "https://scholarships.gov.in/" },
+        { id: 2, name: "Vidyalakshmi Loan Scheme", amount: "Low Interest", type: "Means", deadline: "Open All Year", link: "https://www.vidyalakshmi.co.in/" },
+        { id: 3, name: "AICTE Pragati Scheme", amount: "₹50,000/Yr", type: "Girls", deadline: "Exp: 15 days", link: "https://www.aicte-india.org/schemes/students-development-schemes/Pragati" },
+        { id: 4, name: "HDFC Badhte Kadam", amount: "₹30,000", type: "Private", deadline: "Exp: 10 days", link: "https://www.buddy4study.com/page/hdfc-bank-parivartan-ecss-programme" },
+        { id: 5, name: "ONGC Scholarship", amount: "₹48,000/Yr", type: "Means", deadline: "Exp: 20 days", link: "https://ongcindia.com/" },
+        { id: 6, name: "Tata Trust Grant", amount: "Variable", type: "Merit", deadline: "Exp: 5 days", link: "https://www.tatatrusts.org/" },
+        { id: 7, name: "L'Oreal India Scholarship", amount: "₹2.5 Lakhs", type: "Girls", deadline: "Exp: 25 days", link: "https://www.loreal.com/en/india/" },
+        { id: 8, name: "Adobe India Women-in-Tech", amount: "USD 10,000", type: "Girls", deadline: "Exp: 45 days", link: "https://www.adobe.com/in/careers/university/research-scholarship.html" },
+        { id: 9, name: "LIC Golden Jubilee", amount: "₹20,000/Yr", type: "Means", deadline: "Exp: 12 days", link: "https://licindia.in/" },
+        { id: 10, name: "Keep India Smiling Grant", amount: "₹30,000", type: "Merit", deadline: "Exp: 60 days", link: "https://www.buddy4study.com/page/keep-india-smiling-foundational-scholarship-programme" },
+        { id: 11, name: "Santoor Scholarship", amount: "₹24,000/Yr", type: "Girls", deadline: "Exp: 18 days", link: "https://www.santoorscholarships.com/" },
+        { id: 12, name: "Foundation for Excellence", amount: "Variable", type: "Means", deadline: "Exp: 30 days", link: "https://ffe.org/" }
+    ];
+
+    const materials = [
+        { id: 1, title: "JEE Main 10 Yr Papers", size: "125 MB", icon: "📚" },
+        { id: 2, title: "Formula Cheatsheets (PCM)", size: "45 MB", icon: "📝" },
+        { id: 3, title: "NEET Biology Atlas", size: "86 MB", icon: "🧬" },
+        { id: 4, title: "Mock Test Series Vol.1", size: "150 MB", icon: "🧠" }
+    ];
+
+    // --- HANDLERS ---
+
+    // 1. Predictor Logic
+    const handlePredict = () => {
+        if (!rank) {
+            alert("Please enter a rank first!");
+            return;
         }
-    };
+        setIsPredicting(true);
+        setPredictionResults(null);
 
-    const handleCalculate = () => {
-        if (!rank) return;
-        setIsCalculating(true);
-        setResults(null);
-
-        // Simulate calculation delay
+        // Simulate API delay
         setTimeout(() => {
-            const currentExmData = examData[activeExam] || examData['JEE Main'];
-            const numericRank = parseInt(rank);
-            const filtered = currentExmData.colleges.filter(c => numericRank >= c.minRank && numericRank <= c.maxRank);
-
-            // If no exact match found in our small mock list, provide a fallback
-            if (filtered.length === 0) {
-                setResults([{ name: "Local Private Institute", branch: "General", note: "Based on your rank, you may consider local private institutions." }]);
-            } else {
-                setResults(filtered);
-            }
-            setIsCalculating(false);
-        }, 1200);
+            const mockResults = [
+                { name: "NIT Trichy", branch: "Computer Science", chance: 85, color: "#16a34a" },
+                { name: "NIT Warangal", branch: "Electronics", chance: 72, color: "#f59e0b" },
+                { name: "IIIT Hyderabad", branch: "ECE", chance: 45, color: "#ef4444" },
+                { name: "VNIT Nagpur", branch: "Mechanical", chance: 92, color: "#16a34a" }
+            ];
+            setPredictionResults(mockResults);
+            setIsPredicting(false);
+        }, 1500);
     };
 
-    const handleExamChange = (exam) => {
-        setActiveExam(exam);
-        setResults(null);
-        setRank('');
+    // 2. Scholarship Filtering
+    const filteredScholarships = scholarshipFilter === 'All'
+        ? scholarshipsData
+        : scholarshipsData.filter(s => s.type === scholarshipFilter);
+
+    // 3. Download Logic
+    const handleDownload = (title) => {
+        alert(`Starting download for: ${title}`);
     };
 
     return (
         <div className="utilities-page-new">
             {/* Hero Section */}
             <section className="utilities-hero">
-                <div className="container text-center">
-                    <h1 className="hero-title">Start Funding Your Future</h1>
+                <div className="container">
+                    <h1 className="hero-title">Student Toolkit & Resources</h1>
                     <p className="hero-subtitle">
-                        Explore exclusive scholarships, predict your college admission chances, and access premium study materials.
+                        Access premium tools designed to simplify your admission journey. Predict colleges, find funding, and prepare better.
                     </p>
-
-                    {/* Tabs Navigation */}
-                    <div className="tabs-wrapper">
-                        <div className="tabs-pill">
-                            <button
-                                className={`tab-item ${activeTab === 'scholarships' ? 'active' : ''}`}
-                                onClick={() => setActiveTab('scholarships')}
-                            >
-                                Scholarships
-                            </button>
-                            <button
-                                className={`tab-item ${activeTab === 'predictor' ? 'active' : ''}`}
-                                onClick={() => setActiveTab('predictor')}
-                            >
-                                College Predictor
-                            </button>
-                            <button
-                                className={`tab-item ${activeTab === 'materials' ? 'active' : ''}`}
-                                onClick={() => setActiveTab('materials')}
-                            >
-                                Study Materials
-                            </button>
-                        </div>
-                    </div>
                 </div>
             </section>
 
-            {/* Content Section */}
-            <section className="utilities-content container">
-                {activeTab === 'scholarships' && (
-                    <div className="scholarships-grid">
-                        {scholarships.map((item) => (
-                            <div className="scholarship-card" key={item.id}>
-                                <span className={`badge badge-${item.badge.toLowerCase().replace(' ', '-')}`}>
-                                    {item.badge}
-                                </span>
+            <div className="utilities-container">
 
-                                <h3 className="card-name">{item.name}</h3>
+                {/* 1. COLLEGE PREDICTOR CARD */}
+                <div className="predictor-section-card">
+                    <div className="pred-left">
+                        <h2>College Predictor</h2>
+                        <p>Enter your rank to see your admission chances based on last year's cutoff data. We analyze over 500+ colleges.</p>
 
-                                <div className="card-amount-block">
-                                    <span className={`amount ${item.type === 'means' ? 'text-green' : 'text-green'}`}>
-                                        {item.amount}
-                                    </span>
-                                    <span className="period"> {item.period}</span>
-                                </div>
-
-                                <p className="card-desc">{item.desc}</p>
-
-                                <button className="btn-details">View Details</button>
-                            </div>
-                        ))}
-                    </div>
-                )}
-
-                {activeTab === 'predictor' && (
-                    <div className="predictor-container">
-
-                        {/* Exam Switcher for Predictor */}
-                        <div className="predictor-exams-nav">
-                            {['JEE Main', 'NEET', 'TS EAMCET', 'BITSAT', 'VITEEE'].map(ex => (
+                        <div className="exam-tabs">
+                            {['JEE Main', 'NEET', 'EAMCET', 'BITSAT', 'VITEEE'].map(ex => (
                                 <button
                                     key={ex}
-                                    className={`exam-pill ${activeExam === ex ? 'active' : ''}`}
-                                    onClick={() => handleExamChange(ex)}
+                                    className={`exam-tab ${activeExam === ex ? 'active' : ''}`}
+                                    onClick={() => setActiveExam(ex)}
                                 >
                                     {ex}
                                 </button>
                             ))}
                         </div>
 
-                        <div className="predictor-card-main text-center">
-                            <h2 className="predictor-title">{examData[activeExam]?.title || activeExam}</h2>
-                            <p className="predictor-desc">
-                                {examData[activeExam]?.desc || "Find the best colleges based on your exam rank and performance."}
-                            </p>
-
-                            <div className="input-group">
-                                <input
-                                    type="number"
-                                    placeholder={examData[activeExam]?.placeholder || "Enter Rank"}
-                                    className="rank-input"
-                                    value={rank}
-                                    onChange={(e) => setRank(e.target.value)}
-                                />
-                            </div>
-
-                            <button
-                                className="btn-calculate"
-                                onClick={handleCalculate}
-                                disabled={isCalculating}
-                            >
-                                {isCalculating ? "Calculating..." : "Calculate Possibilities"}
+                        <div className="predictor-input-group">
+                            <input
+                                type="number"
+                                className="pred-input"
+                                placeholder={`Enter ${activeExam} Rank (e.g., 15000)`}
+                                value={rank}
+                                onChange={(e) => setRank(e.target.value)}
+                            />
+                            <button className="btn-predict" onClick={handlePredict} disabled={isPredicting}>
+                                {isPredicting ? 'Analyzing...' : 'Predict Now'}
                             </button>
                         </div>
+                    </div>
 
-                        {/* Results Section */}
-                        {results && (
-                            <div className="predictor-results">
-                                <h3 className="results-heading">Most Likely Options For You</h3>
-                                <div className="results-list">
-                                    {results.map((res, i) => (
-                                        <div key={i} className="result-item">
-                                            <div className="result-info">
+                    <div className="pred-right">
+                        <div className="pred-results-area">
+                            {!predictionResults && !isPredicting && (
+                                <div className="result-placeholder">
+                                    <span style={{ fontSize: '3rem', marginBottom: '1rem' }}>📊</span>
+                                    <h4>Results will appear here</h4>
+                                    <p>Enter your rank and hit Predict to see options.</p>
+                                </div>
+                            )}
+
+                            {isPredicting && (
+                                <div className="result-placeholder">
+                                    <div className="loader"></div> {/* You'd typically use a spinner here */}
+                                    <h4>Crunching numbers...</h4>
+                                </div>
+                            )}
+
+                            {predictionResults && (
+                                <div className="results-list-animated">
+                                    <h4 style={{ marginBottom: '1rem', color: '#334155' }}>Prediction Results:</h4>
+                                    {predictionResults.map((res, i) => (
+                                        <div className="pred-result-card" key={i}>
+                                            <div className="pr-info">
                                                 <h4>{res.name}</h4>
                                                 <p>{res.branch}</p>
                                             </div>
-                                            <span className="match-tag">Excellent Match</span>
+                                            <div className="pr-chance">
+                                                <span style={{ color: res.color, fontWeight: '700' }}>{res.chance}% Chance</span>
+                                                <div className="chance-bar">
+                                                    <div className="chance-fill" style={{ width: `${res.chance}%`, background: res.color }}></div>
+                                                </div>
+                                            </div>
                                         </div>
                                     ))}
                                 </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+
+                {/* AD HEADER BANNER */}
+                <div className="utilities-ad-banner">
+                    <div className="ad-content">
+                        <span className="ad-label">Sponsored</span>
+                        <h3>LPU National Entrance and Scholarship Test (LPUNEST)</h3>
+                        <p>Applications Open for 2025. Get up to 100% Scholarship.</p>
+                        <button>Apply Now</button>
+                    </div>
+                </div>
+
+                {/* 2. SPLIT SECTION: SCHOLARSHIPS & MATERIALS */}
+                <div className="tools-grid">
+
+                    {/* Scholarships Feed */}
+                    <div className="scholarship-widget">
+                        <div className="widget-header">
+                            <h3>Find Scholarships</h3>
+                            <div className="filter-tabs">
+                                {['All', 'Merit', 'Means', 'Girls'].map(f => (
+                                    <button
+                                        key={f}
+                                        className={`filter-btn ${scholarshipFilter === f ? 'active' : ''}`}
+                                        onClick={() => setScholarshipFilter(f)}
+                                    >
+                                        {f}
+                                    </button>
+                                ))}
                             </div>
-                        )}
-
-                    </div>
-                )}
-
-                {activeTab === 'materials' && (
-                    <div className="materials-grid">
-                        <div className="material-card">
-                            <div className="material-icon">📚</div>
-                            <h3 className="material-title">JEE Previous Papers</h3>
-                            <p className="material-desc">
-                                Comprehensive archive of last 10 years of Question papers with detailed solution keys.
-                            </p>
-                            <button className="btn-material">Download PDF Bundle</button>
                         </div>
 
-                        <div className="material-card">
-                            <div className="material-icon">📝</div>
-                            <h3 className="material-title">Formula Cheatsheets</h3>
-                            <p className="material-desc">
-                                Quick revision sheets for Physics, Chemistry, and Maths formulas tailored for last-minute prep.
-                            </p>
-                            <button className="btn-material">Download PDF Bundle</button>
-                        </div>
-
-                        <div className="material-card">
-                            <div className="material-icon">🧠</div>
-                            <h3 className="material-title">Mock Tests</h3>
-                            <p className="material-desc">
-                                Full-length timed mock tests designed to simulate the actual exam environment.
-                            </p>
-                            <button className="btn-material outline">Start Practice</button>
+                        <div className="scholarship-list">
+                            {filteredScholarships.map(s => (
+                                <a
+                                    href={s.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="scholarship-item"
+                                    key={s.id}
+                                    style={{ textDecoration: 'none', color: 'inherit' }}
+                                >
+                                    <div className="sch-info">
+                                        <h4>{s.name}</h4>
+                                        <div className="sch-tags">
+                                            <span className="sch-badge">{s.type}</span>
+                                            <span className="sch-deadline">{s.deadline}</span>
+                                        </div>
+                                    </div>
+                                    <div className="sch-amount">
+                                        <span className="amount-val">{s.amount}</span>
+                                        <span style={{ fontSize: '0.75rem', color: '#2563EB', fontWeight: '600' }}>Apply Now ↗</span>
+                                    </div>
+                                </a>
+                            ))}
+                            {filteredScholarships.length === 0 && (
+                                <p style={{ textAlign: 'center', padding: '2rem', color: '#94a3b8' }}>No scholarships found for this category.</p>
+                            )}
                         </div>
                     </div>
-                )}
-            </section>
+
+                    {/* Study Materials Sidebar */}
+                    <div className="right-sidebar-stack">
+                        {/* SIDEBAR AD */}
+                        <div className="utilities-ad-square">
+                            <span className="ad-label-sm">Ad</span>
+                            <h4>Allen Test Series</h4>
+                            <p>Ace JEE 2026 with India's best mock tests.</p>
+                            <button className="btn-ad-sm">Explore</button>
+                        </div>
+
+                        <div className="materials-widget">
+                            <div className="widget-header">
+                                <h3>Study Materials</h3>
+                            </div>
+                            <div className="material-list">
+                                {materials.map(m => (
+                                    <div className="material-item" key={m.id}>
+                                        <div className="mat-icon">{m.icon}</div>
+                                        <div className="mat-info">
+                                            <h5>{m.title}</h5>
+                                            <p>{m.size} • PDF</p>
+                                        </div>
+                                        <button
+                                            className="btn-download-mini"
+                                            onClick={() => handleDownload(m.title)}
+                                            title="Download"
+                                        >
+                                            ↓
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                            <button className="btn-view-all-plain" style={{ marginTop: '1rem' }}>
+                                Browse All Resources →
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
         </div>
     );
 };

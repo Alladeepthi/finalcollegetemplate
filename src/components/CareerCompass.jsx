@@ -7,15 +7,17 @@ const CareerCompass = () => {
 
     return (
         <section className="career-compass-section">
-            <div className="container compass-container">
-                <div className="compass-content">
-                    <h2 className="compass-title">Need expert guidance for your admission?</h2>
-                    <p className="compass-text">
-                        Get 1-on-1 mentorship from our expert counsellors. We help you choose the right college, course, and scholarship to build your dream career.
-                    </p>
-                </div>
-                <div className="compass-action">
-                    <button className="btn-career" onClick={() => setIsModalOpen(true)}>Get Free Counselling</button>
+            <div className="compass-banner">
+                <div className="container compass-container">
+                    <div className="compass-content">
+                        <h2 className="compass-title">Expert Counselling</h2>
+                        <p className="compass-text">
+                            Confused about your career path? Get 1-on-1 mentorship from top experts to choose the right college and course.
+                        </p>
+                    </div>
+                    <div className="compass-action">
+                        <button className="btn-career" onClick={() => setIsModalOpen(true)}>Book Free Session</button>
+                    </div>
                 </div>
             </div>
 
