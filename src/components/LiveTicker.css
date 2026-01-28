@@ -1,17 +1,19 @@
 /* Live Ticker Styles */
 .live-ticker-container {
-    background: #0F172A;
+    background: #1e1e1e;
+    /* Basic dark grey */
     color: white;
     padding: 10px 0;
     overflow: hidden;
     position: relative;
-    border-bottom: 1px solid #1e293b;
+    border-bottom: 1px solid #333;
 }
 
 .ticker-wrapper {
     display: flex;
     white-space: nowrap;
-    animation: ticker-slide 30s linear infinite;
+    animation: ticker-slide 40s linear infinite;
+    /* Slower, smoother */
 }
 
 .ticker-wrapper:hover {
@@ -26,22 +28,22 @@
 }
 
 .ticker-tag {
-    background: #ef4444;
-    color: white;
+    background: #fca311;
+    /* Single uniform color (Amber/Orange) for all tags */
+    color: #000;
     padding: 2px 8px;
     border-radius: 4px;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 700;
     margin-right: 10px;
     text-transform: uppercase;
 }
 
-.ticker-tag.green {
-    background: #16a34a;
-}
-
-.ticker-tag.blue {
-    background: #2563EB;
+/* Removed specific color classes to enforce uniformity */
+.ticker-tag.green,
+.ticker-tag.blue,
+.ticker-tag.red {
+    background: #fca311;
 }
 
 .ticker-link {
@@ -57,10 +59,10 @@
 
 @keyframes ticker-slide {
     0% {
-        transform: translateX(100%);
+        transform: translateX(0);
     }
 
     100% {
-        transform: translateX(-100%);
+        transform: translateX(-50%);
     }
 }

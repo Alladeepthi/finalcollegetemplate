@@ -17,6 +17,7 @@ export const examsData = [
         acceptingColleges: "NITs, IIITs, CFTIs",
         logo: "📐",
         description: "The Joint Entrance Examination (JEE) Main is conducted for admission to Undergraduate Engineering Programs (B.E/B.Tech) at NITs, IIITs, other Centrally Funded Technical Institutions (CFTIs), and Institutions/Universities funded/recognized by participating State Governments.",
+        officialLink: "https://jeemain.nta.nic.in/",
         syllabus: [
             { subject: "Physics", topics: ["Kinematics", "Laws of Motion", "Thermodynamics", "Electrostatics"] },
             { subject: "Chemistry", topics: ["Atomic Structure", "Chemical Bonding", "Organic Chemistry", "Electrochemistry"] },
@@ -47,6 +48,7 @@ export const examsData = [
         acceptingColleges: "IITs, IISc, IISERs",
         logo: "⚛️",
         description: "JEE Advanced is conducted by the seven Zonal Coordinating IITs under the guidance of the Joint Admission Board (JAB). It is the sole prerequisite for admission to the Indian Institutes of Technology (IITs).",
+        officialLink: "https://jeeadv.ac.in/",
         syllabus: [
             { subject: "Physics", topics: ["Mechanics", "Electricity and Magnetism", "Optics", "Modern Physics"] },
             { subject: "Chemistry", topics: ["Physical Chemistry", "Inorganic Chemistry", "Organic Chemistry"] },
@@ -76,6 +78,7 @@ export const examsData = [
         acceptingColleges: "IITs, NITs, PSU Recruitment",
         logo: "⚙️",
         description: "GATE is a national-level exam that primarily tests the comprehensive understanding of various undergraduate subjects in Engineering and Technology for admission into Master's programs and recruitment by some Public Sector Undertakings.",
+        officialLink: "https://gate2025.iitr.ac.in/",
         syllabus: [
             { subject: "General Aptitude", topics: ["Verbal Ability", "Numerical Ability"] },
             { subject: "Engineering Mathematics", topics: ["Linear Algebra", "Calculus", "Probability"] },
@@ -105,6 +108,7 @@ export const examsData = [
         acceptingColleges: "BITS Pilani, Goa, Hyderabad",
         logo: "🏫",
         description: "BITSAT is a computer-based online test for admissions to Integrated First Degree Programs of BITS Pilani Campuses in Pilani, Goa, and Hyderabad.",
+        officialLink: "https://www.bitsadmission.com/",
         syllabus: [
             { subject: "Physics", topics: ["Mechanics", "Thermodynamics", "Electromagnetism"] },
             { subject: "Chemistry", topics: ["States of Matter", "Thermodynamics", "Chemical Kinetics"] },
@@ -135,6 +139,7 @@ export const examsData = [
         acceptingColleges: "VIT Vellore, Chennai, AP, Bhopal",
         logo: "🎓",
         description: "VITEEE is conducted for admission to B.Tech programs of VIT University group.",
+        officialLink: "https://viteee.vit.ac.in/",
         syllabus: [
             { subject: "Physics", topics: ["Law of Motion", "Work, Power and Energy"] },
             { subject: "Chemistry", topics: ["Atomic Structure", "Coordination Chemistry"] },
@@ -165,6 +170,7 @@ export const examsData = [
         acceptingColleges: "All Medical Colleges in India",
         logo: "🩺",
         description: "The National Eligibility cum Entrance Test (NEET) is the only entrance examination for admission to MBBS and BDS courses in India.",
+        officialLink: "https://exams.nta.ac.in/NEET/",
         syllabus: [
             { subject: "Physics", topics: ["Mechanics", "Thermodynamics", "Optics"] },
             { subject: "Chemistry", topics: ["Physical", "Organic", "Inorganic"] },
@@ -194,6 +200,7 @@ export const examsData = [
         acceptingColleges: "MD/MS/PG Diploma Courses",
         logo: "🏥",
         description: "NEET-PG is an eligibility-cum-ranking examination prescribed as the single entrance examination for admission to various MD/MS and PG Diploma Courses.",
+        officialLink: "https://nbe.edu.in/",
         syllabus: [
             { subject: "Clinical", topics: ["Medicine", "Surgery", "OBGYN", "Pediatrics"] },
             { subject: "Pre-Clinical", topics: ["Anatomy", "Physiology", "Biochemistry"] },
@@ -223,6 +230,7 @@ export const examsData = [
         acceptingColleges: "AIIMS New Delhi & others",
         logo: "🧬",
         description: "AIIMS Nursing entrance exam is conducted for admission to B.Sc (Hons) Nursing and M.Sc Nursing courses at AIIMS institutions.",
+        officialLink: "https://www.aiimsexams.ac.in/",
         syllabus: [
             { subject: "Physics", topics: ["10+2 Level Physics"] },
             { subject: "Chemistry", topics: ["10+2 Level Chemistry"] },
@@ -253,6 +261,7 @@ export const examsData = [
         acceptingColleges: "IIMs, FMS, SP Jain, IITs",
         logo: "📊",
         description: "Common Admission Test (CAT) is a computer-based test for admission in graduate management programs like MBA. Making it one of the toughest exams in India.",
+        officialLink: "https://iimcat.ac.in/",
         syllabus: [
             { subject: "VARC", topics: ["Reading Comprehension", "Verbal Ability"] },
             { subject: "DILR", topics: ["Data Interpretation", "Logical Reasoning"] },
@@ -282,6 +291,7 @@ export const examsData = [
         acceptingColleges: "XLRI & 160+ B-Schools",
         logo: "📉",
         description: "XAT is a national-level management entrance examination conducted by XLRI, Jamshedpur for admission to MBA/PGDM programs.",
+        officialLink: "https://xatonline.in/",
         syllabus: [
             { subject: "Decision Making", topics: ["Business Situations", "Ethical Dilemmas"] },
             { subject: "Verbal & Logical", topics: ["Reading Comp", "Critical Reasoning"] },
@@ -312,6 +322,7 @@ export const examsData = [
         acceptingColleges: "Recruitment for IAS, IPS, IFS",
         logo: "🇮🇳",
         description: "The Civil Services Examination (CSE) is a nationwide competitive examination in India conducted by the UPSC for recruitment to higher Civil Services.",
+        officialLink: "https://upsc.gov.in/",
         syllabus: [
             { subject: "Prelims GS I", topics: ["History", "Geography", "Polity", "Economy", "Environment"] },
             { subject: "Prelims CSAT", topics: ["Comprehension", "Reasoning", "Basic Numeracy"] },
@@ -341,6 +352,7 @@ export const examsData = [
         acceptingColleges: "22 NLUs, Private Law Schools",
         logo: "⚖️",
         description: "CLAT is a centralized national level entrance test for admissions to twenty-two National Law Universities (NLUs) in India.",
+        officialLink: "https://consortiumofnlus.ac.in/",
         syllabus: [
             { subject: "English", topics: ["Comprehension", "Grammar"] },
             { subject: "Current Affairs", topics: ["GK", "News"] },
@@ -372,6 +384,7 @@ export const examsData = [
         acceptingColleges: "NID Ahmedabad, NID Bangalore",
         logo: "🎨",
         description: "NID DAT is a national-level entrance exam conducted by the National Institute of Design for admission to B.Des and M.Des programs.",
+        officialLink: "https://admissions.nid.edu/",
         syllabus: [
             { subject: "Prelims", topics: ["Visual Design", "Creative Thinking", "Observation"] },
             { subject: "Mains", topics: ["Studio Test", "Interview"] }

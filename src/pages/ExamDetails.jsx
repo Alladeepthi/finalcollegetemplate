@@ -129,7 +129,13 @@ const ExamDetails = () => {
                                 fontSize: '1.1rem',
                                 borderRadius: '8px'
                             }}
-                            onClick={() => alert(`Redirecting to official website for ${exam.name}...`)}
+                            onClick={() => {
+                                if (exam.officialLink) {
+                                    window.open(exam.officialLink, '_blank', 'noopener,noreferrer');
+                                } else {
+                                    alert(`Official website link not available for ${exam.name}. Check back later!`);
+                                }
+                            }}
                         >
                             Apply Now / Visit Official Site ↗
                         </button>

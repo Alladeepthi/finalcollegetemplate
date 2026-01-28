@@ -114,8 +114,6 @@
 }
 
 .course-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
     border-color: #bae6fd;
 }
 
@@ -287,4 +285,105 @@
     .filters-sidebar {
         display: none;
     }
+}
+
+/* Ad Styles */
+.courses-ad-banner {
+    background-color: #fbbf24;
+    border-radius: 16px;
+    padding: 1.5rem 2rem;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 10px 25px -5px rgba(251, 191, 36, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.courses-ad-banner .ad-content {
+    position: relative;
+    z-index: 2;
+}
+
+.courses-ad-banner h3 {
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.courses-ad-banner p {
+    margin: 0 0 1rem 0;
+    opacity: 1;
+    color: #334155;
+}
+
+.courses-ad-banner .ad-tag {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.courses-ad-banner button {
+    background: #1e293b;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: transform 0.2s;
+}
+
+.courses-ad-banner button:hover {
+    transform: scale(1.05);
+    background: #0f172a;
+}
+
+.sidebar-ad-card {
+    margin-top: 2rem;
+    background: linear-gradient(135deg, #059669, #10b981);
+    border-radius: 12px;
+    padding: 1.5rem;
+    color: white;
+    text-align: center;
+    position: relative;
+}
+
+.sidebar-ad-card .ad-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    font-size: 0.65rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+.sidebar-ad-card h4 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-ad-card p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.sidebar-ad-card button {
+    width: 100%;
+    background: white;
+    color: #059669;
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
 }

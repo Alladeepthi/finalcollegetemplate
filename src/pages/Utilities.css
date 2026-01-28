@@ -415,15 +415,15 @@
 
 /* ADS STYLING */
 .utilities-ad-banner {
-    background: linear-gradient(90deg, #4338ca, #6366f1);
+    background-color: #fbbf24;
     border-radius: 16px;
     padding: 1.5rem 2rem;
-    color: white;
+    color: #1e293b;
     position: relative;
     overflow: hidden;
     display: flex;
     align-items: center;
-    box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 10px 25px -5px rgba(251, 191, 36, 0.4);
 }
 
 .utilities-ad-banner .ad-content {
@@ -444,19 +444,28 @@
 .utilities-ad-banner p {
     margin: 5px 0 15px;
     font-size: 0.95rem;
-    opacity: 0.9;
+    opacity: 1;
+    color: #334155;
 }
 
 .utilities-ad-banner button {
-    background: white;
-    color: #4338ca;
+    background: #1e293b;
+    color: white;
     border: none;
     padding: 8px 16px;
     border-radius: 6px;
     font-weight: 700;
     cursor: pointer;
     font-size: 0.9rem;
+    transition: transform 0.2s;
 }
+
+.utilities-ad-banner button:hover {
+    transform: scale(1.05);
+    background: #0f172a;
+}
+
+
 
 .ad-label {
     background: rgba(0, 0, 0, 0.3);
@@ -517,4 +526,23 @@
     cursor: pointer;
     font-size: 0.85rem;
     width: 100%;
+}
+
+.btn-view-all-plain {
+    width: 100%;
+    background: transparent;
+    border: 2px solid #e2e8f0;
+    color: #475569;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-view-all-plain:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    color: #1e293b;
 }

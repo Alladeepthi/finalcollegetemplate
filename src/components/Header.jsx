@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
 import AuthModal from './AuthModal';
 import ContactModal from './ContactModal';
+import LiveTicker from './LiveTicker';
 
 const Header = () => {
   const [activeDropdown, setActiveDropdown] = useState(null); // 'colleges', 'exams', 'courses', 'careers' or null
@@ -25,6 +26,7 @@ const Header = () => {
 
   return (
     <header className="header">
+      <LiveTicker />
       <AuthModal
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
@@ -100,7 +102,7 @@ const Header = () => {
                       <div className="admission-banner">
                         <h3>Admission 2026</h3>
                         <p>Apply to India's top ranking universities today.</p>
-                        <button className="btn-apply-now">Apply Now</button>
+                        <button className="btn-apply-now" onClick={() => setIsContactModalOpen(true)}>Apply Now</button>
                       </div>
                     </div>
                   </div>
@@ -151,7 +153,7 @@ const Header = () => {
                       <div className="admission-banner">
                         <h3>Exam Calendar</h3>
                         <p>Check important dates for 2026 exams.</p>
-                        <button className="btn-apply-now">View Dates</button>
+                        <button className="btn-apply-now" onClick={() => { setActiveDropdown(null); window.location.href = '/exams'; }}>View Dates</button>
                       </div>
                     </div>
                   </div>
@@ -249,7 +251,7 @@ const Header = () => {
                       <div className="admission-banner">
                         <h3>Career Guide</h3>
                         <p>Not sure what to choose?</p>
-                        <button className="btn-apply-now">Take Quiz</button>
+                        <button className="btn-apply-now" onClick={() => { setActiveDropdown(null); window.location.href = '/utilities'; }}>Take Quiz</button>
                       </div>
                     </div>
                   </div>

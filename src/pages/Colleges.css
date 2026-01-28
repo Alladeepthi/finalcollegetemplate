@@ -176,8 +176,8 @@
 }
 
 .college-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    /* Removed hover transform and shadow as requested */
+    border-color: #cbd5e1;
 }
 
 .college-card.featured {

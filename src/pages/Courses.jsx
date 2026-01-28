@@ -130,6 +130,14 @@ const Courses = () => {
                             <label><input type="radio" name="mode" checked={selectedMode === 'Online'} onChange={() => handleModeChange('Online')} /> Online / Distance</label>
                         </div>
                     </div>
+
+                    {/* Sidebar Ad */}
+                    <div className="sidebar-ad-card">
+                        <span className="ad-badge">Ad</span>
+                        <h4>Upgrad Abroad</h4>
+                        <p>Study in UK, USA, Canada with 50% Scholarship.</p>
+                        <button onClick={() => alert("Redirecting to Upgrad...")}>Check Eligibility</button>
+                    </div>
                 </aside>
 
                 {/* Main Content */}
@@ -151,6 +159,16 @@ const Courses = () => {
                                 <option>Salary: High to Low</option>
                                 <option>Duration: Low to High</option>
                             </select>
+                        </div>
+                    </div>
+
+                    {/* Ad Banner */}
+                    <div className="courses-ad-banner">
+                        <div className="ad-content">
+                            <span className="ad-tag">Featured</span>
+                            <h3>Master Data Science with IIT Madras</h3>
+                            <p>Admissions Open for 2026 Batch. No JEE Score Required.</p>
+                            <button onClick={() => alert("Redirecting to IIT Madras BS Data Science...")}>Apply Now</button>
                         </div>
                     </div>
 

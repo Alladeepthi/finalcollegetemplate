@@ -243,7 +243,11 @@ const Utilities = () => {
                                     </div>
                                 ))}
                             </div>
-                            <button className="btn-view-all-plain" style={{ marginTop: '1rem' }}>
+                            <button
+                                className="btn-view-all-plain"
+                                style={{ marginTop: '1rem' }}
+                                onClick={() => alert("Redirecting to the complete Study Material Library (Coming Soon)...")}
+                            >
                                 Browse All Resources →
                             </button>
                         </div>
