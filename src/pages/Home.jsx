@@ -8,7 +8,6 @@ import CareerCompass from '../components/CareerCompass';
 import CourseCategories from '../components/CourseCategories';
 import CollegeFinder from '../components/CollegeFinder';
 import OnlineDegrees from '../components/OnlineDegrees';
-import PlacementHighlights from '../components/PlacementHighlights';
 import './Home.css';
 
 const Home = () => {
@@ -17,7 +16,6 @@ const Home = () => {
             <Hero />
             <div style={{ position: 'relative' }}>
                 <Features />
-                <PlacementHighlights />
                 <WelcomeSection />
                 <CollegeFinder />
                 <CollegeJourney />

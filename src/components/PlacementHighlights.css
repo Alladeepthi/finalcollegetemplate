@@ -1,9 +1,25 @@
-/* Placement Highlights Section */
+/* --------- Placement Highlights Section (UPDATED CSS ONLY) --------- */
+
+/* root vars for easy tuning */
+:root {
+    --marquee-duration: 35s;
+    /* tweak to speed up/down */
+    --card-width: 276px;
+    --card-gap: 2rem;
+    /* space between cards */
+    --fade-width: 100px;
+    /* size of left/right fade */
+    --marquee-px-per-sec: 80;
+    /* used by JS if you choose to set duration dynamically */
+}
+
+/* Placement section basics */
 .placement-highlights-section {
     padding: 3rem 0;
     background: #ffffff;
     border-bottom: 1px solid #e2e8f0;
     overflow: hidden;
+    /* keep everything clipped to the section */
 }
 
 .placement-header {
@@ -31,7 +47,7 @@
     margin: 0 auto;
 }
 
-/* Ticker Container */
+/* Ticker viewport (fixed container) */
 .ticker-wrapper {
     width: 100%;
     overflow: hidden;
@@ -39,38 +55,43 @@
     padding: 10px 0;
 }
 
-/* Gradient Fade Effects on Sides */
+/* Gradient Fade Effects on Sides (masked viewport look) */
 .ticker-wrapper::before,
 .ticker-wrapper::after {
     content: "";
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 100px;
+    width: var(--fade-width);
     z-index: 2;
     pointer-events: none;
 }
 
 .ticker-wrapper::before {
     left: 0;
-    background: linear-gradient(to right, white, transparent);
+    background: linear-gradient(to right, #ffffff 0%, rgba(255, 255, 255, 0) 60%);
 }
 
 .ticker-wrapper::after {
     right: 0;
-    background: linear-gradient(to left, white, transparent);
+    background: linear-gradient(to left, #ffffff 0%, rgba(255, 255, 255, 0) 60%);
 }
 
+
+
+/* Static Grid Container - matches Features section above */
 .ticker-container {
-    display: flex;
-    gap: 30px;
-    width: max-content;
-    animation: scrollUpdates 35s linear infinite;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 columns like Features */
+    gap: 2rem;
+    width: 100%;
     padding: 10px 0;
-    /* Add padding to prevent shadow clipping */
 }
 
-.ticker-container:hover {
+/* Pause on hover of the viewport (user expectation) */
+.ticker-wrapper:hover .ticker-container,
+.ticker-container:focus-within {
     animation-play-state: paused;
 }
 
@@ -79,25 +100,23 @@
     background: #ffffff;
     border: 1px solid #e2e8f0;
     border-radius: 12px;
-    padding: 20px;
-    min-width: 260px;
-    max-width: 260px;
+    padding: 24px;
+    width: 100%;
+    /* Fill grid cell */
     display: flex;
     flex-direction: column;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-    /* Very subtle static shadow */
     transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
 }
 
-/* Slight lift on hover, but no glass effect */
+/* Slight lift on hover */
 .placement-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
-    /* crisp shadow */
     border-color: #cbd5e1;
 }
 
-/* Content Within Card */
+/* Card inner layout */
 .company-row {
     display: flex;
     justify-content: space-between;
@@ -113,9 +132,7 @@
 
 .package-badge {
     background: #ecfdf5;
-    /* Very light green */
     color: #059669;
-    /* Strong green text */
     padding: 6px 10px;
     border-radius: 6px;
     font-weight: 700;
@@ -124,19 +141,18 @@
 }
 
 .role-text {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: #475569;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     font-weight: 500;
 }
 
 .college-name-sm {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: #64748b;
     border-top: 1px solid #f1f5f9;
     padding-top: 12px;
     margin-top: auto;
-    /* Pushes to bottom */
     display: flex;
     align-items: center;
     gap: 6px;
@@ -148,28 +164,67 @@
     white-space: nowrap;
 }
 
-/* Animation */
+/* KEYFRAMES: move exactly 50% so one full duplicated set passes */
 @keyframes scrollUpdates {
     0% {
         transform: translateX(0);
     }
 
     100% {
-        transform: translateX(calc(-50% - 15px));
-        /* half width + half gap */
+        transform: translateX(-50%);
     }
 }
 
+/* If you want to tune speed purely with CSS change --marquee-duration variable above. */
+
 /* Responsive */
+@media (max-width: 1024px) {
+    .ticker-container {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columns on tablets */
+    }
+}
+
 @media (max-width: 768px) {
-    .placement-card {
-        min-width: 240px;
-        max-width: 240px;
+    :root {
+        --fade-width: 40px;
     }
 
-    .ticker-wrapper::before,
-    .ticker-wrapper::after {
-        width: 40px;
-        /* Smaller fade on mobile */
+    .ticker-container {
+        grid-template-columns: 1fr;
+        /* 1 column on mobile */
+    }
+
+    .placement-card {
+        min-width: auto;
+        max-width: none;
+    }
+}
+
+/* Small-screen adjustments */
+@media (max-width: 540px) {
+    :root {
+        --card-gap: 1rem;
+        --card-width: 200px;
+        --fade-width: 28px;
+    }
+
+    .placement-highlights-section {
+        padding: 2rem 0;
+    }
+
+    .placement-title {
+        font-size: 1.4rem;
+    }
+
+    .placement-subtitle {
+        font-size: 0.95rem;
+    }
+}
+
+/* Accessibility: respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .ticker-container {
+        animation: none;
     }
 }

@@ -1,19 +1,35 @@
-/* Live Ticker Styles */
+/* Live Ticker Styles - Flat & Simple */
 .live-ticker-container {
-    background: #1e1e1e;
-    /* Basic dark grey */
+    background: #1e1e1e !important;
     color: white;
-    padding: 10px 0;
+    padding: 12px 0;
     overflow: hidden;
     position: relative;
     border-bottom: 1px solid #333;
+    /* Ensure no external shadows or masks affect this */
+    box-shadow: none !important;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+}
+
+/* Force removal of any pseudo-element masks */
+.live-ticker-container::before,
+.live-ticker-container::after,
+.ticker-wrapper::before,
+.ticker-wrapper::after {
+    content: none !important;
+    display: none !important;
+    background: none !important;
 }
 
 .ticker-wrapper {
     display: flex;
     white-space: nowrap;
+    width: max-content;
+    /* Ensure wrapper takes full width of content */
+    /* Move 50% for seamless loop of duplicated content */
     animation: ticker-slide 40s linear infinite;
-    /* Slower, smoother */
+    will-change: transform;
 }
 
 .ticker-wrapper:hover {
@@ -23,27 +39,41 @@
 .ticker-item {
     display: inline-flex;
     align-items: center;
-    margin-right: 50px;
+    margin-right: 60px;
     font-size: 0.9rem;
+    background: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    flex-shrink: 0;
+    /* Prevent items from shrinking */
 }
 
 .ticker-tag {
-    background: #fca311;
-    /* Single uniform color (Amber/Orange) for all tags */
-    color: #000;
-    padding: 2px 8px;
+    background-color: #fca311 !important;
+    /* Flat Orange */
+    color: #000 !important;
+    padding: 4px 10px;
     border-radius: 4px;
     font-size: 0.75rem;
     font-weight: 700;
-    margin-right: 10px;
+    margin-right: 12px;
     text-transform: uppercase;
+    /* Remove any borders or shadows */
+    border: none !important;
+    box-shadow: none !important;
+    background-image: none !important;
+    background-clip: border-box !important;
+    -webkit-background-clip: border-box !important;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    /* Hardware accel for smooth render */
 }
 
-/* Removed specific color classes to enforce uniformity */
+/* Override any potential color variants */
 .ticker-tag.green,
 .ticker-tag.blue,
 .ticker-tag.red {
-    background: #fca311;
+    background-color: #fca311 !important;
 }
 
 .ticker-link {
@@ -53,7 +83,7 @@
 }
 
 .ticker-link:hover {
-    color: #38bdf8;
+    color: #fca311;
     text-decoration: underline;
 }
 

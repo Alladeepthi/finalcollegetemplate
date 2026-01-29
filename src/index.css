@@ -43,6 +43,12 @@ body {
   /* Prevent horizontal scrollbar */
 }
 
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Global Heading Styles */
 h1 {
   font-size: var(--h1-size);

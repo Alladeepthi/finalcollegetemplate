@@ -97,22 +97,61 @@ const CollegeFinder = () => {
                 </div>
 
                 <div className="finder-content">
-                    {/* Featured Colleges - Left Block */}
-                    <div className="finder-card colleges-card">
+                    {/* Notifications - Left Block */}
+                    <div className="finder-card notifications-card">
                         <div className="card-header">
-                            <h3>Featured Colleges</h3>
-                            <Link to="/colleges" className="view-all">View all <span className="view-all-dot">●</span></Link>
+                            <h3>📢 Latest Notifications</h3>
+                            <a href="#" className="view-all">View all <span className="view-all-dot">●</span></a>
                         </div>
-                        <div className="chips-grid">
-                            {currentData.colleges.map((college, idx) => (
-                                <button
-                                    key={idx}
-                                    className="data-chip college-chip"
-                                    onClick={() => handleChipClick('college', college)}
-                                >
-                                    {college}
-                                </button>
-                            ))}
+                        <div className="notifications-list">
+                            <div className="notification-item urgent" onClick={() => navigate('/colleges')}>
+                                <div className="notification-dot"></div>
+                                <div className="notification-text">
+                                    <strong>Admissions Open 2026</strong>
+                                    <span>Join top-ranked universities</span>
+                                </div>
+                                <span className="notification-time">Today</span>
+                            </div>
+                            <div className="notification-item" onClick={() => navigate('/exams')}>
+                                <div className="notification-dot"></div>
+                                <div className="notification-text">
+                                    <strong>JEE Main Registration</strong>
+                                    <span>Last date: Feb 15, 2026</span>
+                                </div>
+                                <span className="notification-time">2 days ago</span>
+                            </div>
+                            <div className="notification-item" onClick={() => navigate('/scholarships')}>
+                                <div className="notification-dot"></div>
+                                <div className="notification-text">
+                                    <strong>Merit Scholarships</strong>
+                                    <span>Up to 100% tuition waiver</span>
+                                </div>
+                                <span className="notification-time">1 week ago</span>
+                            </div>
+                            <div className="notification-item urgent" onClick={() => navigate('/exams')}>
+                                <div className="notification-dot"></div>
+                                <div className="notification-text">
+                                    <strong>NEET Application Deadline</strong>
+                                    <span>Submit before Feb 10</span>
+                                </div>
+                                <span className="notification-time">3 days ago</span>
+                            </div>
+                            <div className="notification-item" onClick={() => navigate('/colleges')}>
+                                <div className="notification-dot"></div>
+                                <div className="notification-text">
+                                    <strong>Virtual College Fair</strong>
+                                    <span>Meet 50+ college reps</span>
+                                </div>
+                                <span className="notification-time">5 days ago</span>
+                            </div>
+                            <div className="notification-item" onClick={() => navigate('/courses')}>
+                                <div className="notification-dot"></div>
+                                <div className="notification-text">
+                                    <strong>New AI & DS Courses</strong>
+                                    <span>Explore latest programs</span>
+                                </div>
+                                <span className="notification-time">1 week ago</span>
+                            </div>
                         </div>
                     </div>
 
@@ -179,23 +218,40 @@ const CollegeFinder = () => {
                         </div>
                     </div>
 
-                    {/* Right Column - Related Courses */}
-                    <div className="finder-card courses-card">
-                        <div className="card-header">
-                            <h3>Related Courses</h3>
-                            <Link to="/courses" className="view-all">View all</Link>
+                    {/* Right Column - Related Courses & Careers */}
+                    <div className="right-column">
+                        <div className="finder-card courses-card">
+                            <div className="card-header">
+                                <h3>Related Courses</h3>
+                                <Link to="/courses" className="view-all">View all</Link>
+                            </div>
+                            <ul className="courses-list">
+                                {currentData.courses.map((course, idx) => (
+                                    <li
+                                        key={idx}
+                                        className="course-item"
+                                        onClick={() => handleChipClick('course', course)}
+                                    >
+                                        {course}
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
-                        <ul className="courses-list">
-                            {currentData.courses.map((course, idx) => (
-                                <li
-                                    key={idx}
-                                    className="course-item"
-                                    onClick={() => handleChipClick('course', course)}
-                                >
-                                    {course}
-                                </li>
-                            ))}
-                        </ul>
+
+                        {/* Trending Careers - New Block to Fill Space */}
+                        <div className="finder-card careers-card">
+                            <div className="card-header">
+                                <h3>Trending Careers</h3>
+                                <Link to="/careers" className="view-all">View all</Link>
+                            </div>
+                            <div className="chips-flex">
+                                <button className="data-chip career-chip" onClick={() => navigate('/careers')}>Software Dev</button>
+                                <button className="data-chip career-chip" onClick={() => navigate('/careers')}>Data Scientist</button>
+                                <button className="data-chip career-chip" onClick={() => navigate('/careers')}>Product Mgr</button>
+                                <button className="data-chip career-chip" onClick={() => navigate('/careers')}>Civil Engineer</button>
+                                <button className="data-chip career-chip" onClick={() => navigate('/careers')}>Architect</button>
+                            </div>
+                        </div>
                     </div>
 
                 </div>

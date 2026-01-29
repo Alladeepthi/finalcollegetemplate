@@ -1,138 +1,154 @@
+/* Neuraltrix Style Footer */
 .footer-section {
-    background-color: hsl(221, 83%, 53%);
-    /* Bright Royal Blue */
-    color: hsl(0, 0%, 100%);
-    padding: 4rem 0 2rem;
+    background-color: #020617;
+    /* Very Dark Navy/Black */
+    color: #94a3b8;
+    padding: 3rem 0 1rem;
+    position: relative;
+    font-family: 'Outfit', sans-serif;
 }
 
-.footer-container {
+.footer-top-row {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 3rem;
+    gap: 2rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid #1e293b;
 }
 
-.footer-column {
-    flex: 1;
-    min-width: 250px;
-}
-
-
-/* Footer content text (after headings) */
-.footer-column p,
-.footer-column li,
-.footer-column a {
-    color: hsl(0, 0%, 90%);
-    /* soft white / light grey */
-}
-
-
-
-/* Headings */
-.footer-heading {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    position: relative;
-    display: inline-block;
-}
-
-.footer-heading::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -8px;
-    width: 40px;
-    height: 2px;
-    background-color: hsl(0, 0%, 100%);
-}
-
-/* About Column */
-.brand-logo h2 {
-    font-size: 2rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
-}
-
-.brand-logo .dot {
-    color: #F59E0B;
-    /* Orange dot */
-}
-
-.footer-desc {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    opacity: 0.9;
-    margin-bottom: 1.5rem;
-    max-width: 300px;
-}
-
-.social-icons {
-    display: flex;
-    gap: 0.8rem;
-}
-
-.social-icon {
-    width: 36px;
-    height: 36px;
-    border: 1px solid #ffffff;
-    border-radius: 4px;
+/* Logo Area */
+.footer-logo-area {
     display: flex;
     align-items: center;
-    justify-content: center;
-    color: #fff;
-    transition: background-color 0.3s, border-color 0.3s;
 }
 
-.social-icon:hover {
-    background-color: #fff;
-    color: #2563EB;
-    border-color: #fff;
-}
-
-/* Links Column */
-.links-grid {
+.neural-logo {
     display: flex;
-    gap: 3rem;
+    align-items: center;
+    gap: 12px;
 }
 
-.footer-links {
-    list-style: none;
-    padding: 0;
+.logo-icon-flame {
+    font-size: 2rem;
+    /* In real implementation, use actual SVG */
 }
 
-.footer-links li {
-    margin-bottom: 0.8rem;
+.logo-text-group {
+    display: flex;
+    flex-direction: column;
 }
 
-.footer-links a {
+.logo-main {
+    font-size: 1.4rem;
+    font-weight: 700;
     color: #fff;
-    font-size: 0.9rem;
-    opacity: 0.9;
+    letter-spacing: 1px;
+    line-height: 1.2;
+}
+
+.logo-sub {
+    font-size: 0.55rem;
+    letter-spacing: 2px;
+    color: #64748b;
+    text-transform: uppercase;
+}
+
+/* Navigation Links */
+.footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.footer-nav a {
+    color: #94a3b8;
     text-decoration: none;
-    transition: opacity 0.2s;
-}
-
-.footer-links a:hover {
-    opacity: 1;
-    text-decoration: underline;
-}
-
-/* Contact Column */
-.contact-list {
-    list-style: none;
-    padding: 0;
-}
-
-.contact-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 1.2rem;
     font-size: 0.9rem;
-    opacity: 0.9;
+    transition: color 0.2s;
 }
 
-.contact-icon {
-    font-size: 1.1rem;
+.footer-nav a:hover {
+    color: #fff;
+}
+
+/* Social Icons */
+.footer-socials {
+    display: flex;
+    gap: 10px;
+}
+
+.social-circle {
+    width: 36px;
+    height: 36px;
+    border: 1px solid #334155;
+    border-radius: 50%;
+    /* Circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.social-circle:hover {
+    background-color: #2563EB;
+    border-color: #2563EB;
+    transform: translateY(-2px);
+}
+
+/* Bottom Row */
+.footer-bottom-row {
+    text-align: center;
+    padding-top: 1.5rem;
+    font-size: 0.85rem;
+    color: #475569;
+}
+
+/* Back To Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 90px;
+    /* Left of ChatBot */
+    width: 45px;
+    height: 45px;
+    background-color: #2563EB;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    transition: background 0.2s, transform 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-to-top:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-3px);
+}
+
+@media (max-width: 900px) {
+    .footer-top-row {
+        flex-direction: column;
+        text-align: center;
+        gap: 2.5rem;
+    }
+
+    .footer-nav {
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .neural-logo {
+        flex-direction: column;
+        gap: 5px;
+    }
 }

@@ -16,7 +16,7 @@ import Dashboard from './pages/Dashboard';
 import { UserProvider } from './context/UserContext';
 
 import GlobalAdPopup from './components/GlobalAdPopup';
-import GlobalSideAd from './components/GlobalSideAd';
+import ChatBot from './components/ChatBot';
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
 
           {/* Global Ads */}
           <GlobalAdPopup />
-          <GlobalSideAd />
+          <ChatBot />
 
           <Routes>
             <Route path="/" element={<Home />} />

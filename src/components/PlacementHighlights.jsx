@@ -15,11 +15,11 @@ const PlacementHighlights = () => {
         { company: "Samsung", package: "₹ 28 LPA", role: "R&D Eng.", college: "Thapar Univ" },
     ];
 
-    const displayList = [...placements, ...placements]; // Duplicate for loop
+    const displayList = [...placements, ...placements]; // 2x Duplicate for standard seamless loop
 
     return (
         <section className="placement-highlights-section">
-            <div className="container" style={{ overflow: 'hidden' }}>
+            <div className="container">
                 <div className="placement-header">
                     <h2 className="placement-title">Highest <span>Placement Packages</span> 2025</h2>
                     <p className="placement-subtitle">Top students securing dream offers from global giants</p>
