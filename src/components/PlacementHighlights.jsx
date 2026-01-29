@@ -17,6 +17,18 @@ const PlacementHighlights = () => {
 
     const displayList = [...placements, ...placements]; // 2x Duplicate for standard seamless loop
 
+    const stats = [
+        { label: "Highest Package", value: "₹ 1.2 Cr" },
+        { label: "Average Package", value: "₹ 8.5 LPA" },
+        { label: "Total Recruiters", value: "850+" },
+        { label: "Offers Made", value: "4,500+" },
+        { label: "International Offers", value: "120+" },
+        { label: "Dream Offers", value: "1,100+" },
+        { label: "Placement Rate", value: "98.5%" },
+    ];
+    // Duplicate 4x since cards are smaller to fill width
+    const displayStats = [...stats, ...stats, ...stats, ...stats];
+
     return (
         <section className="placement-highlights-section">
             <div className="container">
@@ -24,24 +36,26 @@ const PlacementHighlights = () => {
                     <h2 className="placement-title">Highest <span>Placement Packages</span> 2025</h2>
                     <p className="placement-subtitle">Top students securing dream offers from global giants</p>
                 </div>
+            </div>
 
-                <div className="ticker-wrapper">
-                    <div className="ticker-container">
-                        {displayList.map((item, index) => (
-                            <div className="placement-card" key={index}>
-                                <div className="company-row">
-                                    <span className="company-name">{item.company}</span>
-                                    <span className="package-badge">{item.package}</span>
-                                </div>
-                                <div className="role-text">Offers: {item.role}</div>
-                                <div className="college-name-sm">
-                                    🎓 {item.college}
-                                </div>
+            <div className="ticker-wrapper">
+                <div className="ticker-container">
+                    {displayList.map((item, index) => (
+                        <div className="placement-card" key={index}>
+                            <div className="company-row">
+                                <span className="company-name">{item.company}</span>
+                                <span className="package-badge">{item.package}</span>
                             </div>
-                        ))}
-                    </div>
+                            <div className="role-text">Offers: {item.role}</div>
+                            <div className="college-name-sm">
+                                🎓 {item.college}
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
+
+
         </section>
     );
 };

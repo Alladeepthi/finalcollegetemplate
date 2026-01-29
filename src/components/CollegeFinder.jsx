@@ -216,6 +216,25 @@ const CollegeFinder = () => {
 
                             <Link to="/colleges" className="compare-link-bottom">Compare Colleges &gt;</Link>
                         </div>
+
+                        {/* Popular States/Cities - Added to fill remaining space */}
+                        <div className="finder-card popular-states-card">
+                            <div className="card-header">
+                                <h3>Popular Study Hubs</h3>
+                                <Link to="/colleges" className="view-all">View all</Link>
+                            </div>
+                            <div className="chips-flex">
+                                {currentData.states.map((state, idx) => (
+                                    <button
+                                        key={idx}
+                                        className="data-chip location-chip"
+                                        onClick={() => handleChipClick('college', state)}
+                                    >
+                                        📍 {state}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
                     </div>
 
                     {/* Right Column - Related Courses & Careers */}

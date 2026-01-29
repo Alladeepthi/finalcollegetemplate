@@ -1,7 +1,7 @@
 /* ... previous styles ... */
 
 .college-finder-section {
-    padding: 60px 0;
+    padding: 60px 0 20px;
     background-color: #f8fafc;
 }
 
@@ -196,8 +196,8 @@
 
 .middle-column .finder-card {
     height: auto;
-    flex: 1;
-    /* Distribute height evenly between Exams and States */
+    flex: 0 0 auto;
+    /* Do not force Cards to stretch, let them fit content */
 }
 
 /* Chips Styling */
@@ -250,6 +250,18 @@
 }
 
 /* Specific Chip Styles */
+.location-chip {
+    background-color: #fff1f2;
+    color: #be123c;
+    border: 1px solid #fecdd3;
+}
+
+.location-chip:hover {
+    background-color: #ffe4e6;
+    color: #9f1239;
+    border-color: #fb7185;
+}
+
 .career-chip {
     background-color: #f3f4f6;
     color: #4b5563;

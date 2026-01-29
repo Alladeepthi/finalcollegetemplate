@@ -1,7 +1,7 @@
 /* ... previous styles ... */
 
 .featured-exams-section {
-    padding: 4rem 0;
+    padding: 2rem 0 4rem;
     background-color: var(--color-light);
     overflow: hidden;
     /* Essential for marquee */

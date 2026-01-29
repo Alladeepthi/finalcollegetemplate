@@ -15,7 +15,7 @@
 
 /* Placement section basics */
 .placement-highlights-section {
-    padding: 3rem 0;
+    padding: 2rem;
     background: #ffffff;
     border-bottom: 1px solid #e2e8f0;
     overflow: hidden;
@@ -53,18 +53,15 @@
     overflow: hidden;
     position: relative;
     padding: 10px 0;
+    justify-content: center;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
-/* Gradient Fade Effects on Sides (masked viewport look) */
+/* Gradient Fade Effects on Sides - removed because we use mask-image now for better transparency handling over potential backgrounds */
 .ticker-wrapper::before,
 .ticker-wrapper::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: var(--fade-width);
-    z-index: 2;
-    pointer-events: none;
+    display: none;
 }
 
 .ticker-wrapper::before {
@@ -79,14 +76,15 @@
 
 
 
-/* Static Grid Container - matches Features section above */
+
+/* Flex Container for Marquee */
 .ticker-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    /* 4 columns like Features */
+    display: flex;
+    width: max-content;
+    /* Ensure container is wide enough for all items */
     gap: 2rem;
-    width: 100%;
     padding: 10px 0;
+    animation: scrollUpdates var(--marquee-duration) linear infinite;
 }
 
 /* Pause on hover of the viewport (user expectation) */
@@ -101,8 +99,11 @@
     border: 1px solid #e2e8f0;
     border-radius: 12px;
     padding: 24px;
-    width: 100%;
-    /* Fill grid cell */
+    /* Fixed width for marquee items */
+    width: var(--card-width);
+    min-width: var(--card-width);
+    flex-shrink: 0;
+    /* Prevent shrinking */
     display: flex;
     flex-direction: column;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
@@ -178,22 +179,15 @@
 /* If you want to tune speed purely with CSS change --marquee-duration variable above. */
 
 /* Responsive */
-@media (max-width: 1024px) {
-    .ticker-container {
-        grid-template-columns: repeat(2, 1fr);
-        /* 2 columns on tablets */
-    }
-}
+/* Responsive */
+/* Grid columns removed for 1024px */
 
 @media (max-width: 768px) {
     :root {
         --fade-width: 40px;
     }
 
-    .ticker-container {
-        grid-template-columns: 1fr;
-        /* 1 column on mobile */
-    }
+    /* ticker-container maintained as flex */
 
     .placement-card {
         min-width: auto;
@@ -220,6 +214,60 @@
     .placement-subtitle {
         font-size: 0.95rem;
     }
+}
+
+/* Stats Marquee Styles */
+.stats-wrapper {
+    margin-top: 1.5rem;
+    /* differentiate visually */
+    border-top: 1px dashed #e2e8f0;
+    padding-top: 2rem;
+}
+
+.stat-card {
+    background: #ffffff;
+    border: 2px solid #f1f5f9;
+    border-radius: 999px;
+    /* Pill shape */
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+    /* No fixed width, let content drive it */
+    width: auto;
+    flex-shrink: 0;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    border-color: #3b82f6;
+}
+
+.stat-value {
+    font-weight: 800;
+    font-size: 1.25rem;
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stat-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Modifier for reverse scrolling */
+.ticker-container.reverse-scroll {
+    animation-direction: reverse;
+    animation-duration: 60s;
+    /* Slower for stats might look nice, or keep standard */
 }
 
 /* Accessibility: respect reduced motion preference */

@@ -12,22 +12,20 @@ const LiveTicker = () => {
 
     return (
         <div className="live-ticker-container">
-            <div className="container">
-                <div className="ticker-wrapper">
-                    {/* Duplicate list for seamless loop effect if needed, though simple slide is implemented */}
-                    {updates.map((update, index) => (
-                        <div className="ticker-item" key={index}>
-                            <span className={`ticker-tag ${update.color}`}>{update.type}</span>
-                            <a href="#" className="ticker-link">{update.text}</a>
-                        </div>
-                    ))}
-                    {updates.map((update, index) => (
-                        <div className="ticker-item" key={`dup-${index}`}>
-                            <span className={`ticker-tag ${update.color}`}>{update.type}</span>
-                            <a href="#" className="ticker-link">{update.text}</a>
-                        </div>
-                    ))}
-                </div>
+            <div className="ticker-wrapper">
+                {/* Duplicate list for seamless loop effect if needed, though simple slide is implemented */}
+                {updates.map((update, index) => (
+                    <div className="ticker-item" key={index}>
+                        <span className={`ticker-tag ${update.color}`}>{update.type}</span>
+                        <a href="#" className="ticker-link">{update.text}</a>
+                    </div>
+                ))}
+                {updates.map((update, index) => (
+                    <div className="ticker-item" key={`dup-${index}`}>
+                        <span className={`ticker-tag ${update.color}`}>{update.type}</span>
+                        <a href="#" className="ticker-link">{update.text}</a>
+                    </div>
+                ))}
             </div>
         </div>
     );
