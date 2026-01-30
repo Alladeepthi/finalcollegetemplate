@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './PlacementHighlights.css';
 
 const PlacementHighlights = () => {
@@ -42,20 +43,33 @@ const PlacementHighlights = () => {
                 <div className="ticker-container">
                     {displayList.map((item, index) => (
                         <div className="placement-card" key={index}>
-                            <div className="company-row">
-                                <span className="company-name">{item.company}</span>
-                                <span className="package-badge">{item.package}</span>
+                            <div className="card-top-row">
+                                <span className="year-badge">2025</span>
+                                <span className="package-badge">{item.package} <small>(CTC)</small></span>
                             </div>
+                            <div className="company-logo-placeholder">{item.company.charAt(0)}</div>
+                            <div className="company-name">{item.company}</div>
+
                             <div className="role-text">Offers: {item.role}</div>
-                            <div className="college-name-sm">
+
+                            <div className="college-info">
                                 🎓 {item.college}
+                            </div>
+
+                            <div className="card-cta">
+                                <Link to="/placements" className="view-details-link">View Placement Details →</Link>
                             </div>
                         </div>
                     ))}
                 </div>
             </div>
 
-
+            <div className="placement-footer">
+                <p className="disclaimer">*Packages mentioned are CTC unless specified</p>
+                <Link to="/placements">
+                    <button className="view-all-records-btn">View All Placement Records →</button>
+                </Link>
+            </div>
         </section>
     );
 };

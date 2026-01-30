@@ -110,6 +110,10 @@ const FeaturedExams = () => {
                                 <div className="card-content-wide">
                                     <div className="exam-meta">
                                         <span className="exam-date">📅 {item.date}</span>
+                                        {/* Urgency Tag Logic (Mocked) */}
+                                        {index % 2 === 0 && (
+                                            <span className="urgency-tag">🔥 Closing Soon</span>
+                                        )}
                                     </div>
 
                                     <h3 className="card-title">{item.title}</h3>

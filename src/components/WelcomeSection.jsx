@@ -6,7 +6,7 @@ const WelcomeSection = () => {
         <section className="welcome-section">
             <div className="container welcome-container">
                 <div className="welcome-content">
-                    <h2 className="welcome-title">Welcome to EduMon Theme</h2>
+                    <h2 className="welcome-title">Why Students Choose EduMon</h2>
                     <div className="title-underline"></div>
 
                     <p className="welcome-text">

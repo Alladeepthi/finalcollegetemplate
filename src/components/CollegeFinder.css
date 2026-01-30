@@ -17,6 +17,227 @@
     margin-bottom: 10px;
 }
 
+/* Placement Spotlight Card (Premium - Flat) */
+.placement-spotlight-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px;
+    /* box-shadow: none; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.placement-spotlight-card:hover {
+    transform: translateY(-2px);
+    border-color: #cbd5e1;
+}
+
+/* Header */
+.spotlight-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    padding-bottom: 12px;
+}
+
+.header-title-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-title-group h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+.verified-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background-color: #dcfce7;
+    border-radius: 50%;
+    color: #16a34a;
+}
+
+.live-indicator {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #22c55e;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+    animation: pulse-green 2s infinite;
+}
+
+/* Content */
+.spotlight-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    animation: fadeInSlide 0.4s ease-out;
+}
+
+.package-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.package-amount {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #16a34a;
+    line-height: 1;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.package-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #64748b;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.company-role-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: #f8fafc;
+    /* Solid background */
+    border-radius: 12px;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icon-box {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.role-icon {
+    background-color: #f1f5f9;
+    color: #475569;
+}
+
+.company-icon {
+    background-color: #fff;
+    border: 1px solid #e2e8f0;
+}
+
+.letter-logo {
+    font-weight: 800;
+    color: #334155;
+    font-size: 1rem;
+}
+
+.info-text {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #1e293b;
+}
+
+.role-text {
+    color: #334155;
+}
+
+.company-text {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+
+/* Footer */
+.spotlight-footer {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.check-placements-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    color: #2563eb;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    background: rgba(37, 99, 235, 0.04);
+    padding: 10px 16px;
+    border-radius: 8px;
+}
+
+.check-placements-btn:hover {
+    background: rgba(37, 99, 235, 0.08);
+    color: #1d4ed8;
+    text-decoration: none;
+}
+
+.arrow-icon {
+    transition: transform 0.2s;
+}
+
+.check-placements-btn:hover .arrow-icon {
+    transform: translateX(4px);
+}
+
+@keyframes pulse-green {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+    }
+}
+
 .finder-subtitle {
     color: #64748b;
     font-size: var(--p-lg-size);
@@ -58,11 +279,19 @@
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+.tab-btn {
+    position: relative;
+    /* For pseudo-element positioning */
+}
+
 .tab-btn.active {
     background-color: #3b5bdb;
     color: white;
     box-shadow: 0 4px 12px rgba(59, 91, 219, 0.3);
 }
+
+/* Underline Animation */
+
 
 .tab-indicator {
     font-weight: 900;
@@ -73,15 +302,17 @@
 .finder-content {
     display: grid;
     grid-template-columns: 1.2fr 1fr 1fr;
-    gap: 20px;
+    gap: 15px;
+    align-items: start;
+    /* Align items to top, don't stretch height */
 }
 
 .finder-card {
     background-color: white;
-    padding: 24px;
+    padding: 16px;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    height: 100%;
+    /* height: 100%; REMOVED to prevent stretching */
 }
 
 .card-header {
@@ -110,14 +341,18 @@
 
 /* Specific Card Styles */
 .notifications-card {
-    max-height: 500px;
-    overflow-y: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .notifications-list {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    flex: 1;
+    overflow-y: auto;
+    /* Optional: custom scrollbar styling if needed, but auto handles functionality */
 }
 
 .notification-item {
@@ -189,9 +424,8 @@
 .middle-column {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    height: 100%;
-    /* Ensure wrapper fills grid cell */
+    gap: 15px;
+    /* height: 100%; REMOVED */
 }
 
 .middle-column .finder-card {
@@ -239,14 +473,14 @@
 .right-column {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    height: 100%;
+    gap: 15px;
+    /* height: 100%; REMOVED */
 }
 
 .right-column .finder-card {
     height: auto;
-    flex: 1;
-    /* Distribute height equally */
+    /* flex: 1; REMOVED */
+
 }
 
 /* Specific Chip Styles */
@@ -326,16 +560,95 @@
 }
 
 /* ... existing responsive code ... */
-@media (max-width: 992px) {
-    .finder-content {
-        grid-template-columns: 1fr;
+/* Responsive Design */
+
+/* Tablet Layout (768px - 1199px) */
+@media (max-width: 1199px) {
+    .college-finder-section {
+        padding: 40px 0;
     }
 
-    /* ... */
+    .finder-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    /* Make the right column span full width at bottom */
+    .right-column {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        /* Display children side-by-side */
+        gap: 20px;
+    }
+
+    .right-column .finder-card {
+        flex: 1;
+        /* Equal width children */
+    }
 }
 
-@media (max-width: 600px) {
-    /* ... */
+/* Mobile Layout (< 768px) */
+@media (max-width: 768px) {
+    .finder-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .section-header {
+        margin-bottom: 2rem;
+    }
+
+    .finder-title {
+        font-size: 1.75rem;
+    }
+
+    /* Tabs scrollable on mobile */
+    .finder-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 8px;
+        /* Space for scrollbar */
+        margin-bottom: 20px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        /* Firefox */
+    }
+
+    .finder-tabs::-webkit-scrollbar {
+        display: none;
+        /* Hide scrollbar for cleaner look */
+    }
+
+    .tab-btn {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+
+    /* Reset Right column to vertical stack */
+    .right-column {
+        grid-column: auto;
+        flex-direction: column;
+    }
+
+    .middle-column {
+        gap: 15px;
+    }
+
+    /* Ensure cards take full width */
+    .finder-card {
+        padding: 16px;
+    }
+
+    .package-amount {
+        font-size: 1.8rem;
+    }
 }
 
 /* Compare Card in Finder */

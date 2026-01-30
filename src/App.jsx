@@ -12,11 +12,13 @@ import Careers from './pages/Careers';
 import CareerDetails from './pages/CareerDetails';
 import Exams from './pages/Exams';
 import ExamDetails from './pages/ExamDetails';
+import Placements from './pages/Placements';
 import Dashboard from './pages/Dashboard';
 import { UserProvider } from './context/UserContext';
 
 import GlobalAdPopup from './components/GlobalAdPopup';
 import ChatBot from './components/ChatBot';
+import MobileStickyCTA from './components/MobileStickyCTA';
 
 function App() {
   return (
@@ -40,10 +42,12 @@ function App() {
             <Route path="/careers/:id" element={<CareerDetails />} />
             <Route path="/exams" element={<Exams />} />
             <Route path="/exams/:id" element={<ExamDetails />} />
+            <Route path="/placements" element={<Placements />} />
             <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
 
           <Footer />
+          <MobileStickyCTA />
         </div>
       </Router>
     </UserProvider>

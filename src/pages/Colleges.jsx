@@ -22,6 +22,10 @@ const Colleges = () => {
     const [selectedType, setSelectedType] = useState('');
     const [sortOption, setSortOption] = useState('Popularity');
 
+    // Pagination State
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 6;
+
     // Comparison State
     const [comparisonList, setComparisonList] = useState([]);
     const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
@@ -128,7 +132,14 @@ const Colleges = () => {
         }
 
         setFilteredColleges(results);
+        setCurrentPage(1); // Reset to first page on filter change
     }, [searchTerm, streamParam, selectedStates, selectedDegrees, selectedType, sortOption]);
+
+    // Pagination Logic
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentColleges = filteredColleges.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(filteredColleges.length / itemsPerPage);
 
     const navigate = useNavigate();
 
@@ -225,63 +236,100 @@ const Colleges = () => {
                     </div>
 
                     <div className="college-list">
-                        {filteredColleges.map(college => (
-                            <div className={`college-card ${college.featured ? 'featured' : ''}`} key={college.id}>
-                                {college.featured && <div className="featured-badge">FEATURED</div>}
-                                <div className="college-card-img">
-                                    <img src={college.image} alt={college.name} />
-                                    <div className="compare-toggle">
-                                        <input
-                                            type="checkbox"
-                                            id={`compare-${college.id}`}
-                                            checked={comparisonList.some(c => c.id === college.id)}
-                                            onChange={() => handleCompareToggle(college)}
-                                        />
-                                        <label htmlFor={`compare-${college.id}`}>Add to Compare</label>
-                                    </div>
-                                </div>
-
-                                <div className="college-card-content">
-                                    <div className="college-card-header">
-                                        <div>
-                                            <h2 className="college-name">{college.name}</h2>
-                                            <p className="college-location">📍 {college.location}</p>
-                                        </div>
-                                        <div className="college-rating">
-                                            <span className="rating-num">{college.rating}</span>
-                                            <span className="rating-stars">⭐</span>
-                                            <div className="review-count">{college.reviews} Reviews</div>
+                        {currentColleges.length > 0 ? (
+                            currentColleges.map(college => (
+                                <div className={`college-card ${college.featured ? 'featured' : ''}`} key={college.id}>
+                                    {college.featured && <div className="featured-badge">FEATURED</div>}
+                                    <div className="college-card-img">
+                                        <img src={college.image} alt={college.name} />
+                                        <div className="compare-toggle">
+                                            <input
+                                                type="checkbox"
+                                                id={`compare-${college.id}`}
+                                                checked={comparisonList.some(c => c.id === college.id)}
+                                                onChange={() => handleCompareToggle(college)}
+                                            />
+                                            <label htmlFor={`compare-${college.id}`}>Add to Compare</label>
                                         </div>
                                     </div>
 
-                                    <div className="college-details-grid">
-                                        <div className="detail-item">
-                                            <span className="detail-label">Courses</span>
-                                            <div className="course-chips">
-                                                {college.courses.slice(0, 3).map((c, i) => (
-                                                    <span key={i} className="course-chip">{c}</span>
-                                                ))}
-                                                {college.courses.length > 3 && <span className="course-chip">+{college.courses.length - 3}</span>}
+                                    <div className="college-card-content">
+                                        <div className="college-card-header">
+                                            <div>
+                                                <h2 className="college-name">{college.name}</h2>
+                                                <p className="college-location">📍 {college.location}</p>
+                                            </div>
+                                            <div className="college-rating">
+                                                <span className="rating-num">{college.rating}</span>
+                                                <span className="rating-stars">⭐</span>
+                                                <div className="review-count">{college.reviews} Reviews</div>
                                             </div>
                                         </div>
-                                        <div className="detail-item">
-                                            <span className="detail-label">Total Fees</span>
-                                            <span className="detail-value">{college.fees}</span>
-                                        </div>
-                                        <div className="detail-item">
-                                            <span className="detail-label">Avg Placement</span>
-                                            <span className="detail-value text-success">{college.placement}</span>
-                                        </div>
-                                    </div>
 
-                                    <div className="college-card-actions">
-                                        <button className="btn-secondary">Download Brochure</button>
-                                        <button className="btn-primary" onClick={() => handleViewDetails(college.id)}>View Details</button>
+                                        <div className="college-details-grid">
+                                            <div className="detail-item">
+                                                <span className="detail-label">Courses</span>
+                                                <div className="course-chips">
+                                                    {college.courses.slice(0, 3).map((c, i) => (
+                                                        <span key={i} className="course-chip">{c}</span>
+                                                    ))}
+                                                    {college.courses.length > 3 && <span className="course-chip">+{college.courses.length - 3}</span>}
+                                                </div>
+                                            </div>
+                                            <div className="detail-item">
+                                                <span className="detail-label">Total Fees</span>
+                                                <span className="detail-value">{college.fees}</span>
+                                            </div>
+                                            <div className="detail-item">
+                                                <span className="detail-label">Avg Placement</span>
+                                                <span className="detail-value text-success">{college.placement}</span>
+                                            </div>
+                                        </div>
+
+                                        <div className="college-card-actions">
+                                            <button className="btn-secondary">Download Brochure</button>
+                                            <button className="btn-primary" onClick={() => handleViewDetails(college.id)}>View Details</button>
+                                        </div>
                                     </div>
                                 </div>
+                            ))
+                        ) : (
+                            <div className="no-results">
+                                <p>No colleges found matching your criteria.</p>
                             </div>
-                        ))}
+                        )}
                     </div>
+
+                    {/* Pagination Controls */}
+                    {totalPages > 1 && (
+                        <div className="pagination">
+                            <button
+                                className="pagination-btn"
+                                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                                disabled={currentPage === 1}
+                            >
+                                Previous
+                            </button>
+
+                            {Array.from({ length: totalPages }, (_, i) => i + 1).map(number => (
+                                <button
+                                    key={number}
+                                    className={`pagination-btn ${currentPage === number ? 'active' : ''}`}
+                                    onClick={() => setCurrentPage(number)}
+                                >
+                                    {number}
+                                </button>
+                            ))}
+
+                            <button
+                                className="pagination-btn"
+                                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                                disabled={currentPage === totalPages}
+                            >
+                                Next
+                            </button>
+                        </div>
+                    )}
                 </main>
             </div>
 

@@ -65,8 +65,119 @@
 }
 
 /* Responsive */
+/* Responsive */
 @media (max-width: 768px) {
     .hero-title {
         font-size: 2.5rem;
+    }
+}
+
+/* Hero Search Styles */
+.hero-search-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 2rem;
+    padding: 0 1rem;
+}
+
+.hero-search-container {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 10px;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 850px;
+    gap: 10px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    flex: 1;
+}
+
+.search-group {
+    flex: 1.5;
+    /* Give more space to main search */
+}
+
+.location-group {
+    flex: 1;
+}
+
+.hero-input {
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    color: #334155;
+    background: transparent;
+}
+
+.search-icon,
+.location-icon {
+    font-size: 1.2rem;
+    color: #94a3b8;
+    margin-right: 8px;
+}
+
+.divider-vertical {
+    width: 1px;
+    height: 30px;
+    background-color: #e2e8f0;
+}
+
+.hero-search-btn {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+}
+
+.hero-search-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+}
+
+/* Mobile Responsiveness for Search */
+@media (max-width: 768px) {
+    .hero-search-container {
+        flex-direction: column;
+        border-radius: 20px;
+        padding: 15px;
+        gap: 15px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+    }
+
+    .input-group {
+        width: 100%;
+        border-bottom: 1px solid #f1f5f9;
+        padding-bottom: 5px;
+    }
+
+    .input-group:last-of-type {
+        border-bottom: none;
+    }
+
+    .divider-vertical {
+        display: none;
+    }
+
+    .hero-search-btn {
+        width: 100%;
+        padding: 12px;
+        border-radius: 12px;
     }
 }

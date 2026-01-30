@@ -4,7 +4,24 @@ import './CollegeFinder.css';
 
 const CollegeFinder = () => {
     const [activeTab, setActiveTab] = useState('Engineering');
+    const [currentTrendIndex, setCurrentTrendIndex] = useState(0);
     const navigate = useNavigate();
+
+    const placementTrends = [
+        { company: "Google", package: "₹ 1.2 Cr", role: "SDE III", logo: "G" },
+        { company: "Atlassian", package: "₹ 85 LPA", role: "SDE II", logo: "A" },
+        { company: "Microsoft", package: "₹ 55 LPA", role: "Software Eng", logo: "M" },
+        { company: "Amazon", package: "₹ 45 LPA", role: "SDE I", logo: "A" }
+    ];
+
+    React.useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentTrendIndex((prev) => (prev + 1) % placementTrends.length);
+        }, 3000);
+        return () => clearInterval(interval);
+    }, []);
+
+    const currentTrend = placementTrends[currentTrendIndex];
 
     const tabs = ["Engineering", "Management", "Medical", "Science", "Commerce", "Arts"];
 
@@ -14,7 +31,7 @@ const CollegeFinder = () => {
             colleges: ["IIT Bombay", "BITS Pilani", "VIT Vellore", "SRM University", "Manipal Institute", "Chandigarh University", "LPU"],
             exams: ["JEE Main", "JEE Advanced", "BITSAT", "VITEEE", "SRMJEEE"],
             states: ["Maharashtra", "Tamil Nadu", "Karnataka", "Delhi", "Telangana"],
-            courses: ["Computer Science", "Mechanical Engg", "Electronics", "Civil Engg", "Aerospace"],
+            courses: ["Computer Science", "Mechanical Engg", "Electronics", "Civil Engg", "Aerospace", "Chemical Engg"],
             comparisons: [
                 { id1: 1, name1: "IIT Madras", img1: "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=100&auto=format&fit=crop", id2: 2, name2: "IIT Delhi", img2: "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?q=80&w=100&auto=format&fit=crop", course: "BE/B.Tech" },
                 { id1: 3, name1: "IIT Bombay", img1: "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?q=80&w=100&auto=format&fit=crop", id2: 4, name2: "BITS Pilani", img2: "https://images.unsplash.com/photo-1555597673-b21d5c935865?q=80&w=1000&auto=format&fit=crop", course: "BE/B.Tech" }
@@ -91,7 +108,7 @@ const CollegeFinder = () => {
                             onClick={() => setActiveTab(tab)}
                         >
                             {tab}
-                            {activeTab === tab && <span className="tab-indicator">&gt;</span>}
+
                         </button>
                     ))}
                 </div>
@@ -152,10 +169,26 @@ const CollegeFinder = () => {
                                 </div>
                                 <span className="notification-time">1 week ago</span>
                             </div>
+                            <div className="notification-item" onClick={() => navigate('/events')}>
+                                <div className="notification-dot"></div>
+                                <div className="notification-text">
+                                    <strong>Study Abroad Seminar</strong>
+                                    <span>Expert guidance session</span>
+                                </div>
+                                <span className="notification-time">2 weeks ago</span>
+                            </div>
+                            <div className="notification-item" onClick={() => navigate('/colleges')}>
+                                <div className="notification-dot"></div>
+                                <div className="notification-text">
+                                    <strong>Campus Open Days</strong>
+                                    <span>Visit top campuses</span>
+                                </div>
+                                <span className="notification-time">2 weeks ago</span>
+                            </div>
                         </div>
                     </div>
 
-                    {/* Middle Column - Exams and Comparison */}
+                    {/* Middle Column - Exams, Placements, Study Hubs */}
                     <div className="middle-column">
                         <div className="finder-card exams-card">
                             <div className="card-header">
@@ -175,6 +208,82 @@ const CollegeFinder = () => {
                             </div>
                         </div>
 
+                        {/* Premium Placement Spotlight Card (Now in Middle) */}
+                        <div className="finder-card placement-spotlight-card">
+                            <div className="spotlight-header">
+                                <div className="header-title-group">
+                                    <h3>Top Placements 2025</h3>
+                                    <span className="verified-badge" title="Verified Data">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div className="live-indicator">
+                                    <span className="live-dot"></span>
+                                </div>
+                            </div>
+
+                            <div className="spotlight-content" key={currentTrendIndex}>
+                                <div className="package-container">
+                                    <span className="package-amount">{currentTrend.package}</span>
+                                    <span className="package-label">Highest CTC</span>
+                                </div>
+
+                                <div className="company-role-info">
+                                    <div className="info-row">
+                                        <div className="icon-box role-icon">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                                            </svg>
+                                        </div>
+                                        <span className="info-text role-text">{currentTrend.role}</span>
+                                    </div>
+
+                                    <div className="info-row">
+                                        <div className="icon-box company-icon">
+                                            {/* Using the letter logo as a placeholder if available, else building icon */}
+                                            <span className="letter-logo">{currentTrend.logo}</span>
+                                        </div>
+                                        <span className="info-text company-text">{currentTrend.company}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="spotlight-footer">
+                                <Link to="/placements" className="check-placements-btn">
+                                    View Placement Report
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="arrow-icon">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg>
+                                </Link>
+                            </div>
+                        </div>
+
+                        {/* Popular States/Cities - Added to fill remaining space */}
+                        <div className="finder-card popular-states-card">
+                            <div className="card-header">
+                                <h3>Popular Study Hubs</h3>
+                                <Link to="/colleges" className="view-all">View all</Link>
+                            </div>
+                            <div className="chips-flex">
+                                {currentData.states.map((state, idx) => (
+                                    <button
+                                        key={idx}
+                                        className="data-chip location-chip"
+                                        onClick={() => handleChipClick('college', state)}
+                                    >
+                                        📍 {state}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Right Column - Compare (Top) & Related Courses (Bottom) */}
+                    <div className="right-column">
                         {/* Compare Colleges Card - Dynamic */}
                         <div className="finder-card compare-card">
                             <div className="compare-header-block">
@@ -217,28 +326,6 @@ const CollegeFinder = () => {
                             <Link to="/colleges" className="compare-link-bottom">Compare Colleges &gt;</Link>
                         </div>
 
-                        {/* Popular States/Cities - Added to fill remaining space */}
-                        <div className="finder-card popular-states-card">
-                            <div className="card-header">
-                                <h3>Popular Study Hubs</h3>
-                                <Link to="/colleges" className="view-all">View all</Link>
-                            </div>
-                            <div className="chips-flex">
-                                {currentData.states.map((state, idx) => (
-                                    <button
-                                        key={idx}
-                                        className="data-chip location-chip"
-                                        onClick={() => handleChipClick('college', state)}
-                                    >
-                                        📍 {state}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Right Column - Related Courses & Careers */}
-                    <div className="right-column">
                         <div className="finder-card courses-card">
                             <div className="card-header">
                                 <h3>Related Courses</h3>
@@ -255,21 +342,6 @@ const CollegeFinder = () => {
                                     </li>
                                 ))}
                             </ul>
-                        </div>
-
-                        {/* Trending Careers - New Block to Fill Space */}
-                        <div className="finder-card careers-card">
-                            <div className="card-header">
-                                <h3>Trending Careers</h3>
-                                <Link to="/careers" className="view-all">View all</Link>
-                            </div>
-                            <div className="chips-flex">
-                                <button className="data-chip career-chip" onClick={() => navigate('/careers')}>Software Dev</button>
-                                <button className="data-chip career-chip" onClick={() => navigate('/careers')}>Data Scientist</button>
-                                <button className="data-chip career-chip" onClick={() => navigate('/careers')}>Product Mgr</button>
-                                <button className="data-chip career-chip" onClick={() => navigate('/careers')}>Civil Engineer</button>
-                                <button className="data-chip career-chip" onClick={() => navigate('/careers')}>Architect</button>
-                            </div>
                         </div>
                     </div>
 

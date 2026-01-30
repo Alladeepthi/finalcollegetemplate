@@ -111,24 +111,23 @@
 }
 
 /* Slight lift on hover */
-.placement-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
-    border-color: #cbd5e1;
-}
+/* ... existing styles ... */
 
-/* Card inner layout */
-.company-row {
+/* Card Top Row */
+.card-top-row {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     margin-bottom: 15px;
 }
 
-.company-name {
+.year-badge {
+    background: #f1f5f9;
+    color: #475569;
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 4px;
     font-weight: 700;
-    color: #1e293b;
-    font-size: 1.15rem;
 }
 
 .package-badge {
@@ -136,62 +135,130 @@
     color: #059669;
     padding: 6px 10px;
     border-radius: 6px;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 0.95rem;
     white-space: nowrap;
+}
+
+.package-badge small {
+    font-size: 0.7rem;
+    opacity: 0.8;
+}
+
+.company-logo-placeholder {
+    width: 40px;
+    height: 40px;
+    background: #e2e8f0;
+    color: #64748b;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.company-name {
+    font-weight: 700;
+    color: #1e293b;
+    font-size: 1.25rem;
+    margin-bottom: 5px;
 }
 
 .role-text {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: #475569;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     font-weight: 500;
 }
 
-.college-name-sm {
+.college-info {
     font-size: 0.9rem;
     color: #64748b;
+    background: #f8fafc;
+    padding: 8px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.card-cta {
+    margin-top: auto;
     border-top: 1px solid #f1f5f9;
     padding-top: 12px;
-    margin-top: auto;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    text-align: center;
 }
 
-.college-name-sm span {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+.view-details-link {
+    font-size: 0.85rem;
+    color: #2563eb;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s;
 }
 
-/* KEYFRAMES: move exactly 50% so one full duplicated set passes */
-@keyframes scrollUpdates {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
+.view-details-link:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
 }
 
-/* If you want to tune speed purely with CSS change --marquee-duration variable above. */
+/* Placement Footer */
+.placement-footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 0 1rem;
+}
+
+.disclaimer {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+
+.view-all-records-btn {
+    background: transparent;
+    border: 2px solid #2563eb;
+    color: #2563eb;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.view-all-records-btn:hover {
+    background: #2563eb;
+    color: white;
+}
 
 /* Responsive */
-/* Responsive */
-/* Grid columns removed for 1024px */
-
 @media (max-width: 768px) {
     :root {
         --fade-width: 40px;
     }
 
-    /* ticker-container maintained as flex */
+    .ticker-container {
+        animation: none;
+        overflow-x: auto;
+        width: 100%;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 20px;
+        /* Space for scrollbar */
+        gap: 15px;
+    }
 
     .placement-card {
-        min-width: auto;
-        max-width: none;
+        scroll-snap-align: start;
+        min-width: 280px;
+        width: 280px;
+        padding: 15px;
+        margin-right: 0;
+    }
+
+    .ticker-wrapper {
+        mask-image: none;
+        -webkit-mask-image: none;
+        overflow: visible;
     }
 }
 
@@ -199,7 +266,7 @@
 @media (max-width: 540px) {
     :root {
         --card-gap: 1rem;
-        --card-width: 200px;
+        --card-width: 240px;
         --fade-width: 28px;
     }
 
@@ -209,70 +276,5 @@
 
     .placement-title {
         font-size: 1.4rem;
-    }
-
-    .placement-subtitle {
-        font-size: 0.95rem;
-    }
-}
-
-/* Stats Marquee Styles */
-.stats-wrapper {
-    margin-top: 1.5rem;
-    /* differentiate visually */
-    border-top: 1px dashed #e2e8f0;
-    padding-top: 2rem;
-}
-
-.stat-card {
-    background: #ffffff;
-    border: 2px solid #f1f5f9;
-    border-radius: 999px;
-    /* Pill shape */
-    padding: 10px 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    white-space: nowrap;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
-    /* No fixed width, let content drive it */
-    width: auto;
-    flex-shrink: 0;
-    transition: transform 0.2s, border-color 0.2s;
-}
-
-.stat-card:hover {
-    transform: translateY(-2px);
-    border-color: #3b82f6;
-}
-
-.stat-value {
-    font-weight: 800;
-    font-size: 1.25rem;
-    background: linear-gradient(135deg, #2563eb, #1e40af);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.stat-label {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #475569;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-/* Modifier for reverse scrolling */
-.ticker-container.reverse-scroll {
-    animation-direction: reverse;
-    animation-duration: 60s;
-    /* Slower for stats might look nice, or keep standard */
-}
-
-/* Accessibility: respect reduced motion preference */
-@media (prefers-reduced-motion: reduce) {
-    .ticker-container {
-        animation: none;
     }
 }
